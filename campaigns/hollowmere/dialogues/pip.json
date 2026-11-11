@@ -1,0 +1,39 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "pip",
+      "text": "Before you ask: no, I did not, and you cannot prove it. Pip Underbough. Locks, ledgers and ladders a speciality.",
+      "choices": [
+        {"text": "I need someone who can open doors that do not want to be opened.", "goto": "job"},
+        {"text": "(Watch her hands.)", "check": {"skill": "perception", "dc": 13}, "success": "caught", "failure": "missed"},
+        {"text": "Never mind.", "goto": "end"}
+      ]
+    },
+    "caught": {
+      "speaker": "pip",
+      "text": "...Fine. Fine! Here. I was only seeing how heavy it was. You have good eyes. I like good eyes.",
+      "do": [{"op": "approval.add", "id": "pip", "amount": 1}],
+      "goto": "job"
+    },
+    "missed": {
+      "text": "She smiles at you with both hands in plain sight. You feel faintly lighter, somehow.",
+      "do": [{"op": "gold.add", "amount": -2}],
+      "goto": "job"
+    },
+    "job": {
+      "speaker": "pip",
+      "text": "A tomb? An old one, with old locks, and nobody alive to mind? I am in. Half of whatever is not nailed down.",
+      "choices": [
+        {"text": "A fair share, same as everyone.", "goto": "join"},
+        {"text": "I will think about it.", "goto": "end"}
+      ]
+    },
+    "join": {
+      "speaker": "pip",
+      "text": "Tight-fisted. Sensible. I can work with sensible. Lead on.",
+      "do": [{"op": "party.add", "id": "pip"}],
+      "goto": "end"
+    }
+  }
+}

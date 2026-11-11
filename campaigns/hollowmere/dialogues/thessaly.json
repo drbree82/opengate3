@@ -1,0 +1,55 @@
+{
+  "start": [
+    {"if": {"companion": "thessaly", "state": "camp"}, "node": "camp"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "thessaly",
+      "text": "Oh. People. I had hoped the smoke would keep them away. Thessaly Wren. I am studying the Barrow's wards, from a sensible distance.",
+      "choices": [
+        {"text": "Come and study them from an unsensible distance.", "goto": "join"},
+        {"text": "Those wards are necromantic. Someone is feeding them.", "check": {"skill": "knowledge_arcana", "dc": 13}, "success": "impressed", "failure": "corrected"},
+        {"text": "What have you learned?", "goto": "lore"},
+        {"text": "Sorry to disturb you.", "goto": "end"}
+      ]
+    },
+    "lore": {
+      "speaker": "thessaly",
+      "text": "The lights are not random. They pulse, like breath. Something down there is being woken slowly, by someone patient.",
+      "choices": [
+        {"text": "Help me stop them.", "goto": "join"},
+        {"text": "Thank you.", "goto": "end"}
+      ]
+    },
+    "impressed": {
+      "speaker": "thessaly",
+      "text": "Yes! Exactly! Feeding them, a little every night. Finally, someone who reads. I have so many notes to show you.",
+      "do": [{"op": "approval.add", "id": "thessaly", "amount": 1}],
+      "goto": "join"
+    },
+    "corrected": {
+      "speaker": "thessaly",
+      "text": "Abjuration, originally. Necromancy is what somebody has turned them into. But you are close, which is more than I expected.",
+      "choices": [
+        {"text": "Then come and see them up close.", "goto": "join"},
+        {"text": "I will leave you to it.", "goto": "end"}
+      ]
+    },
+    "join": {
+      "speaker": "thessaly",
+      "text": "You want me to walk into a tomb. With you. ...Yes. Obviously yes. Let me get my book.",
+      "do": [{"op": "party.add", "id": "thessaly"}],
+      "goto": "end"
+    },
+    "camp": {
+      "speaker": "thessaly",
+      "text": "Back already? I was just getting comfortable.",
+      "choices": [
+        {"text": "Come with me.", "if": {"partyFull": false}, "do": [{"op": "party.add", "id": "thessaly"}], "goto": "end"},
+        {"text": "(The party is full.)", "if": {"partyFull": true}, "goto": "end"},
+        {"text": "Stay here for now.", "goto": "end"}
+      ]
+    }
+  }
+}

@@ -23,3 +23,29 @@ mono_crash.*.json
 *.exe
 # Uncomment if your project does not version PCK files as runtime dependencies.
 # *.pck
+
+# ---------------------------------------------------------------------------
+# OpenGate additions
+# ---------------------------------------------------------------------------
+
+# Secrets: the ElevenLabs API key written by `elevenlabs onboard`. NEVER commit these.
+.env
+.env.*
+!.env.example
+
+# Node tooling for the ElevenLabs generators (restore with `npm install`)
+node_modules/
+
+# Local scratch output (screenshot tours, exports)
+/shots/
+/build/
+/export/
+*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/

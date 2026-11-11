@@ -1,0 +1,7 @@
+{
+  "_doc": "Items that only exist in this campaign (merged over data/items.json).",
+  "cellar_key": {"name": "Cellar Key", "type": "quest", "desc": "Opens the cellar of the Gilded Heron."},
+  "barrow_key": {"name": "Black Iron Key", "type": "quest", "desc": "Heavy, cold, and older than the town. It fits the iron door in the Barrow."},
+  "tova_crate": {"name": "Tova's Crate", "type": "quest", "desc": "Bar iron and steel blanks, stamped with a hammer mark."},
+  "hollow_crown": {"name": "The Hollow Crown", "type": "quest", "desc": "A circlet of black iron. It is much too light, as if something had been taken out of it."}
+}

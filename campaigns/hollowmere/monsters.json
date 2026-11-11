@@ -1,0 +1,16 @@
+{
+  "_doc": "Monsters that only exist in this campaign (merged over data/monsters.json).",
+  "varrek": {
+    "name": "Varrek the Hollow", "cr": "3", "xp": 800, "hd": 5, "size": "medium", "tags": ["humanoid", "living"],
+    "hp": 26, "ac": 15, "touch": 12, "flatFooted": 13, "init": 2, "speed": 30,
+    "saves": {"fort": 2, "ref": 3, "will": 6}, "bab": 2, "cmb": 2, "cmd": 14,
+    "abilities": {"str": 10, "dex": 14, "con": 12, "int": 16, "wis": 13, "cha": 12},
+    "attacks": [{"name": "Bone staff", "bonus": 2, "damage": "1d6", "crit": [20, 2], "dtype": "B"}],
+    "spells": [{"id": "magic_missile", "uses": 3}, {"id": "cause_fear", "uses": 2}, {"id": "daze", "uses": -1}],
+    "casterLevel": 3, "castingAbility": "int",
+    "skills": {"perception": 5, "sense_motive": 6}, "ai": "caster",
+    "sprite": {"template": "humanoid", "height": 1.0, "look": {"body": "masculine", "build": "slim", "age": "old", "skin": "#b8b8c8", "hair": "#101018", "hairStyle": "hood", "outfit": "robe", "top": "#2a1838", "cloak": "#1a1024", "weapon": "staff", "trim": "#9a4ad8"}},
+    "portrait": "A gaunt, pale, elderly human necromancer under a dark purple hood, with hollow cheeks, faintly glowing pale eyes and a thin cruel smile, a circlet of black iron on his brow.",
+    "desc": "A hedge-necromancer who found a dead king's crown and mistook it for a throne."
+  }
+}

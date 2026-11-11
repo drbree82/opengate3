@@ -1,0 +1,93 @@
+{
+  "start": [
+    {"if": {"quest": "hollow_king", "stage": "return"}, "node": "victory"},
+    {"if": {"quest": "hollow_king", "status": "completed"}, "node": "after"},
+    {"if": {"flag": "met_reeve"}, "node": "again"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "reeve",
+      "text": "You must be the one the gate sent word about. Good. I am Maren Aldous, Reeve of Hollowmere, and I am very nearly out of people to ask.",
+      "do": [{"op": "flag.set", "flag": "met_reeve"}],
+      "goto": "trouble"
+    },
+    "trouble": {
+      "speaker": "reeve",
+      "text": "Three weeks ago, lights began to burn on the Barrow, east of here. Then our dead stopped staying buried. Then the living began to vanish. The miller's boy, Edrin, was the last.",
+      "goto": "ask"
+    },
+    "ask": {
+      "speaker": "reeve",
+      "text": "Ask what you need to.",
+      "choices": [
+        {"text": "What is the Barrow?", "goto": "barrow"},
+        {"text": "What does the town pay?", "if": {"not": {"flag": "asked_pay"}}, "goto": "pay"},
+        {"text": "I will look into it.", "goto": "accept"}
+      ]
+    },
+    "barrow": {
+      "speaker": "reeve",
+      "text": "A tomb older than the town. They say a king lies in it who would not share his hall, not even with death. We left it alone, and it left us alone. Until now.",
+      "goto": "ask"
+    },
+    "pay": {
+      "speaker": "reeve",
+      "text": "One hundred and fifty gold when the Barrow is quiet. It is most of what the town has.",
+      "do": [{"op": "flag.set", "flag": "asked_pay"}],
+      "choices": [
+        {"text": "The dead are walking, Reeve. It is worth more than that.", "check": {"skill": "diplomacy", "dc": 14}, "success": "pay_more", "failure": "pay_no"},
+        {"text": "That will do.", "goto": "ask"}
+      ]
+    },
+    "pay_more": {
+      "speaker": "reeve",
+      "text": "...Two hundred, then. And my thanks, which are worth rather less.",
+      "do": [{"op": "flag.set", "flag": "reeve_bonus"}],
+      "goto": "ask"
+    },
+    "pay_no": {
+      "speaker": "reeve",
+      "text": "I cannot give you what we do not have. One hundred and fifty.",
+      "goto": "ask"
+    },
+    "accept": {
+      "speaker": "reeve",
+      "text": "Then take some advice with you. Do not go alone. There is a sellsword idling by the well, a quick-fingered halfling at the Gilded Heron, and Sister Brunhild keeps the shrine. A scholar has been camping in the pines outside the walls, too. Make your own camp there. When you are ready, the east gate leads to the Barrow.",
+      "do": [
+        {"op": "quest.stage", "id": "a_cold_welcome", "stage": "camp"},
+        {"op": "item.give", "id": "potion_clw", "qty": 1}
+      ],
+      "goto": "end"
+    },
+    "again": {
+      "speaker": "reeve",
+      "text": "The east gate leads to the Barrow. Make camp first, and do not go alone.",
+      "choices": [
+        {"text": "Tell me about the Barrow again.", "goto": "barrow_again"},
+        {"text": "I will be back when it is done.", "goto": "end"}
+      ]
+    },
+    "barrow_again": {
+      "speaker": "reeve",
+      "text": "A king who would not share his hall, even with death. Whatever has woken up in there, it is using his name.",
+      "goto": "end"
+    },
+    "victory": {
+      "speaker": "reeve",
+      "text": "The lights went out an hour ago. I stood on the wall and watched them go. It is done, then? Truly done?",
+      "do": [
+        {"op": "cutscene.play", "id": "ending"},
+        {"op": "quest.complete", "id": "hollow_king"},
+        {"op": "gold.add", "amount": 50, "if": {"flag": "reeve_bonus"}},
+        {"op": "campaign.end", "victory": true, "text": "Hollowmere sleeps soundly tonight, and so do its dead. Thank you for playing Embers of Hollowmere."}
+      ],
+      "goto": "end"
+    },
+    "after": {
+      "speaker": "reeve",
+      "text": "The Barrow is dark and the churchyard is quiet. Sleep well, friend. You have earned it.",
+      "goto": "end"
+    }
+  }
+}

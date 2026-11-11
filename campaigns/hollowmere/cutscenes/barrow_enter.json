@@ -1,0 +1,18 @@
+{
+  "map": "barrow",
+  "steps": [
+    {"op": "fade", "to": "black", "seconds": 0},
+    {"op": "camera.set", "at": [5, 17], "z": 0.6, "look": [5, 12], "fov": 66},
+    {"op": "fade", "to": "clear", "seconds": 1.4},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [5, 13], "z": 0.7, "look": [9, 8], "fov": 60, "seconds": 5},
+      {"op": "narrate", "text": "Cold air breathes up out of the Barrow, and with it a smell of old stone and older dust."}
+    ]},
+    {"op": "camera.set", "at": [3, 11], "z": 0.9, "look": [10, 8], "fov": 55},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [4, 10], "z": 0.8, "look": "skeleton", "fov": 40, "seconds": 3.5},
+      {"op": "narrate", "text": "Somewhere ahead, bone scrapes on stone. You are not alone down here."}
+    ]},
+    {"op": "fade", "to": "black", "seconds": 0.5}
+  ]
+}

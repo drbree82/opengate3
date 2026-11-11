@@ -1,0 +1,80 @@
+{
+  "_doc": "Pathfinder 1e core races. abilityMods are applied on top of the base scores. flexibleBonus = +2 to one ability of the player's choice. modifiers use the format documented in src/rules/mods.gd. height = sprite height in world units (wall = 1.0).",
+  "human": {
+    "name": "Human", "size": "medium", "speed": 30, "height": 0.95,
+    "abilityMods": {}, "flexibleBonus": true, "bonusFeat": true, "bonusSkillRank": true,
+    "traits": ["+2 to one ability score", "Bonus feat at 1st level", "Skilled: +1 skill rank per level"],
+    "modifiers": [],
+    "desc": "Ambitious, adaptable and everywhere. Humans get an extra feat and extra skill training."
+  },
+  "dwarf": {
+    "name": "Dwarf", "size": "medium", "speed": 20, "steadySpeed": true, "height": 0.8,
+    "abilityMods": {"con": 2, "wis": 2, "cha": -2},
+    "traits": ["+2 Con, +2 Wis, -2 Cha", "Slow and steady: speed 20 ft, never reduced by armor", "Hardy: +2 on saves against spells and poison", "Stonecunning: +2 Perception around stonework", "Darkvision"],
+    "modifiers": [
+      {"target": "save", "value": 2, "type": "racial", "when": "vs_spell"},
+      {"target": "save", "value": 2, "type": "racial", "when": "vs_poison"},
+      {"target": "skill.perception", "value": 2, "type": "racial", "when": "stonework"}
+    ],
+    "weaponProf": ["battleaxe", "warhammer"],
+    "desc": "Stoic mountain folk, tough as the stone they carve."
+  },
+  "elf": {
+    "name": "Elf", "size": "medium", "speed": 30, "height": 0.98,
+    "abilityMods": {"dex": 2, "int": 2, "con": -2},
+    "traits": ["+2 Dex, +2 Int, -2 Con", "Keen senses: +2 Perception", "Immune to magical sleep", "+2 on saves against enchantments", "Low-light vision"],
+    "modifiers": [
+      {"target": "skill.perception", "value": 2, "type": "racial"},
+      {"target": "save", "value": 2, "type": "racial", "when": "vs_enchantment"}
+    ],
+    "immunities": ["sleep"],
+    "weaponProf": ["longbow", "longsword", "rapier", "shortbow"],
+    "desc": "Long-lived and graceful, at home with blade, bow and spell."
+  },
+  "gnome": {
+    "name": "Gnome", "size": "small", "speed": 20, "height": 0.66,
+    "abilityMods": {"con": 2, "cha": 2, "str": -2},
+    "traits": ["+2 Con, +2 Cha, -2 Str", "Small: +1 AC and attack, +4 Stealth", "Keen senses: +2 Perception", "+2 on saves against illusions"],
+    "modifiers": [
+      {"target": "skill.perception", "value": 2, "type": "racial"},
+      {"target": "save", "value": 2, "type": "racial", "when": "vs_illusion"}
+    ],
+    "desc": "Curious, excitable and stubbornly cheerful."
+  },
+  "half_elf": {
+    "name": "Half-Elf", "size": "medium", "speed": 30, "height": 0.95,
+    "abilityMods": {}, "flexibleBonus": true,
+    "traits": ["+2 to one ability score", "Keen senses: +2 Perception", "Immune to magical sleep", "+2 on saves against enchantments", "Adaptable: +2 Diplomacy and Sense Motive"],
+    "modifiers": [
+      {"target": "skill.perception", "value": 2, "type": "racial"},
+      {"target": "save", "value": 2, "type": "racial", "when": "vs_enchantment"},
+      {"target": "skill.diplomacy", "value": 2, "type": "racial"},
+      {"target": "skill.sense_motive", "value": 2, "type": "racial"}
+    ],
+    "immunities": ["sleep"],
+    "desc": "Between two worlds, comfortable in both."
+  },
+  "half_orc": {
+    "name": "Half-Orc", "size": "medium", "speed": 30, "height": 1.0,
+    "abilityMods": {}, "flexibleBonus": true,
+    "traits": ["+2 to one ability score", "Intimidating: +2 Intimidate", "Darkvision", "Orc weapon familiarity"],
+    "modifiers": [
+      {"target": "skill.intimidate", "value": 2, "type": "racial"}
+    ],
+    "weaponProf": ["greataxe"],
+    "desc": "Strong, scarred, and tired of being underestimated."
+  },
+  "halfling": {
+    "name": "Halfling", "size": "small", "speed": 20, "height": 0.64,
+    "abilityMods": {"dex": 2, "cha": 2, "str": -2},
+    "traits": ["+2 Dex, +2 Cha, -2 Str", "Small: +1 AC and attack, +4 Stealth", "Halfling luck: +1 on all saves", "Keen senses: +2 Perception", "Sure-footed: +2 Acrobatics and Climb", "Fearless: +2 on saves against fear"],
+    "modifiers": [
+      {"target": "save", "value": 1, "type": "luck"},
+      {"target": "skill.perception", "value": 2, "type": "racial"},
+      {"target": "skill.acrobatics", "value": 2, "type": "racial"},
+      {"target": "skill.climb", "value": 2, "type": "racial"},
+      {"target": "save", "value": 2, "type": "morale", "when": "vs_fear"}
+    ],
+    "desc": "Small, lucky, and far braver than anyone expects."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "_doc": "Pathfinder 1e classes. bab: full|medium|half. casting.slots[level-1] = [cantrips, 1st, 2nd, ...] spells per day before bonus spells. Feature modifiers use the format in src/rules/mods.gd. To add a class: copy an entry, then add a look preset in src/ui/builder_screen.gd if you want a default outfit.",
+  "fighter": {
+    "name": "Fighter", "hitDie": 10, "bab": "full", "goodSaves": ["fort"], "skillRanks": 2,
+    "classSkills": ["climb", "craft", "handle_animal", "intimidate", "knowledge_dungeoneering", "knowledge_engineering", "profession", "ride", "survival", "swim"],
+    "weaponProf": ["simple", "martial"], "armorProf": ["light", "medium", "heavy", "shield"],
+    "bonusFeatLevels": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20], "armorTrainingLevels": [3, 7, 11, 15],
+    "features": [
+      {"level": 1, "id": "bonus_feat", "name": "Bonus Combat Feat", "desc": "An extra combat feat at 1st level and every even level."},
+      {"level": 2, "id": "bravery", "name": "Bravery", "desc": "+1 on Will saves against fear (+1 more every 4 levels).", "modifiers": [{"target": "save.will", "when": "vs_fear", "scale": {"per": 4, "offset": 2}}]},
+      {"level": 3, "id": "armor_training", "name": "Armor Training", "desc": "Armor check penalty reduced by 1 and maximum Dex bonus raised by 1."},
+      {"level": 5, "id": "weapon_training", "name": "Weapon Training", "desc": "+1 on attack and damage rolls.", "modifiers": [{"target": "attack", "value": 1}, {"target": "damage", "value": 1}]}
+    ],
+    "startingKit": {"equipped": {"mainHand": "longsword", "offHand": "heavy_wooden_shield", "armor": "scale_mail", "ranged": "shortbow"}, "inventory": [{"id": "potion_clw", "qty": 1}], "gold": 20},
+    "look": {"outfit": "armor", "top": "#8a8f98", "bottom": "#4a4038", "boots": "#3a2a1c", "hairStyle": "short"},
+    "desc": "Master of weapons and armor. Tough, reliable, and the best at hitting things."
+  },
+  "rogue": {
+    "name": "Rogue", "hitDie": 8, "bab": "medium", "goodSaves": ["ref"], "skillRanks": 8,
+    "classSkills": ["acrobatics", "appraise", "bluff", "climb", "craft", "diplomacy", "disable_device", "disguise", "escape_artist", "intimidate", "knowledge_dungeoneering", "knowledge_local", "linguistics", "perception", "perform", "profession", "sense_motive", "sleight_of_hand", "stealth", "swim", "use_magic_device"],
+    "weaponProf": ["simple", "rapier", "shortbow", "short_sword"], "armorProf": ["light"],
+    "sneakAttack": {"per": 2, "offset": 1},
+    "features": [
+      {"level": 1, "id": "sneak_attack", "name": "Sneak Attack", "desc": "+1d6 damage (more every 2 levels) when flanking or when the target is caught flat-footed or helpless."},
+      {"level": 1, "id": "trapfinding", "name": "Trapfinding", "desc": "+1/2 level (min 1) on Perception to find traps and on Disable Device.", "modifiers": [{"target": "skill.perception", "when": "traps", "scale": {"per": 2, "min": 1}}, {"target": "skill.disable_device", "scale": {"per": 2, "min": 1}}]},
+      {"level": 2, "id": "evasion", "name": "Evasion", "desc": "(Not yet implemented) No damage on a successful Reflex save for half."},
+      {"level": 3, "id": "trap_sense", "name": "Trap Sense", "desc": "+1 on Reflex saves against traps.", "modifiers": [{"target": "save.ref", "when": "traps", "scale": {"per": 3}}]}
+    ],
+    "startingKit": {"equipped": {"mainHand": "short_sword", "armor": "leather_armor", "ranged": "shortbow"}, "inventory": [{"id": "thieves_tools", "qty": 1}, {"id": "potion_clw", "qty": 1}], "gold": 30},
+    "look": {"outfit": "leather", "top": "#3d4a3a", "bottom": "#2e2a28", "boots": "#2a1c12", "hairStyle": "hood", "cloak": "#2b3a2e"},
+    "desc": "Skilled, sneaky and deadly from the flank. Opens locks, finds traps, talks fast."
+  },
+  "cleric": {
+    "name": "Cleric", "hitDie": 8, "bab": "medium", "goodSaves": ["fort", "will"], "skillRanks": 2,
+    "classSkills": ["appraise", "craft", "diplomacy", "heal", "knowledge_arcana", "knowledge_history", "knowledge_nobility", "knowledge_planes", "knowledge_religion", "linguistics", "profession", "sense_motive", "spellcraft"],
+    "weaponProf": ["simple"], "armorProf": ["light", "medium", "shield"],
+    "casting": {"ability": "wis", "knowsAll": true, "domainSlot": true, "slots": [[3, 1], [4, 2], [4, 2, 1], [4, 3, 2], [4, 3, 2, 1], [4, 3, 3, 2], [4, 4, 3, 2, 1], [4, 4, 3, 3, 2], [4, 4, 4, 3, 2, 1], [4, 4, 4, 3, 3, 2]]},
+    "pools": {"channel": {"base": 3, "ability": "cha"}},
+    "classAbilities": ["channel_heal", "channel_harm"],
+    "features": [
+      {"level": 1, "id": "channel_energy", "name": "Channel Energy", "desc": "3 + Cha modifier times per day: heal all nearby allies or harm nearby undead for 1d6 per two levels."},
+      {"level": 1, "id": "divine_spells", "name": "Divine Spellcasting", "desc": "Knows every cleric spell of a level they can cast. One extra slot per spell level from their domain."}
+    ],
+    "startingKit": {"equipped": {"mainHand": "heavy_mace", "offHand": "heavy_wooden_shield", "armor": "scale_mail"}, "inventory": [{"id": "potion_clw", "qty": 1}], "gold": 25},
+    "look": {"outfit": "armor", "top": "#c9c2a8", "bottom": "#5a4a3a", "boots": "#3a2a1c", "hairStyle": "short", "trim": "#d9b44a"},
+    "desc": "Armored healer and divine caster. Keeps the party standing and the undead down."
+  },
+  "wizard": {
+    "name": "Wizard", "hitDie": 6, "bab": "half", "goodSaves": ["will"], "skillRanks": 2,
+    "classSkills": ["appraise", "craft", "fly", "knowledge_arcana", "knowledge_dungeoneering", "knowledge_engineering", "knowledge_geography", "knowledge_history", "knowledge_local", "knowledge_nature", "knowledge_nobility", "knowledge_planes", "knowledge_religion", "linguistics", "profession", "spellcraft"],
+    "weaponProf": ["club", "dagger", "light_crossbow", "quarterstaff"], "armorProf": [],
+    "casting": {"ability": "int", "slots": [[3, 1], [4, 2], [4, 2, 1], [4, 3, 2], [4, 3, 2, 1], [4, 3, 3, 2], [4, 4, 3, 2, 1], [4, 4, 3, 3, 2], [4, 4, 4, 3, 2, 1], [4, 4, 4, 3, 3, 2]]},
+    "spellbook": {"cantrips": "all", "level1": 3, "perLevel": 2},
+    "features": [
+      {"level": 1, "id": "arcane_spells", "name": "Arcane Spellcasting", "desc": "Casts from a spellbook. Starts with every cantrip and 3 + Int modifier 1st-level spells; learns 2 more each level."},
+      {"level": 1, "id": "cantrips", "name": "Cantrips", "desc": "0-level spells can be cast at will."}
+    ],
+    "startingKit": {"equipped": {"mainHand": "quarterstaff"}, "inventory": [{"id": "potion_clw", "qty": 1}, {"id": "dagger", "qty": 1}], "gold": 40},
+    "look": {"outfit": "robe", "top": "#3a3f7a", "bottom": "#3a3f7a", "boots": "#2a1c12", "hairStyle": "long", "trim": "#c9a84a"},
+    "desc": "Fragile scholar of the arcane with the most powerful magic in the game."
+  }
+}

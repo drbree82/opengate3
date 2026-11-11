@@ -1,0 +1,32 @@
+{
+  "start": [
+    {"if": {"quest": "hollow_king", "status": "completed"}, "node": "after"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "gate_guard",
+      "text": "East road is open, if you can call it that. It goes to the Barrow and nowhere else, these days.",
+      "choices": [
+        {"text": "What have you seen out there?", "goto": "seen"},
+        {"text": "Any trouble closer to home?", "goto": "goblins"},
+        {"text": "Thanks.", "goto": "end"}
+      ]
+    },
+    "seen": {
+      "speaker": "gate_guard",
+      "text": "Green lights, most nights. And once a man walking up the road who I helped bury last winter. I did not call out.",
+      "goto": "end"
+    },
+    "goblins": {
+      "speaker": "gate_guard",
+      "text": "Goblins in the old orchard, behind the hedge there. Captain says leave them be while the Barrow is glowing. Tova at the smithy says otherwise, loudly.",
+      "goto": "end"
+    },
+    "after": {
+      "speaker": "gate_guard",
+      "text": "No lights last night. First time in a month. Whatever you did, do you want a drink?",
+      "goto": "end"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "brunhild",
+      "text": "Stonefather's peace on you. I am Brunhild Stonehymn. If you have come about the dead, you are the first to come to the right place.",
+      "choices": [
+        {"text": "The dead are walking. Will you help me put them back?", "goto": "join"},
+        {"text": "What do you know about the Barrow?", "goto": "lore"},
+        {"text": "The binding rites on the old graves have failed, have they not?", "check": {"skill": "knowledge_religion", "dc": 12}, "success": "impressed", "failure": "not_quite"},
+        {"text": "Only looking.", "goto": "end"}
+      ]
+    },
+    "lore": {
+      "speaker": "brunhild",
+      "text": "The old king was buried with a crown that was never his to keep. Someone has put a hand on it. I feel it like a tooth going bad.",
+      "choices": [
+        {"text": "Then come and help me pull it.", "goto": "join"},
+        {"text": "I will remember that.", "goto": "end"}
+      ]
+    },
+    "impressed": {
+      "speaker": "brunhild",
+      "text": "Not failed. Cut. Somebody who knew the words unsaid them. You know your rites, friend. Good. I am tired of explaining.",
+      "do": [{"op": "approval.add", "id": "brunhild", "amount": 1}],
+      "goto": "join"
+    },
+    "not_quite": {
+      "speaker": "brunhild",
+      "text": "Failed? Hah. I laid those rites myself and they do not fail. They were cut. There is a difference, and it is a worse one.",
+      "choices": [
+        {"text": "Will you help me find who cut them?", "goto": "join"},
+        {"text": "I see.", "goto": "end"}
+      ]
+    },
+    "join": {
+      "speaker": "brunhild",
+      "text": "I have been waiting three weeks for someone foolish enough to go up there with me. Let me fetch my mace.",
+      "do": [{"op": "party.add", "id": "brunhild"}],
+      "goto": "end"
+    }
+  }
+}

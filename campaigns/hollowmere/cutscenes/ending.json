@@ -1,0 +1,13 @@
+{
+  "map": "town",
+  "steps": [
+    {"op": "camera.set", "at": [17, 5], "z": 0.8, "look": "reeve", "fov": 48},
+    {"op": "say", "speaker": "reeve", "text": "Then Hollowmere owes you more than it can pay. But it will pay what it promised."},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [22, 6], "z": 0.9, "look": "reeve", "fov": 40, "seconds": 5},
+      {"op": "say", "speaker": "reeve", "text": "Tonight the lamps stay lit because we want them lit. Go and rest. You have earned a quiet night."}
+    ]},
+    {"op": "fade", "to": "black", "seconds": 1.2},
+    {"op": "title", "text": "Embers of Hollowmere", "sub": "The End", "seconds": 3.0}
+  ]
+}

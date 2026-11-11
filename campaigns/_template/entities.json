@@ -1,0 +1,17 @@
+{
+  "_doc": "Entity templates for this campaign. Base props (barrel, torch, chest...) and all monsters can be placed without listing them here.",
+  "guide": {
+    "kind": "npc", "name": "The Guide", "dialogue": "guide",
+    "sprite": {"template": "humanoid", "height": 0.8, "look": {"body": "masculine", "build": "slim", "age": "old", "skin": "#d9a877", "hair": "#d8d8d8", "hairStyle": "long", "beard": true, "outfit": "robe", "top": "#5a3a7a", "weapon": "staff"}}
+  },
+  "ally": {"kind": "npc", "companion": "ally"},
+  "supply_chest": {
+    "kind": "prop", "name": "Supply chest", "sprite": {"template": "chest", "height": 0.4}, "blocking": true,
+    "once": true, "keep": true,
+    "interact": [
+      {"op": "narrate", "text": "The chest creaks open."},
+      {"op": "item.give", "id": "potion_clw", "qty": 2},
+      {"op": "gold.add", "amount": 15}
+    ]
+  }
+}

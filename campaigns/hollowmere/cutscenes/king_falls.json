@@ -1,0 +1,10 @@
+{
+  "map": "barrow",
+  "steps": [
+    {"op": "camera.set", "at": [24, 17], "z": 1.0, "look": [24, 21], "fov": 58},
+    {"op": "shake", "seconds": 0.6},
+    {"op": "narrate", "text": "Varrek falls, and the green fire in the braziers gutters and goes out."},
+    {"op": "camera.move", "at": [24, 18], "z": 0.6, "look": [24, 22], "fov": 40, "seconds": 3},
+    {"op": "narrate", "text": "All through the Barrow, the dead lie down. On the altar, a black iron crown sits very still."}
+  ]
+}

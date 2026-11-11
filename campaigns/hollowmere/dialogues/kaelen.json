@@ -1,0 +1,43 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "kaelen",
+      "text": "You have the look of someone about to do something dangerous. Kaelen Ashford. I guard caravans, when there are caravans.",
+      "choices": [
+        {"text": "I am going into the Barrow. I could use a shield arm.", "goto": "offer"},
+        {"text": "Why are you not working?", "goto": "story"},
+        {"text": "Another time.", "goto": "end"}
+      ]
+    },
+    "story": {
+      "speaker": "kaelen",
+      "text": "The east road is closed and the merchants have gone home. A sword that is not earning is just a heavy stick.",
+      "choices": [
+        {"text": "Then earn with me. The Reeve is paying to quiet the Barrow.", "goto": "offer"},
+        {"text": "Good luck.", "goto": "end"}
+      ]
+    },
+    "offer": {
+      "speaker": "kaelen",
+      "text": "The Barrow. Of course it is the Barrow. What is the split?",
+      "choices": [
+        {"text": "Equal shares.", "goto": "join"},
+        {"text": "Hollowmere needs you more than your purse does.", "check": {"skill": "diplomacy", "dc": 12}, "success": "join_glad", "failure": "join"},
+        {"text": "On second thought, never mind.", "goto": "end"}
+      ]
+    },
+    "join": {
+      "speaker": "kaelen",
+      "text": "Equal shares, then. You have my sword.",
+      "do": [{"op": "party.add", "id": "kaelen"}],
+      "goto": "end"
+    },
+    "join_glad": {
+      "speaker": "kaelen",
+      "text": "...It does, does it not. All right. For the town. But I still want my share.",
+      "do": [{"op": "approval.add", "id": "kaelen", "amount": 1}, {"op": "party.add", "id": "kaelen"}],
+      "goto": "end"
+    }
+  }
+}

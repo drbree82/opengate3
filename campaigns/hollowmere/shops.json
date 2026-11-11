@@ -1,0 +1,18 @@
+{
+  "_doc": "Shops opened with the script op {\"op\": \"shop.open\", \"id\": \"...\"}. price defaults to the item's cost; shops buy at half cost.",
+  "tova_forge": {
+    "name": "Tova's Forge",
+    "greeting": "Everything on the wall is for sale. The hammer in my hand is not.",
+    "stock": [
+      {"id": "dagger"}, {"id": "short_sword"}, {"id": "longsword"}, {"id": "battleaxe"}, {"id": "light_mace"}, {"id": "heavy_mace"}, {"id": "warhammer"},
+      {"id": "shortbow"}, {"id": "longbow"}, {"id": "studded_leather"}, {"id": "chain_shirt"}, {"id": "breastplate"}, {"id": "heavy_steel_shield"}
+    ]
+  },
+  "bram_goods": {
+    "name": "The Gilded Heron",
+    "greeting": "Stew is free with a room. The rest costs.",
+    "stock": [
+      {"id": "potion_clw", "price": 35}, {"id": "potion_cmw", "price": 150}, {"id": "healers_kit", "price": 20}
+    ]
+  }
+}

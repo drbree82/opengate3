@@ -1,0 +1,46 @@
+{
+  "name": "The Test Room",
+  "subtitle": "A place to try things",
+  "ambient": 0.55,
+  "fog": {"color": "#0a0a12", "distance": 16},
+  "defaults": {"wall": "stone", "floor": "flagstone", "ceiling": "plank"},
+  "legend": {
+    "#": {"wall": "stone"},
+    ".": {},
+    "s": {"marker": "start"},
+    "c": {"camera": true},
+    "G": {"entity": "guide"},
+    "A": {"entity": "ally"},
+    "T": {"entity": "torch"},
+    "B": {"entity": "barrel"},
+    "C": {"entity": "supply_chest"},
+    "D": {"door": "door_wood", "locked": {"dc": 12, "break": 14, "text": "A sturdy door. It is locked."}},
+    "r": {"entity": "dire_rat", "group": "rats"},
+    "x": {"trigger": "tripwire"},
+    "m": {"marker": "middle"}
+  },
+  "rows": [
+    "###############",
+    "#c....T.#.....#",
+    "#.......#..r..#",
+    "#.G.....#.....#",
+    "#...m...D..r..#",
+    "#.....C.#.....#",
+    "#.s..A..#.....#",
+    "#....x.B#.....#",
+    "###############"
+  ],
+  "triggers": {
+    "tripwire": {
+      "once": true,
+      "do": [
+        {"op": "check", "skill": "perception", "dc": 12, "who": "best", "tags": ["traps"], "label": "Spot the tripwire",
+          "success": [{"op": "narrate", "text": "A thin wire glints just above the floor. You step over it."}],
+          "failure": [
+            {"op": "narrate", "text": "Something snags your boot. A dart hisses out of the wall!"},
+            {"op": "damage", "dice": "1d4", "who": "leader", "label": "Dart trap", "save": {"type": "ref", "dc": 12, "half": true}, "tags": ["traps"]}
+          ]}
+      ]
+    }
+  }
+}

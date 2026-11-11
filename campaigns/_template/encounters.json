@@ -1,0 +1,11 @@
+{
+  "_doc": "Optional extras for a fight, keyed by monster group. name, xp (bonus), gold, loot [{id, qty}], onStart / onVictory / onDefeat scripts, onRound [{round, do}].",
+  "rats": {
+    "name": "Rats in the back room",
+    "gold": 5,
+    "onVictory": [
+      {"op": "narrate", "text": "The last rat stops twitching."},
+      {"op": "quest.stage", "id": "first_steps", "stage": "report"}
+    ]
+  }
+}

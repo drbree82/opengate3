@@ -1,0 +1,17 @@
+{
+  "name": "Template Campaign",
+  "author": "OpenGate",
+  "description": "The smallest complete campaign: one room, one NPC, one quest, one fight, one cutscene. Copy this folder to start your own (tools/new_campaign.sh).",
+  "maxPartySize": 4,
+  "start": {
+    "map": "room",
+    "marker": "start",
+    "gold": 10,
+    "do": [
+      {"op": "cutscene.play", "id": "intro"},
+      {"op": "quest.start", "id": "first_steps"}
+    ]
+  },
+  "rules": {"reviveAfterCombat": true},
+  "voices": {"narrator": "", "guide": "", "ally": ""}
+}

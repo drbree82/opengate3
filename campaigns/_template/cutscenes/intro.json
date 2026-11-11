@@ -1,0 +1,15 @@
+{
+  "map": "room",
+  "steps": [
+    {"op": "fade", "to": "black", "seconds": 0},
+    {"op": "camera.set", "at": [6, 7], "z": 0.9, "look": "guide", "fov": 55},
+    {"op": "fade", "to": "clear", "seconds": 1.0},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [6, 5], "z": 0.7, "look": "middle", "fov": 45, "seconds": 3.0},
+      {"op": "actor.move", "id": "guide", "to": "middle", "speed": 1.6}
+    ]},
+    {"op": "actor.face", "id": "guide", "toward": "player"},
+    {"op": "say", "speaker": "guide", "text": "So. Another adventurer wakes up in my test room."},
+    {"op": "narrate", "text": "The old man leans on his staff and waits."}
+  ]
+}

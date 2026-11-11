@@ -1,0 +1,16 @@
+{
+  "map": "barrow",
+  "steps": [
+    {"op": "camera.set", "at": [23, 17], "z": 0.75, "look": "varrek", "fov": 55},
+    {"op": "actor.face", "id": "varrek", "angle": "S"},
+    {"op": "actor.anim", "id": "varrek", "anim": "cast"},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [24, 18], "z": 0.7, "look": "varrek", "fov": 34, "seconds": 4},
+      {"op": "say", "speaker": "varrek", "text": "...and the hall shall have its king again."}
+    ]},
+    {"op": "actor.face", "id": "varrek", "toward": "player"},
+    {"op": "actor.anim", "id": "varrek", "anim": "idle"},
+    {"op": "camera.set", "at": [26, 18], "z": 0.9, "look": [24, 20], "fov": 60},
+    {"op": "narrate", "text": "The robed figure turns from the altar. Two dead men turn with him."}
+  ]
+}

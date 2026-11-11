@@ -1,0 +1,90 @@
+{
+  "_doc": "Entity templates placed on the maps through each map's legend. Companions: '<id>_town' is where they are first met (when: absent), '<id>_camp' is where they wait when not in the party (when: camp).",
+
+  "kaelen_town": {"companion": "kaelen", "when": ["absent"], "dialogue": "kaelen", "facing": "W"},
+  "pip_town": {"companion": "pip", "when": ["absent"], "dialogue": "pip"},
+  "brunhild_town": {"companion": "brunhild", "when": ["absent"], "dialogue": "brunhild", "facing": "N"},
+  "thessaly_camp": {"companion": "thessaly", "when": ["absent", "camp"], "dialogue": "thessaly"},
+  "kaelen_camp": {"companion": "kaelen", "when": ["camp"]},
+  "pip_camp": {"companion": "pip", "when": ["camp"]},
+  "brunhild_camp": {"companion": "brunhild", "when": ["camp"]},
+
+  "reeve": {
+    "kind": "npc", "name": "Reeve Maren Aldous", "dialogue": "reeve",
+    "portrait": "A human woman in her fifties, tired but resolute, with iron-grey hair in a tight bun and sharp eyes, wearing a dark green official's coat with a gold chain of office. The town's reeve.",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "feminine", "build": "athletic", "skin": "#d9a877", "hair": "#8a8a8a", "hairStyle": "bun", "outfit": "robe", "top": "#2f4a3a", "trim": "#d9b45a", "cloak": "#1f3328"}}
+  },
+  "bram": {
+    "kind": "npc", "name": "Bram", "dialogue": "bram",
+    "portrait": "A stout, cheerful human innkeeper, bald with a thick brown beard and rosy cheeks, wearing a linen shirt and a stained apron, a tankard in hand.",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "masculine", "build": "heavy", "skin": "#e0ac82", "hair": "#6b4a2a", "hairStyle": "bald", "beard": true, "outfit": "tunic", "top": "#b8a888", "bottom": "#4a3a2a"}}
+  },
+  "tova": {
+    "kind": "npc", "name": "Tova Ironhand", "dialogue": "tova",
+    "portrait": "A muscular human blacksmith woman with dark brown skin, black hair tied back and a smudge of soot on her cheek, wearing a heavy leather apron, with a confident half-smile.",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "feminine", "build": "athletic", "skin": "#a5673f", "hair": "#1a1410", "hairStyle": "ponytail", "outfit": "leather", "sleeves": false, "top": "#5a4030", "bottom": "#3a3028", "weapon": "mace"}}
+  },
+  "elsbeth": {
+    "kind": "npc", "name": "Widow Elsbeth", "dialogue": "elsbeth", "facing": "N",
+    "portrait": "An elderly human widow with a gentle, worried face and grey hair under a dark shawl, hands clasped.",
+    "sprite": {"template": "humanoid", "height": 0.9, "look": {"body": "feminine", "build": "rustic", "age": "old", "skin": "#e0ac82", "hair": "#d8d8d8", "hairStyle": "hood", "outfit": "dress", "top": "#4a4458", "skirt": "#3a3648", "cloak": "#3a3648"}}
+  },
+  "gate_guard": {
+    "kind": "npc", "name": "Gate Guard", "dialogue": "gate_guard",
+    "portrait": "A young human town guard in a dented kettle helmet and a red tabard, with a bored, slightly nervous expression, leaning on a spear.",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "masculine", "build": "athletic", "skin": "#c98f66", "hair": "#3b2a1a", "hairStyle": "helm", "outfit": "armor", "top": "#7a2a2a", "bottom": "#3a3a40", "weapon": "spear", "shield": true}}
+  },
+  "edrin": {
+    "kind": "npc", "name": "Edrin", "dialogue": "edrin",
+    "portrait": "A lanky young farm lad with sandy curls, a sunburned freckled face and wide frightened eyes, wearing a patched homespun shirt.",
+    "sprite": {"template": "humanoid", "height": 0.92, "look": {"body": "masculine", "build": "rustic", "skin": "#e0ac82", "hair": "#c9a04a", "hairStyle": "curly", "outfit": "tunic", "top": "#8a7a5a", "bottom": "#4a3a2a"}}
+  },
+
+  "snagrot": {
+    "kind": "monster", "monster": "goblin", "name": "Snagrot", "hostile": false, "group": "orchard_goblins", "dialogue": "snagrot",
+    "portrait": "A scrawny green goblin chieftain with enormous pointed ears, yellow eyes and a jagged-toothed grin, wearing a dented stolen helmet that is too big for him.",
+    "sprite": {"template": "humanoid", "height": 0.72, "look": {"race": "goblin", "hairStyle": "helm", "eyes": "#e8d020", "outfit": "leather", "top": "#7a2a2a", "bottom": "#3d3226", "boots": "#2a2018", "weapon": "axe"}}
+  },
+  "varrek": {"kind": "monster", "monster": "varrek", "hostile": false, "group": "king", "dialogue": "varrek", "facing": "N"},
+
+  "stolen_crate": {"kind": "prop", "name": "A crate with a smith's mark", "sprite": {"template": "crate", "height": 0.45}, "blocking": true},
+
+  "camp_fire": {
+    "kind": "prop", "name": "Campfire", "sprite": {"template": "campfire", "height": 0.5}, "blocking": true,
+    "light": {"radius": 8, "color": "#ffa050", "power": 1.1},
+    "interact": [
+      {"op": "choice", "text": "The fire crackles. Beyond its light the night is cold and very quiet.", "options": [
+        {"text": "Rest until morning. (Restores hit points, spells and daily powers.)", "do": [{"op": "rest"}]},
+        {"text": "Not yet."}
+      ]}
+    ]
+  },
+  "camp_sign": {
+    "kind": "prop", "name": "The trail back", "sprite": {"template": "sign", "height": 0.65}, "blocking": true,
+    "interact": [
+      {"op": "choice", "text": "A trampled trail leads out of the pines, back the way you came.", "options": [
+        {"text": "Leave camp.", "do": [{"op": "camp.leave"}]},
+        {"text": "Stay a while."}
+      ]}
+    ]
+  },
+  "camp_chest": {
+    "kind": "prop", "name": "Traveller's cache", "sprite": {"template": "chest", "height": 0.4}, "blocking": true,
+    "once": true, "keep": true,
+    "interact": [
+      {"op": "narrate", "text": "Someone camped here before you and left a cache under oilcloth, with a note: 'For whoever needs it more.'"},
+      {"op": "item.give", "id": "potion_clw", "qty": 2},
+      {"op": "item.give", "id": "healers_kit"}
+    ]
+  },
+  "barrow_chest": {
+    "kind": "prop", "name": "Burial chest", "sprite": {"template": "chest", "height": 0.4}, "blocking": true,
+    "once": true, "keep": true,
+    "interact": [
+      {"op": "narrate", "text": "The lid grinds open. Grave goods - and, on a rotted cord, a heavy iron key."},
+      {"op": "item.give", "id": "barrow_key"},
+      {"op": "item.give", "id": "potion_clw", "qty": 2},
+      {"op": "gold.add", "amount": 40}
+    ]
+  }
+}

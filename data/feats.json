@@ -1,0 +1,23 @@
+{
+  "_doc": "Only feats whose effect is IMPLEMENTED are listed. Most are passive modifier bundles (see src/rules/mods.gd). param = the feat needs a choice: write it as 'weapon_focus:longsword' in a character's feats; $param in a target is replaced by that choice. combat = may be taken as a fighter bonus feat. prereq: {bab, ability: {dex: 13}, feats: [..], caster: true}.",
+  "toughness": {"name": "Toughness", "desc": "+3 hit points, +1 per level beyond 3rd.", "modifiers": [{"target": "hp", "scale": {"per": 1, "min": 3}}]},
+  "improved_initiative": {"name": "Improved Initiative", "combat": true, "desc": "+4 on initiative checks.", "modifiers": [{"target": "init", "value": 4}]},
+  "dodge": {"name": "Dodge", "combat": true, "prereq": {"ability": {"dex": 13}}, "desc": "+1 dodge bonus to AC.", "modifiers": [{"target": "ac", "value": 1, "type": "dodge"}]},
+  "weapon_focus": {"name": "Weapon Focus", "combat": true, "param": "weapon", "prereq": {"bab": 1}, "desc": "+1 on attack rolls with one chosen weapon.", "modifiers": [{"target": "attack.weapon.$param", "value": 1}]},
+  "weapon_finesse": {"name": "Weapon Finesse", "combat": true, "desc": "Use Dexterity instead of Strength on attack rolls with light weapons and rapiers."},
+  "point_blank_shot": {"name": "Point-Blank Shot", "combat": true, "desc": "+1 on attack and damage with ranged weapons within 30 feet.", "modifiers": [{"target": "attack.ranged", "value": 1, "when": "close"}, {"target": "damage.ranged", "value": 1, "when": "close"}]},
+  "iron_will": {"name": "Iron Will", "desc": "+2 on Will saves.", "modifiers": [{"target": "save.will", "value": 2}]},
+  "great_fortitude": {"name": "Great Fortitude", "desc": "+2 on Fortitude saves.", "modifiers": [{"target": "save.fort", "value": 2}]},
+  "lightning_reflexes": {"name": "Lightning Reflexes", "desc": "+2 on Reflex saves.", "modifiers": [{"target": "save.ref", "value": 2}]},
+  "skill_focus": {"name": "Skill Focus", "param": "skill", "desc": "+3 on checks with one chosen skill.", "modifiers": [{"target": "skill.$param", "value": 3}]},
+  "alertness": {"name": "Alertness", "desc": "+2 on Perception and Sense Motive.", "modifiers": [{"target": "skill.perception", "value": 2}, {"target": "skill.sense_motive", "value": 2}]},
+  "stealthy": {"name": "Stealthy", "desc": "+2 on Escape Artist and Stealth.", "modifiers": [{"target": "skill.escape_artist", "value": 2}, {"target": "skill.stealth", "value": 2}]},
+  "persuasive": {"name": "Persuasive", "desc": "+2 on Diplomacy and Intimidate.", "modifiers": [{"target": "skill.diplomacy", "value": 2}, {"target": "skill.intimidate", "value": 2}]},
+  "deceitful": {"name": "Deceitful", "desc": "+2 on Bluff and Disguise.", "modifiers": [{"target": "skill.bluff", "value": 2}, {"target": "skill.disguise", "value": 2}]},
+  "athletic": {"name": "Athletic", "desc": "+2 on Climb and Swim.", "modifiers": [{"target": "skill.climb", "value": 2}, {"target": "skill.swim", "value": 2}]},
+  "acrobatic": {"name": "Acrobatic", "desc": "+2 on Acrobatics and Fly.", "modifiers": [{"target": "skill.acrobatics", "value": 2}, {"target": "skill.fly", "value": 2}]},
+  "deft_hands": {"name": "Deft Hands", "desc": "+2 on Disable Device and Sleight of Hand.", "modifiers": [{"target": "skill.disable_device", "value": 2}, {"target": "skill.sleight_of_hand", "value": 2}]},
+  "self_sufficient": {"name": "Self-Sufficient", "desc": "+2 on Heal and Survival.", "modifiers": [{"target": "skill.heal", "value": 2}, {"target": "skill.survival", "value": 2}]},
+  "magical_aptitude": {"name": "Magical Aptitude", "desc": "+2 on Spellcraft and Use Magic Device.", "modifiers": [{"target": "skill.spellcraft", "value": 2}, {"target": "skill.use_magic_device", "value": 2}]},
+  "animal_affinity": {"name": "Animal Affinity", "desc": "+2 on Handle Animal and Ride.", "modifiers": [{"target": "skill.handle_animal", "value": 2}, {"target": "skill.ride", "value": 2}]}
+}

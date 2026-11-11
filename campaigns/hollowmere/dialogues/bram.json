@@ -1,0 +1,88 @@
+{
+  "start": [
+    {"if": {"quest": "rats_in_the_cellar", "stage": "report"}, "node": "report"},
+    {"if": {"quest": "rats_in_the_cellar", "status": "completed"}, "node": "done"},
+    {"if": {"quest": "rats_in_the_cellar", "status": "active"}, "node": "waiting"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "bram",
+      "text": "Welcome to the Gilded Heron! Warm stew, dry beds and, saints forgive me, rats the size of hounds in my cellar.",
+      "choices": [
+        {"text": "Rats?", "goto": "rats"},
+        {"text": "What are you selling?", "do": [{"op": "shop.open", "id": "bram_goods"}], "goto": "hello_again"},
+        {"text": "Heard anything about the Barrow?", "goto": "rumor"},
+        {"text": "Just passing through.", "goto": "end"}
+      ]
+    },
+    "hello_again": {
+      "speaker": "bram",
+      "text": "Anything else?",
+      "choices": [
+        {"text": "About those rats...", "if": {"quest": "rats_in_the_cellar", "status": "none"}, "goto": "rats"},
+        {"text": "Heard anything about the Barrow?", "goto": "rumor"},
+        {"text": "That is all.", "goto": "end"}
+      ]
+    },
+    "rats": {
+      "speaker": "bram",
+      "text": "Came up through the old drain, I reckon. One of them bit my pot-boy. I locked the cellar and I have not slept since. Clear them out and there is coin in it for you.",
+      "choices": [
+        {"text": "I will deal with them.", "goto": "accept"},
+        {"text": "Coin, and a potion from under your counter.", "check": {"skill": "diplomacy", "dc": 12}, "success": "accept_bonus", "failure": "accept_plain"},
+        {"text": "Not my problem.", "goto": "end"}
+      ]
+    },
+    "accept": {
+      "speaker": "bram",
+      "text": "Bless you. Here is the key. The cellar door is just there, in the far wall.",
+      "do": [{"op": "quest.start", "id": "rats_in_the_cellar"}, {"op": "item.give", "id": "cellar_key"}],
+      "goto": "end"
+    },
+    "accept_bonus": {
+      "speaker": "bram",
+      "text": "You drive a hard bargain for someone who has not seen them yet. Done. Coin and a potion. Here is the key.",
+      "do": [{"op": "flag.set", "flag": "rats_bonus"}, {"op": "quest.start", "id": "rats_in_the_cellar"}, {"op": "item.give", "id": "cellar_key"}],
+      "goto": "end"
+    },
+    "accept_plain": {
+      "speaker": "bram",
+      "text": "Coin is what I have. Here is the key. The cellar door is in the far wall.",
+      "do": [{"op": "quest.start", "id": "rats_in_the_cellar"}, {"op": "item.give", "id": "cellar_key"}],
+      "goto": "end"
+    },
+    "waiting": {
+      "speaker": "bram",
+      "text": "Still scratching down there. The key is in your pack, and the door is in the far wall.",
+      "choices": [
+        {"text": "What are you selling?", "do": [{"op": "shop.open", "id": "bram_goods"}], "goto": "end"},
+        {"text": "I am on it.", "goto": "end"}
+      ]
+    },
+    "report": {
+      "speaker": "bram",
+      "text": "Quiet! Blessed quiet. Here, you have earned every copper.",
+      "do": [
+        {"op": "quest.complete", "id": "rats_in_the_cellar"},
+        {"op": "item.give", "id": "potion_clw", "if": {"flag": "rats_bonus"}},
+        {"op": "item.take", "id": "cellar_key"}
+      ],
+      "goto": "end"
+    },
+    "done": {
+      "speaker": "bram",
+      "text": "Stew is on. Sit anywhere you like.",
+      "choices": [
+        {"text": "What are you selling?", "do": [{"op": "shop.open", "id": "bram_goods"}], "goto": "end"},
+        {"text": "Heard anything about the Barrow?", "goto": "rumor"},
+        {"text": "Goodbye.", "goto": "end"}
+      ]
+    },
+    "rumor": {
+      "speaker": "bram",
+      "text": "Old Elsbeth's boy went up there on a dare and never came down. She waits in the square every evening, poor soul.",
+      "goto": "end"
+    }
+  }
+}

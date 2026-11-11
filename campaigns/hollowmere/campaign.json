@@ -1,0 +1,57 @@
+{
+  "name": "Embers of Hollowmere",
+  "author": "OpenGate starter campaign",
+  "description": "The dead will not stay buried in the market town of Hollowmere. One town, one camp, one barrow and five missions: a short adventure for 1st-level heroes that shows off every system in the framework.",
+  "maxPartySize": 4,
+  "start": {
+    "map": "town",
+    "marker": "start",
+    "facing": "E",
+    "gold": 15,
+    "do": [
+      {"op": "cutscene.play", "id": "intro"},
+      {"op": "quest.start", "id": "a_cold_welcome"},
+      {"op": "banner", "text": "Hollowmere", "sub": "A market town at the edge of the mere"}
+    ]
+  },
+  "camp": {"map": "camp", "marker": "start"},
+  "rules": {"reviveAfterCombat": true},
+  "voiceName": "traveller",
+  "_voices_doc": "speaker id -> ElevenLabs voice id (pre-made voices). List yours with: npm run voices -- hollowmere --voices",
+  "voices": {
+    "narrator": "JBFqnCBsd6RMkjVDRZzb",
+    "reeve": "Xb7hH8MSUJpSbSDYk0k2",
+    "bram": "iP95p4xoKVk53GoZ742B",
+    "tova": "EXAVITQu4vr4xnSDxMaL",
+    "elsbeth": "hpp4J3VqNfWAUOO0d1Us",
+    "gate_guard": "CwhRBWXzGAHq8TQ4Fs17",
+    "kaelen": "cjVigY5qzO86Huf0OWal",
+    "pip": "cgSgspJ2msm6clMCkdW9",
+    "brunhild": "XrExE9yKIg1WjnnlVkGX",
+    "thessaly": "pFZP5JQG7iQjIQuC4Bku",
+    "snagrot": "N2lVS1w4EtoT3dr4eOWO",
+    "edrin": "bIHbv24MWmeRgasZH58o",
+    "varrek": "nPczCjzI2devNBz1zQrb"
+  },
+  "voiceHints": {
+    "narrator": "male british storyteller narrative",
+    "reeve": "female middle_aged british professional",
+    "bram": "male middle_aged casual",
+    "tova": "female confident mature",
+    "elsbeth": "female middle_aged warm",
+    "gate_guard": "male casual",
+    "kaelen": "male trustworthy",
+    "pip": "female young playful",
+    "brunhild": "female middle_aged",
+    "thessaly": "female british",
+    "snagrot": "male characters_animation",
+    "edrin": "male young",
+    "varrek": "male deep"
+  },
+  "portraitStyle": "Painted fantasy character portrait, head and shoulders, three-quarter view, looking toward the viewer, dramatic warm rim light against a dark muted background, rich painterly brushwork in the style of classic computer role-playing game character portraits. Tasteful and fully clothed. No text, no letters, no frame, no border.",
+  "music": {
+    "town": {"prompt": "Calm medieval town at dusk, solo lute and soft wooden flute, a little melancholy, gentle and unhurried, seamless loop, instrumental", "seconds": 60},
+    "camp": {"prompt": "Quiet night campfire music, sparse acoustic guitar and low strings, peaceful and reflective, seamless loop, instrumental", "seconds": 45},
+    "barrow": {"prompt": "Dark ambient dungeon crypt, low drones, distant choir and slow deep drum, tense and ominous, seamless loop, instrumental", "seconds": 60}
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "start": [
+    {"if": {"flag": "cult_dead"}, "node": "free"},
+    {"node": "captive"}
+  ],
+  "nodes": {
+    "captive": {
+      "text": "A young man is chained to the wall, eyes wide above a gag. He shakes his head at you: not yet. Not while they are watching.",
+      "goto": "end"
+    },
+    "free": {
+      "speaker": "edrin",
+      "text": "You are alive. You are ALIVE. They were going to give me to him. The Hollow King. He is below, past the stair. He talks to the dead and they answer.",
+      "choices": [
+        {"text": "Go home, Edrin. Your mother is waiting in the square.", "goto": "go"},
+        {"text": "Hold still. Let me look at you first.", "check": {"skill": "heal", "dc": 12}, "success": "tended", "failure": "go"},
+        {"text": "What do you know about him?", "goto": "know"}
+      ]
+    },
+    "know": {
+      "speaker": "edrin",
+      "text": "His name is Varrek. He was a hedge-wizard from the mere villages before he found the crown. The dead things beside him are only puppets. He holds their strings.",
+      "choices": [
+        {"text": "Go home, Edrin. Your mother is waiting.", "goto": "go"},
+        {"text": "Hold still. Let me look at you first.", "check": {"skill": "heal", "dc": 12}, "success": "tended", "failure": "go"}
+      ]
+    },
+    "tended": {
+      "speaker": "edrin",
+      "text": "Thank you. Listen. He said a rite over them every night and I heard all of it. The words run backwards from the ones carved on the altar. Say them forwards and the strings are cut. I am sure of it.",
+      "do": [{"op": "flag.set", "flag": "knows_rite"}, {"op": "xp.add", "amount": 100}],
+      "goto": "go"
+    },
+    "go": {
+      "speaker": "edrin",
+      "text": "Home. Yes. I am never taking a dare again.",
+      "do": [
+        {"op": "flag.set", "flag": "edrin_freed"},
+        {"op": "narrate", "text": "Edrin runs for the stairs and daylight. Somewhere below you, a voice begins to chant."},
+        {"op": "entity.remove", "id": "edrin"},
+        {"op": "quest.complete", "id": "into_the_barrow"},
+        {"op": "quest.start", "id": "hollow_king"}
+      ],
+      "goto": "end"
+    }
+  }
+}

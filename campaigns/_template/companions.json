@@ -1,0 +1,12 @@
+{
+  "_doc": "Pre-made characters. The player may pick one as their hero; the others can be recruited. Abilities are base scores before racial modifiers (15-point buy).",
+  "ally": {
+    "name": "Rook", "race": "human", "cls": "fighter", "racialChoice": "str",
+    "abilities": {"str": 15, "dex": 13, "con": 14, "int": 10, "wis": 12, "cha": 8},
+    "feats": ["weapon_focus:longsword", "toughness", "dodge"],
+    "skillRanks": {"intimidate": 1, "climb": 1, "perception": 1},
+    "look": {"body": "masculine", "build": "heroic", "skin": "#c98f66", "hair": "#2a1c12", "hairStyle": "short", "top": "#7d8590"},
+    "bio": "A sellsword who would rather be paid in stories.",
+    "greeting": "Need a blade?"
+  }
+}

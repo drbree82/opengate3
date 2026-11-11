@@ -1,0 +1,35 @@
+ok    the intro cutscene plays in the window
+ok    the narrator's voice clip is playing during the cutscene
+ok    Esc skipped the cutscene; the game is in exploration
+ok    background music is playing on the town map
+ok    mission 1 was given (journal: New quest: A Cold Welcome)
+ok    a mouse click on the floor walked Kaelen Ashford from (6, 13) to (9, 13)
+ok    holding W walked 2.4 tiles forward
+ok    dice tray shows the Perception check: 'Kaelen Ashford - Perception' total 21
+ok    dice tray shows the Initiative roll: 'Kaelen Ashford - Initiative' total 21
+ok    dice tray shows the saving throw: 'Kaelen Ashford - Will save' total 17
+ok    the free-roll d20 button works: total 6
+ok    F5 wrote a quick save
+ok    F9 loaded it again (hero back at (11, 13))
+ok    clicking Reeve Maren walked over and started the conversation
+ok    her voice clip is playing
+ok    the journal shows who is speaking: Reeve Maren Aldous
+ok    pressed a number key to choose a reply
+ok    a reply is offered as a skill check: [Diplomacy DC 14]
+ok    dice tray shows the Diplomacy check: 'Kaelen Ashford - Diplomacy' total 10 Failure
+ok    the conversation ended and the quest moved to its next stage
+ok    companions joined through their conversations: party of 3
+ok    G travelled to the camp (mission 1 completed)
+ok    G again returned to town
+ok    travelled to the dungeon
+ok    clicking the dungeon door walked up to it and opened it
+ok    walking onto the trap made the GM call a Perception check: 'Pip Underbough - Perception' total 25 Success
+ok    the trap was resolved
+ok    walking into the hall started a fight with the skeletons
+ok    dice tray shows initiative rolls: 'Kaelen Ashford - Initiative' total 8
+ok    it is a player turn: Brunhild Stonehymn  ·  Move 4/4  ·  Action ready
+ok    clicking a distant enemy on the minimap walked Pip Underbough towards it ((5, 12) -> (6, 10))
+ok    clicking an enemy on the minimap made an attack roll: 'Kaelen Ashford - Longsword' total 25 Critical! (enemy hp 6 -> 6)
+ok    the fight ended (won); party hp: Kaelen 11, Pip 9, Brunhild 13
+ok    26 rolls went through the dice tray during this session
+RESULT: 34 of 34 steps ok

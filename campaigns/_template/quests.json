@@ -1,0 +1,12 @@
+{
+  "first_steps": {
+    "name": "First Steps", "type": "main",
+    "summary": "Learn the ropes in the test room.",
+    "stages": [
+      {"id": "talk", "text": "Speak with the Guide."},
+      {"id": "rats", "text": "Deal with the rats behind the locked door."},
+      {"id": "report", "text": "Tell the Guide the rats are gone."}
+    ],
+    "rewards": {"xp": 300, "gold": 20}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "start": [
+    {"if": {"quest": "first_steps", "status": "completed"}, "node": "done"},
+    {"if": {"quest": "first_steps", "stage": "report"}, "node": "report"},
+    {"if": {"flag": "met_guide"}, "node": "again"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "guide", "text": "Ah, {player}. A {race} {class}, if I am not mistaken. Welcome to the test room.",
+      "do": [{"op": "flag.set", "flag": "met_guide"}, {"op": "quest.stage", "id": "first_steps", "stage": "rats"}],
+      "goto": "task"
+    },
+    "task": {
+      "speaker": "guide", "text": "There are rats behind that locked door. Be a dear and remove them.",
+      "choices": [
+        {"text": "Consider it done.", "goto": "end"},
+        {"text": "What is in it for me?", "check": {"skill": "diplomacy", "dc": 12}, "success": "bonus", "failure": "no_bonus"},
+        {"text": "Do you have a key?", "goto": "key"}
+      ]
+    },
+    "bonus": {"speaker": "guide", "text": "Persuasive! Take this for your trouble.", "do": [{"op": "gold.add", "amount": 10}], "goto": "end"},
+    "no_bonus": {"speaker": "guide", "text": "The satisfaction of a job well done, naturally.", "goto": "end"},
+    "key": {"speaker": "guide", "text": "I had one once. You will have to pick the lock or put your shoulder to it.", "goto": "task"},
+    "again": {"speaker": "guide", "text": "The rats will not remove themselves.", "goto": "end"},
+    "report": {
+      "speaker": "guide", "text": "Quiet at last. Well done.",
+      "do": [{"op": "quest.complete", "id": "first_steps"}],
+      "goto": "end"
+    },
+    "done": {"speaker": "guide", "text": "Nothing more for you here. Go and build a real campaign.", "goto": "end"}
+  }
+}

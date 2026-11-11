@@ -1,0 +1,53 @@
+{
+  "_doc": "Extras for each fight, keyed by monster group (the 'group' given to monsters in the map legends). All fields optional: name, xp (bonus), gold, loot, onStart, onRound [{round, do}], onVictory, onDefeat.",
+  "cellar_rats": {
+    "name": "Rats in the cellar",
+    "onVictory": [
+      {"op": "narrate", "text": "The last rat stops twitching. Behind a barrel you find the broken drain they came through - and wedge a crate against it."},
+      {"op": "quest.stage", "id": "rats_in_the_cellar", "stage": "report"}
+    ]
+  },
+  "orchard_goblins": {
+    "name": "Goblins in the orchard",
+    "gold": 30,
+    "onVictory": [
+      {"op": "narrate", "text": "The goblins are finished. Tova's crate sits by the fire, lid still nailed down."},
+      {"op": "entity.remove", "id": "stolen_crate"},
+      {"op": "item.give", "id": "tova_crate"},
+      {"op": "quest.stage", "id": "smiths_shipment", "stage": "return"}
+    ]
+  },
+  "hall_dead": {
+    "name": "The restless dead",
+    "onVictory": [
+      {"op": "narrate", "text": "The bones clatter down and lie still. For now."}
+    ]
+  },
+  "cult": {
+    "name": "The Hollow King's faithful",
+    "gold": 25,
+    "onStart": [
+      {"op": "narrate", "text": "Robed figures look up from a chalk circle. 'Intruders! Give them to the King!'"}
+    ],
+    "onVictory": [
+      {"op": "flag.set", "flag": "cult_dead"},
+      {"op": "narrate", "text": "The chanting has stopped. The young man chained to the wall is staring at you."}
+    ]
+  },
+  "king": {
+    "name": "Varrek the Hollow",
+    "gold": 120,
+    "loot": [{"id": "potion_cmw", "qty": 1}, {"id": "hollow_crown", "qty": 1}],
+    "onRound": [
+      {"round": 3, "do": [
+        {"op": "narrate", "text": "Varrek slams his staff down. The floor splits by the door and something claws its way up."},
+        {"op": "shake", "seconds": 0.5},
+        {"op": "entity.spawn", "template": "skeleton", "at": "crack", "group": "king", "persist": false}
+      ]}
+    ],
+    "onVictory": [
+      {"op": "cutscene.play", "id": "king_falls"},
+      {"op": "quest.stage", "id": "hollow_king", "stage": "return"}
+    ]
+  }
+}

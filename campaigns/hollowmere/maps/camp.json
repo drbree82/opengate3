@@ -1,0 +1,95 @@
+{
+  "name": "Wayfarer's Rest",
+  "subtitle": "Your camp in the pines",
+  "outdoor": true,
+  "sky": "night",
+  "wallHeight": 1.4,
+  "ambient": 0.42,
+  "ambientColor": "#b8c8ff",
+  "fog": {
+    "color": "#0a0e1c",
+    "distance": 20
+  },
+  "music": "camp",
+  "allowCamp": false,
+  "defaults": {
+    "floor": "grass",
+    "wall": "palisade"
+  },
+  "legend": {
+    ",": {},
+    ":": {"floor": "dirt"},
+    "P": {"entity": "pine"},
+    "T": {"entity": "tree"},
+    "r": {"entity": "rock"},
+    "u": {"entity": "bush"},
+    "F": {"floor": "dirt", "entity": "camp_fire"},
+    "g": {"floor": "dirt", "entity": "log"},
+    "n": {"entity": "tent"},
+    "C": {"entity": "camp_chest"},
+    "S": {"entity": "camp_sign"},
+    "@": {"floor": "dirt", "marker": "start"},
+    "*": {"floor": "dirt", "camera": true},
+    "1": {"floor": "dirt", "entity": "kaelen_camp"},
+    "2": {"floor": "dirt", "entity": "pip_camp"},
+    "3": {"floor": "dirt", "entity": "brunhild_camp"},
+    "4": {"floor": "dirt", "entity": "thessaly_camp"}
+  },
+  "rows": [
+    "PPPPPPPPPPPPPPPPPPPPPPPP",
+    "P,,,,,,,,,,,,,,,,,,,,,,P",
+    "P,,,,,,,,,,T,,,r,,,,,,,P",
+    "P,,T,,,,,,,,,,,,,,,,T,,P",
+    "P,,,,,n,,,,,,,,,,n,,,,,P",
+    "P,,,,,,,:3::::4:,,,,,,,P",
+    "P,,,,,,,:::::::*,,,u,,,P",
+    "P,r,,,,,:g:F:g::,,,,,,,P",
+    "P,,,u,,,::::::::,,,,,r,P",
+    "P,,,,,,,:1::::2:,,,,,,,P",
+    "P,,,,,,,*:::@:::,C,,,,,P",
+    "P,,,,n,,,,,,,,,,,,,,,,,P",
+    "P,,T,,,,,,,,,,,,,,,,T,,P",
+    "P,,,,,,r,,,,S,,,u,T,,,,P",
+    "P,,,,,,,,,,,,,,,,,,,,,,P",
+    "PPPPPPPPPPPPPPPPPPPPPPPP"
+  ],
+  "onEnter": [
+    {
+      "op": "narrate",
+      "text": "A ring of pines hides a small clearing: a fire pit, a few tents, and room to breathe.",
+      "if": {
+        "not": {
+          "flag": "seen_camp"
+        }
+      }
+    },
+    {
+      "op": "flag.set",
+      "flag": "seen_camp"
+    },
+    {
+      "op": "quest.complete",
+      "id": "a_cold_welcome",
+      "if": {
+        "quest": "a_cold_welcome",
+        "stage": "camp"
+      }
+    },
+    {
+      "op": "quest.start",
+      "id": "into_the_barrow",
+      "if": {
+        "all": [
+          {
+            "quest": "a_cold_welcome",
+            "status": "completed"
+          },
+          {
+            "quest": "into_the_barrow",
+            "status": "none"
+          }
+        ]
+      }
+    }
+  ]
+}

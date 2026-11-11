@@ -1,0 +1,72 @@
+{
+  "start": [
+    {"if": {"all": [{"quest": "smiths_shipment", "stage": "return"}, {"hasItem": "tova_crate"}]}, "node": "return"},
+    {"if": {"quest": "smiths_shipment", "status": "completed"}, "node": "done"},
+    {"if": {"quest": "smiths_shipment", "status": "active"}, "node": "waiting"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "tova",
+      "text": "Mind the sparks. Tova Ironhand. If it has an edge or a hinge in this town, I made it.",
+      "choices": [
+        {"text": "What do you sell?", "do": [{"op": "shop.open", "id": "tova_forge"}], "goto": "more"},
+        {"text": "You look troubled.", "goto": "trouble"},
+        {"text": "Goodbye.", "goto": "end"}
+      ]
+    },
+    "more": {
+      "speaker": "tova",
+      "text": "Something else?",
+      "choices": [
+        {"text": "You look troubled.", "if": {"quest": "smiths_shipment", "status": "none"}, "goto": "trouble"},
+        {"text": "No. Thank you.", "goto": "end"}
+      ]
+    },
+    "trouble": {
+      "speaker": "tova",
+      "text": "My iron came up the east road two days ago. Goblins took the cart at the bridge. The guard says they are squatting in the old orchard, bold as crows. Without that crate I am making nails out of horseshoes.",
+      "choices": [
+        {"text": "I will get your crate back.", "goto": "accept"},
+        {"text": "What is in it for me?", "goto": "reward"},
+        {"text": "Maybe later.", "goto": "end"}
+      ]
+    },
+    "reward": {
+      "speaker": "tova",
+      "text": "A warhammer off my own wall. Blades skate off the things walking out of that Barrow. A hammer does not.",
+      "choices": [
+        {"text": "Then I will get your crate back.", "goto": "accept"},
+        {"text": "Maybe later.", "goto": "end"}
+      ]
+    },
+    "accept": {
+      "speaker": "tova",
+      "text": "The orchard is south-east of the square, through the gap in the hedge. They are goblins: they understand fear, and they understand shiny things.",
+      "do": [{"op": "quest.start", "id": "smiths_shipment"}],
+      "goto": "end"
+    },
+    "waiting": {
+      "speaker": "tova",
+      "text": "South-east of the square, behind the hedge. Mind the one with the bow.",
+      "choices": [
+        {"text": "Let me see your wares first.", "do": [{"op": "shop.open", "id": "tova_forge"}], "goto": "end"},
+        {"text": "On my way.", "goto": "end"}
+      ]
+    },
+    "return": {
+      "speaker": "tova",
+      "text": "That is my mark on the lid! Ha! Here, as promised. Hit something dead with it.",
+      "do": [{"op": "item.take", "id": "tova_crate"}, {"op": "quest.complete", "id": "smiths_shipment"}],
+      "goto": "end"
+    },
+    "done": {
+      "speaker": "tova",
+      "text": "Forge is hot and the iron is good. What do you need?",
+      "choices": [
+        {"text": "Show me what you have.", "do": [{"op": "shop.open", "id": "tova_forge"}], "goto": "end"},
+        {"text": "Nothing today.", "goto": "end"}
+      ]
+    }
+  }
+}

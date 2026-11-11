@@ -1,0 +1,61 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "varrek",
+      "text": "Visitors. How long it has been since anyone climbed down here to bow. I am Varrek, and this hall belongs to the Hollow King. Which is to say: to me.",
+      "do": [{"op": "quest.start", "id": "hollow_king"}],
+      "choices": [
+        {"text": "(Speak the rite of unbinding carved on the altar.)", "check": {"skill": "knowledge_religion", "dc": 14, "who": "best"}, "success": "unbind", "failure": "mock"},
+        {"text": "(Say the words Edrin overheard, forwards.)", "if": {"flag": "knows_rite"}, "goto": "unbind"},
+        {"text": "The Reeve's whole militia is on the stair behind me.", "check": {"skill": "bluff", "dc": 15}, "success": "startled", "failure": "mock"},
+        {"text": "Why are you doing this?", "goto": "why"},
+        {"text": "Enough. This ends now.", "goto": "fight"}
+      ]
+    },
+    "why": {
+      "speaker": "varrek",
+      "text": "Because I was nobody. A hedge-wizard curing warts in the mere villages. And then I found a crown with no one in it. The dead do not laugh at me. The dead do as they are told.",
+      "choices": [
+        {"text": "(Speak the rite of unbinding carved on the altar.)", "check": {"skill": "knowledge_religion", "dc": 14, "who": "best"}, "success": "unbind", "failure": "mock"},
+        {"text": "(Say the words Edrin overheard, forwards.)", "if": {"flag": "knows_rite"}, "goto": "unbind"},
+        {"text": "They will stop when you do.", "goto": "fight"}
+      ]
+    },
+    "unbind": {
+      "text": "The words taste of dust and cold iron. The two dead things beside the altar fold up like dropped coats.",
+      "do": [
+        {"op": "entity.remove", "id": "zombie_a"},
+        {"op": "entity.remove", "id": "zombie_b"},
+        {"op": "xp.add", "amount": 200}
+      ],
+      "goto": "unbound"
+    },
+    "unbound": {
+      "speaker": "varrek",
+      "text": "No. NO. Those were MINE!",
+      "do": [{"op": "combat.start", "group": "king"}],
+      "goto": "end"
+    },
+    "startled": {
+      "speaker": "varrek",
+      "text": "The militia? Here? They would not dare. They... how many?",
+      "do": [
+        {"op": "narrate", "text": "He glances at the stair. It is all the opening you need."},
+        {"op": "combat.start", "group": "king", "surprise": "party"}
+      ],
+      "goto": "end"
+    },
+    "mock": {
+      "speaker": "varrek",
+      "text": "Was that meant to frighten me? You stand in my hall and stammer. Kneel.",
+      "goto": "fight"
+    },
+    "fight": {
+      "speaker": "varrek",
+      "text": "Then you will kneel the hard way.",
+      "do": [{"op": "combat.start", "group": "king"}],
+      "goto": "end"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "snagrot",
+      "text": "Oi! Longshanks! These are Snagrot's apples, Snagrot's fire, Snagrot's box. You want box? You give shinies. Or you give blood.",
+      "choices": [
+        {"text": "Leave the crate and run, and I will let you keep your ears.", "check": {"skill": "intimidate", "dc": 13}, "success": "flee", "failure": "fight"},
+        {"text": "Fifteen gold for the box. Nobody bleeds.", "if": {"gold": 15}, "check": {"skill": "diplomacy", "dc": 15}, "success": "trade", "failure": "haggle"},
+        {"text": "The Reeve's riders are right behind me. They hang goblins.", "check": {"skill": "bluff", "dc": 14}, "success": "flee", "failure": "fight"},
+        {"text": "Blood it is.", "goto": "fight"},
+        {"text": "(Back away slowly.)", "goto": "end"}
+      ]
+    },
+    "flee": {
+      "speaker": "snagrot",
+      "text": "Gah! Snagrot was leaving anyway. Stupid box. Stupid apples. Stupid longshanks!",
+      "do": [
+        {"op": "narrate", "text": "The goblins scatter over the hedge and are gone. The crate is yours."},
+        {"op": "group.remove", "group": "orchard_goblins"},
+        {"op": "entity.remove", "id": "stolen_crate"},
+        {"op": "item.give", "id": "tova_crate"},
+        {"op": "quest.stage", "id": "smiths_shipment", "stage": "return"},
+        {"op": "xp.add", "amount": 150}
+      ],
+      "goto": "end"
+    },
+    "trade": {
+      "speaker": "snagrot",
+      "text": "Fifteen shinies! For a box of rocks! Hee! Snagrot is a GENIUS. Take it, take it.",
+      "do": [
+        {"op": "gold.add", "amount": -15},
+        {"op": "narrate", "text": "The goblins count the coins twice, argue, and wander off to spend them."},
+        {"op": "group.remove", "group": "orchard_goblins"},
+        {"op": "entity.remove", "id": "stolen_crate"},
+        {"op": "item.give", "id": "tova_crate"},
+        {"op": "quest.stage", "id": "smiths_shipment", "stage": "return"},
+        {"op": "xp.add", "amount": 150}
+      ],
+      "goto": "end"
+    },
+    "haggle": {
+      "speaker": "snagrot",
+      "text": "Fifteen? Box is heavy. Heavy is THIRTY.",
+      "choices": [
+        {"text": "Thirty, then.", "if": {"gold": 30}, "goto": "trade_thirty"},
+        {"text": "Then we do this the other way.", "goto": "fight"},
+        {"text": "(Back away slowly.)", "goto": "end"}
+      ]
+    },
+    "trade_thirty": {
+      "speaker": "snagrot",
+      "text": "Thirty! Snagrot is a genius TWICE.",
+      "do": [
+        {"op": "gold.add", "amount": -30},
+        {"op": "group.remove", "group": "orchard_goblins"},
+        {"op": "entity.remove", "id": "stolen_crate"},
+        {"op": "item.give", "id": "tova_crate"},
+        {"op": "quest.stage", "id": "smiths_shipment", "stage": "return"},
+        {"op": "xp.add", "amount": 150}
+      ],
+      "goto": "end"
+    },
+    "fight": {
+      "speaker": "snagrot",
+      "text": "Get 'em, boys! Bite the knees!",
+      "do": [{"op": "combat.start", "group": "orchard_goblins"}],
+      "goto": "end"
+    }
+  }
+}

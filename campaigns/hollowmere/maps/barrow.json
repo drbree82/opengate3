@@ -1,0 +1,202 @@
+{
+  "name": "The Sunken Barrow",
+  "subtitle": "Where the old kings were laid down",
+  "wallHeight": 1.2,
+  "ambient": 0.42,
+  "ambientColor": "#c8d0ff",
+  "fog": {
+    "color": "#05050a",
+    "distance": 15
+  },
+  "music": "barrow",
+  "defaults": {
+    "floor": "crypt_floor",
+    "ceiling": "rock_ceiling",
+    "wall": "crypt"
+  },
+  "legend": {
+    "#": {"wall": "crypt"},
+    "X": {"wall": "crypt_skull"},
+    ".": {},
+    "+": {"door": "door_iron"},
+    "L": {"door": "door_iron", "locked": {"key": "barrow_key", "dc": 18, "break": 20, "text": "A door of black iron, cold to the touch. The lock is old but sound."}},
+    "@": {"marker": "entrance"},
+    "<": {"exit": {"map": "town", "marker": "from_barrow"}},
+    "t": {"entity": "torch"},
+    "f": {"entity": "brazier"},
+    "p": {"entity": "pillar"},
+    "b": {"entity": "bones"},
+    "c": {"entity": "coffin"},
+    "$": {"entity": "barrow_chest"},
+    "A": {"entity": "altar"},
+    "*": {"camera": true},
+    "s": {"entity": "skeleton", "group": "hall_dead"},
+    "u": {"entity": "cultist", "group": "cult"},
+    "k": {"entity": "skeleton", "group": "cult"},
+    "E": {"entity": "edrin"},
+    "V": {"entity": "varrek"},
+    "z": {"entity": "zombie", "group": "king", "hostile": false, "id": "zombie_a"},
+    "Z": {"entity": "zombie", "group": "king", "hostile": false, "id": "zombie_b"},
+    "m": {"marker": "crack"},
+    "e": {"marker": "king_door"},
+    "1": {"trigger": "blade_trap"},
+    "2": {"trigger": "king_chamber"}
+  },
+  "rows": [
+    "####################################",
+    "##.....$############################",
+    "##.c..c.############################",
+    "##......#############X##X##X########",
+    "##*....t###########f........*#######",
+    "####+##############........E.#######",
+    "##t...........*####.....u....#######",
+    "##.......s...b.####..........#######",
+    "##...p.....p...####..........#######",
+    "##..........s..L.............#######",
+    "##...p.....p...####..k....u..#######",
+    "##.b...........####..........#######",
+    "##*...........t####*........f#######",
+    "#####.#################+############",
+    "#####.#################.############",
+    "#####1##############X##2###X########",
+    "#####.##########f..............f####",
+    "#####.##########.......e........####",
+    "#####+##########.*.p....m....p..####",
+    "##t.....t#######................####",
+    "##.......#######....z...V...Z...####",
+    "##...@...#######..............*.####",
+    "##......*#######...p....A....p..####",
+    "##...<...#######f..............f####",
+    "####################################",
+    "####################################"
+  ],
+  "onEnter": [
+    {
+      "op": "cutscene.play",
+      "id": "barrow_enter",
+      "if": {
+        "not": {
+          "flag": "cutscene.barrow_enter"
+        }
+      }
+    },
+    {
+      "op": "quest.stage",
+      "id": "into_the_barrow",
+      "stage": "explore",
+      "if": {
+        "quest": "into_the_barrow",
+        "stage": "enter"
+      }
+    }
+  ],
+  "triggers": {
+    "blade_trap": {
+      "once": true,
+      "do": [
+        {
+          "op": "check",
+          "skill": "perception",
+          "dc": 15,
+          "who": "best",
+          "tags": [
+            "traps",
+            "stonework"
+          ],
+          "label": "Notice the pressure plate",
+          "success": [
+            {
+              "op": "narrate",
+              "text": "One flagstone sits a finger's width higher than the rest, and there is a slot in the wall at neck height."
+            },
+            {
+              "op": "choice",
+              "options": [
+                {
+                  "text": "Disarm the trap.",
+                  "check": {
+                    "skill": "disable_device",
+                    "dc": 15,
+                    "who": "best"
+                  },
+                  "success": [
+                    {
+                      "op": "narrate",
+                      "text": "A pin slides free and the mechanism goes slack."
+                    },
+                    {
+                      "op": "xp.add",
+                      "amount": 100
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "op": "narrate",
+                      "text": "Something slips. A blade scythes out of the wall!"
+                    },
+                    {
+                      "op": "damage",
+                      "dice": "1d8",
+                      "who": "party",
+                      "label": "Scything blade",
+                      "save": {
+                        "type": "ref",
+                        "dc": 13,
+                        "half": true
+                      },
+                      "tags": [
+                        "traps"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "text": "Step carefully around the stone.",
+                  "do": [
+                    {
+                      "op": "narrate",
+                      "text": "You edge past, one at a time, and leave the trap waiting for someone else."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "failure": [
+            {
+              "op": "narrate",
+              "text": "A flagstone sinks under your boot with a soft click. A blade scythes out of the wall!"
+            },
+            {
+              "op": "damage",
+              "dice": "1d8",
+              "who": "party",
+              "label": "Scything blade",
+              "save": {
+                "type": "ref",
+                "dc": 13,
+                "half": true
+              },
+              "tags": [
+                "traps"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "king_chamber": {
+      "once": true,
+      "do": [
+        {
+          "op": "cutscene.play",
+          "id": "king_reveal"
+        },
+        {
+          "op": "dialogue.start",
+          "id": "varrek"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "_doc": "The four pre-made heroes. The player may pick one as their own character; the others can be recruited (see the *_town / *_camp entries in entities.json). abilities are base scores before racial modifiers (15-point buy). Numbers are checked by tests/test_rules.gd.",
+  "kaelen": {
+    "name": "Kaelen Ashford", "race": "human", "cls": "fighter", "racialChoice": "str",
+    "abilities": {"str": 15, "dex": 13, "con": 14, "int": 10, "wis": 12, "cha": 8},
+    "feats": ["weapon_focus:longsword", "dodge", "toughness"],
+    "skillRanks": {"intimidate": 1, "climb": 1, "perception": 1},
+    "look": {"body": "masculine", "build": "heroic", "skin": "#c98f66", "hair": "#2a1c12", "hairStyle": "short", "top": "#7d8590", "bottom": "#3a3430"},
+    "portrait": "A handsome human man in his late twenties with a strong jaw, short dark brown hair, light stubble and calm grey eyes, wearing a steel breastplate over a blue-grey gambeson, the rim of a round shield visible on his back. A steady, dependable caravan guard.",
+    "bio": "A caravan guard with no caravans left to guard. Steady, practical, and happiest with a shield on his arm and something to stand in front of.",
+    "greeting": "Where do you need me?"
+  },
+  "pip": {
+    "name": "Pip Underbough", "race": "halfling", "cls": "rogue",
+    "abilities": {"str": 10, "dex": 16, "con": 12, "int": 13, "wis": 10, "cha": 10},
+    "feats": ["weapon_finesse"],
+    "skillRanks": {"stealth": 1, "perception": 1, "disable_device": 1, "acrobatics": 1, "bluff": 1, "sleight_of_hand": 1, "diplomacy": 1, "sense_motive": 1, "knowledge_local": 1},
+    "look": {"body": "feminine", "skin": "#e0ac82", "hair": "#a8742a", "hairStyle": "curly", "top": "#3d5a3a", "bottom": "#3a3028", "cloak": "#2b3a2e"},
+    "portrait": "A halfling woman in her twenties with a mischievous grin, tousled honey-brown curls, bright hazel eyes and freckles, wearing a dark green leather jerkin and a hooded cloak. A charming rogue who is clearly up to something.",
+    "bio": "Locks, ledgers and ladders a speciality. Pip insists she has never stolen anything that was not already lost.",
+    "greeting": "Something need opening?"
+  },
+  "brunhild": {
+    "name": "Brunhild Stonehymn", "race": "dwarf", "cls": "cleric",
+    "abilities": {"str": 13, "dex": 11, "con": 12, "int": 10, "wis": 15, "cha": 12},
+    "feats": ["toughness"],
+    "skillRanks": {"heal": 1, "knowledge_religion": 1},
+    "look": {"body": "feminine", "skin": "#e0ac82", "hair": "#b8452a", "hairStyle": "braids", "top": "#c9c2a8", "bottom": "#5a4a3a", "trim": "#d9b45a"},
+    "portrait": "A dwarven woman, broad and strong, with a kind but stern face and thick copper-red braids held by bronze clasps, wearing cream and gold vestments over scale armour, a holy symbol at her collar. A no-nonsense priestess.",
+    "bio": "Keeper of Hollowmere's shrine. She buried half the people now walking about the Barrow, and takes it personally.",
+    "greeting": "Stonefather keep you. What is it?"
+  },
+  "thessaly": {
+    "name": "Thessaly Wren", "race": "elf", "cls": "wizard",
+    "abilities": {"str": 8, "dex": 14, "con": 12, "int": 16, "wis": 10, "cha": 10},
+    "feats": ["toughness"],
+    "skillRanks": {"knowledge_arcana": 1, "spellcraft": 1, "knowledge_history": 1, "knowledge_religion": 1, "perception": 1, "linguistics": 1},
+    "spells": ["acid_splash", "ray_of_frost", "daze", "disrupt_undead", "magic_missile", "burning_hands", "sleep", "mage_armor", "shocking_grasp"],
+    "look": {"body": "feminine", "skin": "#f1c9a5", "hair": "#d8d8e8", "hairStyle": "wavy", "outfit": "dress", "top": "#3a3f8a", "trim": "#c9a84a"},
+    "portrait": "A beautiful elven woman with long flowing silver-white hair, elegant pointed ears, violet eyes and a thoughtful, slightly aloof expression, wearing an elegant deep blue robe-dress with gold trim and holding a worn spellbook. A graceful scholar-wizard.",
+    "bio": "A scholar of old wards who came to study the Barrow from a sensible distance. The distance keeps shrinking.",
+    "greeting": "Yes? I was reading."
+  }
+}

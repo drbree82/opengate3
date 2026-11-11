@@ -1,0 +1,17 @@
+{
+  "name": "opengate-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Node tooling for OpenGate (the game itself is a Godot project). Generates voice lines, music and sound effects with ElevenLabs. The API key lives in .env.local (never commit it).",
+  "scripts": {
+    "postinstall": "node -e \"require('fs').writeFileSync('node_modules/.gdignore','')\"",
+    "voices": "node --env-file=.env.local tools/gen_voices.mjs",
+    "music": "node --env-file=.env.local tools/gen_music.mjs",
+    "sfx": "node --env-file=.env.local tools/gen_sfx.mjs",
+    "portraits": "node --env-file=.env.local tools/gen_portraits.mjs"
+  },
+  "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.77.0"
+  }
+}

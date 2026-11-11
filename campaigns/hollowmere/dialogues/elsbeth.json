@@ -1,0 +1,54 @@
+{
+  "start": [
+    {"if": {"all": [{"flag": "edrin_freed"}, {"not": {"flag": "elsbeth_gift"}}]}, "node": "thanks"},
+    {"if": {"flag": "elsbeth_gift"}, "node": "after"},
+    {"if": {"flag": "knows_edrin"}, "node": "waiting"},
+    {"node": "hello"}
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "elsbeth",
+      "text": "Have you seen a boy? Sandy hair, a laugh like a goose. My Edrin. He went up to the Barrow three nights ago.",
+      "choices": [
+        {"text": "I am going to the Barrow. I will look for him.", "goto": "promise"},
+        {"text": "You are not telling me everything.", "check": {"skill": "sense_motive", "dc": 12}, "success": "confess", "failure": "nothing"},
+        {"text": "I am sorry. I have not.", "goto": "end"}
+      ]
+    },
+    "confess": {
+      "speaker": "elsbeth",
+      "text": "He went for me. I told him his father's ring was buried with the old dead up there. It was a story. It was only ever a story.",
+      "goto": "promise"
+    },
+    "nothing": {
+      "speaker": "elsbeth",
+      "text": "There is nothing to tell. He is a good boy. He is only late.",
+      "choices": [
+        {"text": "I will look for him.", "goto": "promise"},
+        {"text": "I hope he comes home.", "goto": "end"}
+      ]
+    },
+    "promise": {
+      "speaker": "elsbeth",
+      "text": "Bring him home. Please. I will be here. I am always here.",
+      "do": [{"op": "flag.set", "flag": "knows_edrin"}],
+      "goto": "end"
+    },
+    "waiting": {
+      "speaker": "elsbeth",
+      "text": "Is there word? No. No, of course. I will wait.",
+      "goto": "end"
+    },
+    "thanks": {
+      "speaker": "elsbeth",
+      "text": "He is home. He is HOME, and eating everything in the house. Take this. It was his father's, and it kept him safe at sea for thirty years.",
+      "do": [{"op": "flag.set", "flag": "elsbeth_gift"}, {"op": "item.give", "id": "cloak_of_resistance"}, {"op": "xp.add", "amount": 150}],
+      "goto": "end"
+    },
+    "after": {
+      "speaker": "elsbeth",
+      "text": "Saints keep you, wherever you walk.",
+      "goto": "end"
+    }
+  }
+}

@@ -1,0 +1,548 @@
+{
+  "dlg.bram.hello": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Welcome to the Gilded Heron! Warm stew, dry beds and, saints forgive me, rats the size of hounds in my cellar."
+  },
+  "dlg.bram.hello_again": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Anything else?"
+  },
+  "dlg.bram.rats": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Came up through the old drain, I reckon. One of them bit my pot-boy. I locked the cellar and I have not slept since. Clear them out and there is coin in it for you."
+  },
+  "dlg.bram.accept": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Bless you. Here is the key. The cellar door is just there, in the far wall."
+  },
+  "dlg.bram.accept_bonus": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "You drive a hard bargain for someone who has not seen them yet. Done. Coin and a potion. Here is the key."
+  },
+  "dlg.bram.accept_plain": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Coin is what I have. Here is the key. The cellar door is in the far wall."
+  },
+  "dlg.bram.waiting": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Still scratching down there. The key is in your pack, and the door is in the far wall."
+  },
+  "dlg.bram.report": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Quiet! Blessed quiet. Here, you have earned every copper."
+  },
+  "dlg.bram.done": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Stew is on. Sit anywhere you like."
+  },
+  "dlg.bram.rumor": {
+    "speaker": "bram",
+    "voice": "iP95p4xoKVk53GoZ742B",
+    "model": "eleven_v4",
+    "text": "Old Elsbeth's boy went up there on a dare and never came down. She waits in the square every evening, poor soul."
+  },
+  "dlg.brunhild.hello": {
+    "speaker": "brunhild",
+    "voice": "XrExE9yKIg1WjnnlVkGX",
+    "model": "eleven_v4",
+    "text": "Stonefather's peace on you. I am Brunhild Stonehymn. If you have come about the dead, you are the first to come to the right place."
+  },
+  "dlg.brunhild.lore": {
+    "speaker": "brunhild",
+    "voice": "XrExE9yKIg1WjnnlVkGX",
+    "model": "eleven_v4",
+    "text": "The old king was buried with a crown that was never his to keep. Someone has put a hand on it. I feel it like a tooth going bad."
+  },
+  "dlg.brunhild.impressed": {
+    "speaker": "brunhild",
+    "voice": "XrExE9yKIg1WjnnlVkGX",
+    "model": "eleven_v4",
+    "text": "Not failed. Cut. Somebody who knew the words unsaid them. You know your rites, friend. Good. I am tired of explaining."
+  },
+  "dlg.brunhild.not_quite": {
+    "speaker": "brunhild",
+    "voice": "XrExE9yKIg1WjnnlVkGX",
+    "model": "eleven_v4",
+    "text": "Failed? Hah. I laid those rites myself and they do not fail. They were cut. There is a difference, and it is a worse one."
+  },
+  "dlg.brunhild.join": {
+    "speaker": "brunhild",
+    "voice": "XrExE9yKIg1WjnnlVkGX",
+    "model": "eleven_v4",
+    "text": "I have been waiting three weeks for someone foolish enough to go up there with me. Let me fetch my mace."
+  },
+  "dlg.edrin.captive": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "A young man is chained to the wall, eyes wide above a gag. He shakes his head at you: not yet. Not while they are watching."
+  },
+  "dlg.edrin.free": {
+    "speaker": "edrin",
+    "voice": "bIHbv24MWmeRgasZH58o",
+    "model": "eleven_v4",
+    "text": "You are alive. You are ALIVE. They were going to give me to him. The Hollow King. He is below, past the stair. He talks to the dead and they answer."
+  },
+  "dlg.edrin.know": {
+    "speaker": "edrin",
+    "voice": "bIHbv24MWmeRgasZH58o",
+    "model": "eleven_v4",
+    "text": "His name is Varrek. He was a hedge-wizard from the mere villages before he found the crown. The dead things beside him are only puppets. He holds their strings."
+  },
+  "dlg.edrin.tended": {
+    "speaker": "edrin",
+    "voice": "bIHbv24MWmeRgasZH58o",
+    "model": "eleven_v4",
+    "text": "Thank you. Listen. He said a rite over them every night and I heard all of it. The words run backwards from the ones carved on the altar. Say them forwards and the strings are cut. I am sure of it."
+  },
+  "dlg.edrin.go": {
+    "speaker": "edrin",
+    "voice": "bIHbv24MWmeRgasZH58o",
+    "model": "eleven_v4",
+    "text": "Home. Yes. I am never taking a dare again."
+  },
+  "dlg.elsbeth.hello": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "Have you seen a boy? Sandy hair, a laugh like a goose. My Edrin. He went up to the Barrow three nights ago."
+  },
+  "dlg.elsbeth.confess": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "He went for me. I told him his father's ring was buried with the old dead up there. It was a story. It was only ever a story."
+  },
+  "dlg.elsbeth.nothing": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "There is nothing to tell. He is a good boy. He is only late."
+  },
+  "dlg.elsbeth.promise": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "Bring him home. Please. I will be here. I am always here."
+  },
+  "dlg.elsbeth.waiting": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "Is there word? No. No, of course. I will wait."
+  },
+  "dlg.elsbeth.thanks": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "He is home. He is HOME, and eating everything in the house. Take this. It was his father's, and it kept him safe at sea for thirty years."
+  },
+  "dlg.elsbeth.after": {
+    "speaker": "elsbeth",
+    "voice": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_v4",
+    "text": "Saints keep you, wherever you walk."
+  },
+  "dlg.gate_guard.hello": {
+    "speaker": "gate_guard",
+    "voice": "CwhRBWXzGAHq8TQ4Fs17",
+    "model": "eleven_v4",
+    "text": "East road is open, if you can call it that. It goes to the Barrow and nowhere else, these days."
+  },
+  "dlg.gate_guard.seen": {
+    "speaker": "gate_guard",
+    "voice": "CwhRBWXzGAHq8TQ4Fs17",
+    "model": "eleven_v4",
+    "text": "Green lights, most nights. And once a man walking up the road who I helped bury last winter. I did not call out."
+  },
+  "dlg.gate_guard.goblins": {
+    "speaker": "gate_guard",
+    "voice": "CwhRBWXzGAHq8TQ4Fs17",
+    "model": "eleven_v4",
+    "text": "Goblins in the old orchard, behind the hedge there. Captain says leave them be while the Barrow is glowing. Tova at the smithy says otherwise, loudly."
+  },
+  "dlg.gate_guard.after": {
+    "speaker": "gate_guard",
+    "voice": "CwhRBWXzGAHq8TQ4Fs17",
+    "model": "eleven_v4",
+    "text": "No lights last night. First time in a month. Whatever you did, do you want a drink?"
+  },
+  "dlg.kaelen.hello": {
+    "speaker": "kaelen",
+    "voice": "cjVigY5qzO86Huf0OWal",
+    "model": "eleven_v4",
+    "text": "You have the look of someone about to do something dangerous. Kaelen Ashford. I guard caravans, when there are caravans."
+  },
+  "dlg.kaelen.story": {
+    "speaker": "kaelen",
+    "voice": "cjVigY5qzO86Huf0OWal",
+    "model": "eleven_v4",
+    "text": "The east road is closed and the merchants have gone home. A sword that is not earning is just a heavy stick."
+  },
+  "dlg.kaelen.offer": {
+    "speaker": "kaelen",
+    "voice": "cjVigY5qzO86Huf0OWal",
+    "model": "eleven_v4",
+    "text": "The Barrow. Of course it is the Barrow. What is the split?"
+  },
+  "dlg.kaelen.join": {
+    "speaker": "kaelen",
+    "voice": "cjVigY5qzO86Huf0OWal",
+    "model": "eleven_v4",
+    "text": "Equal shares, then. You have my sword."
+  },
+  "dlg.kaelen.join_glad": {
+    "speaker": "kaelen",
+    "voice": "cjVigY5qzO86Huf0OWal",
+    "model": "eleven_v4",
+    "text": "...It does, does it not. All right. For the town. But I still want my share."
+  },
+  "dlg.pip.hello": {
+    "speaker": "pip",
+    "voice": "cgSgspJ2msm6clMCkdW9",
+    "model": "eleven_v4",
+    "text": "Before you ask: no, I did not, and you cannot prove it. Pip Underbough. Locks, ledgers and ladders a speciality."
+  },
+  "dlg.pip.caught": {
+    "speaker": "pip",
+    "voice": "cgSgspJ2msm6clMCkdW9",
+    "model": "eleven_v4",
+    "text": "...Fine. Fine! Here. I was only seeing how heavy it was. You have good eyes. I like good eyes."
+  },
+  "dlg.pip.missed": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "She smiles at you with both hands in plain sight. You feel faintly lighter, somehow."
+  },
+  "dlg.pip.job": {
+    "speaker": "pip",
+    "voice": "cgSgspJ2msm6clMCkdW9",
+    "model": "eleven_v4",
+    "text": "A tomb? An old one, with old locks, and nobody alive to mind? I am in. Half of whatever is not nailed down."
+  },
+  "dlg.pip.join": {
+    "speaker": "pip",
+    "voice": "cgSgspJ2msm6clMCkdW9",
+    "model": "eleven_v4",
+    "text": "Tight-fisted. Sensible. I can work with sensible. Lead on."
+  },
+  "dlg.reeve.hello": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "You must be the one the gate sent word about. Good. I am Maren Aldous, Reeve of Hollowmere, and I am very nearly out of people to ask."
+  },
+  "dlg.reeve.trouble": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "Three weeks ago, lights began to burn on the Barrow, east of here. Then our dead stopped staying buried. Then the living began to vanish. The miller's boy, Edrin, was the last."
+  },
+  "dlg.reeve.ask": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "Ask what you need to."
+  },
+  "dlg.reeve.barrow": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "A tomb older than the town. They say a king lies in it who would not share his hall, not even with death. We left it alone, and it left us alone. Until now."
+  },
+  "dlg.reeve.pay": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "One hundred and fifty gold when the Barrow is quiet. It is most of what the town has."
+  },
+  "dlg.reeve.pay_more": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "...Two hundred, then. And my thanks, which are worth rather less."
+  },
+  "dlg.reeve.pay_no": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "I cannot give you what we do not have. One hundred and fifty."
+  },
+  "dlg.reeve.accept": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "Then take some advice with you. Do not go alone. There is a sellsword idling by the well, a quick-fingered halfling at the Gilded Heron, and Sister Brunhild keeps the shrine. A scholar has been camping in the pines outside the walls, too. Make your own camp there. When you are ready, the east gate leads to the Barrow."
+  },
+  "dlg.reeve.again": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "The east gate leads to the Barrow. Make camp first, and do not go alone."
+  },
+  "dlg.reeve.barrow_again": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "A king who would not share his hall, even with death. Whatever has woken up in there, it is using his name."
+  },
+  "dlg.reeve.victory": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "The lights went out an hour ago. I stood on the wall and watched them go. It is done, then? Truly done?"
+  },
+  "dlg.reeve.after": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "The Barrow is dark and the churchyard is quiet. Sleep well, friend. You have earned it."
+  },
+  "dlg.snagrot.hello": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Oi! Longshanks! These are Snagrot's apples, Snagrot's fire, Snagrot's box. You want box? You give shinies. Or you give blood."
+  },
+  "dlg.snagrot.flee": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Gah! Snagrot was leaving anyway. Stupid box. Stupid apples. Stupid longshanks!"
+  },
+  "dlg.snagrot.trade": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Fifteen shinies! For a box of rocks! Hee! Snagrot is a GENIUS. Take it, take it."
+  },
+  "dlg.snagrot.haggle": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Fifteen? Box is heavy. Heavy is THIRTY."
+  },
+  "dlg.snagrot.trade_thirty": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Thirty! Snagrot is a genius TWICE."
+  },
+  "dlg.snagrot.fight": {
+    "speaker": "snagrot",
+    "voice": "N2lVS1w4EtoT3dr4eOWO",
+    "model": "eleven_v4",
+    "text": "Get 'em, boys! Bite the knees!"
+  },
+  "dlg.thessaly.hello": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "Oh. People. I had hoped the smoke would keep them away. Thessaly Wren. I am studying the Barrow's wards, from a sensible distance."
+  },
+  "dlg.thessaly.lore": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "The lights are not random. They pulse, like breath. Something down there is being woken slowly, by someone patient."
+  },
+  "dlg.thessaly.impressed": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "Yes! Exactly! Feeding them, a little every night. Finally, someone who reads. I have so many notes to show you."
+  },
+  "dlg.thessaly.corrected": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "Abjuration, originally. Necromancy is what somebody has turned them into. But you are close, which is more than I expected."
+  },
+  "dlg.thessaly.join": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "You want me to walk into a tomb. With you. ...Yes. Obviously yes. Let me get my book."
+  },
+  "dlg.thessaly.camp": {
+    "speaker": "thessaly",
+    "voice": "pFZP5JQG7iQjIQuC4Bku",
+    "model": "eleven_v4",
+    "text": "Back already? I was just getting comfortable."
+  },
+  "dlg.tova.hello": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "Mind the sparks. Tova Ironhand. If it has an edge or a hinge in this town, I made it."
+  },
+  "dlg.tova.more": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "Something else?"
+  },
+  "dlg.tova.trouble": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "My iron came up the east road two days ago. Goblins took the cart at the bridge. The guard says they are squatting in the old orchard, bold as crows. Without that crate I am making nails out of horseshoes."
+  },
+  "dlg.tova.reward": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "A warhammer off my own wall. Blades skate off the things walking out of that Barrow. A hammer does not."
+  },
+  "dlg.tova.accept": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "The orchard is south-east of the square, through the gap in the hedge. They are goblins: they understand fear, and they understand shiny things."
+  },
+  "dlg.tova.waiting": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "South-east of the square, behind the hedge. Mind the one with the bow."
+  },
+  "dlg.tova.return": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "That is my mark on the lid! Ha! Here, as promised. Hit something dead with it."
+  },
+  "dlg.tova.done": {
+    "speaker": "tova",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_v4",
+    "text": "Forge is hot and the iron is good. What do you need?"
+  },
+  "dlg.varrek.hello": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "Visitors. How long it has been since anyone climbed down here to bow. I am Varrek, and this hall belongs to the Hollow King. Which is to say: to me."
+  },
+  "dlg.varrek.why": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "Because I was nobody. A hedge-wizard curing warts in the mere villages. And then I found a crown with no one in it. The dead do not laugh at me. The dead do as they are told."
+  },
+  "dlg.varrek.unbind": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "The words taste of dust and cold iron. The two dead things beside the altar fold up like dropped coats."
+  },
+  "dlg.varrek.unbound": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "No. NO. Those were MINE!"
+  },
+  "dlg.varrek.startled": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "The militia? Here? They would not dare. They... how many?"
+  },
+  "dlg.varrek.mock": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "Was that meant to frighten me? You stand in my hall and stammer. Kneel."
+  },
+  "dlg.varrek.fight": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "Then you will kneel the hard way."
+  },
+  "cs.barrow_enter.1": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "Cold air breathes up out of the Barrow, and with it a smell of old stone and older dust."
+  },
+  "cs.barrow_enter.2": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "Somewhere ahead, bone scrapes on stone. You are not alone down here."
+  },
+  "cs.ending.1": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "Then Hollowmere owes you more than it can pay. But it will pay what it promised."
+  },
+  "cs.ending.2": {
+    "speaker": "reeve",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v4",
+    "text": "Tonight the lamps stay lit because we want them lit. Go and rest. You have earned a quiet night."
+  },
+  "cs.intro.1": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "Dusk settles over Hollowmere, and nobody lights a lamp they do not have to."
+  },
+  "cs.intro.2": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "For three weeks green lights have burned on the Barrow, and the town's dead have not rested. The Reeve has sent for help."
+  },
+  "cs.intro.3": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "You are what answered."
+  },
+  "cs.king_falls.1": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "Varrek falls, and the green fire in the braziers gutters and goes out."
+  },
+  "cs.king_falls.2": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "All through the Barrow, the dead lie down. On the altar, a black iron crown sits very still."
+  },
+  "cs.king_reveal.1": {
+    "speaker": "varrek",
+    "voice": "nPczCjzI2devNBz1zQrb",
+    "model": "eleven_v4",
+    "text": "...and the hall shall have its king again."
+  },
+  "cs.king_reveal.2": {
+    "speaker": "narrator",
+    "voice": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v4",
+    "text": "The robed figure turns from the altar. Two dead men turn with him."
+  }
+}

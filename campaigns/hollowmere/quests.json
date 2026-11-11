@@ -1,0 +1,48 @@
+{
+  "_doc": "The five missions. type: main|side. A quest starts at its first stage; scripts move it with quest.stage / quest.complete. rewards are paid on completion.",
+  "a_cold_welcome": {
+    "name": "A Cold Welcome", "type": "main",
+    "summary": "Hollowmere sent for help. You are what answered.",
+    "stages": [
+      {"id": "meet", "text": "Speak with Reeve Maren in the stone hall on the north side of the market square."},
+      {"id": "camp", "text": "Find allies in town, then make camp outside the walls (press Camp or G)."}
+    ],
+    "rewards": {"xp": 300}
+  },
+  "rats_in_the_cellar": {
+    "name": "Rats in the Cellar", "type": "side",
+    "summary": "Something is scratching in the cellar of the Gilded Heron.",
+    "stages": [
+      {"id": "clear", "text": "Unlock the cellar door inside the Gilded Heron and clear out the rats."},
+      {"id": "report", "text": "Tell Bram the cellar is safe."}
+    ],
+    "rewards": {"xp": 300, "gold": 25}
+  },
+  "smiths_shipment": {
+    "name": "The Smith's Shipment", "type": "side",
+    "summary": "Goblins took Tova's iron on the east road and are squatting in the old orchard.",
+    "stages": [
+      {"id": "find", "text": "Recover the stolen crate from the goblins in the orchard, south-east of the square."},
+      {"id": "return", "text": "Bring the crate back to Tova at the smithy."}
+    ],
+    "rewards": {"xp": 400, "gold": 20, "items": [{"id": "warhammer", "qty": 1}]}
+  },
+  "into_the_barrow": {
+    "name": "Into the Barrow", "type": "main",
+    "summary": "Lights burn on the old tomb east of town, and the miller's boy has not come home.",
+    "stages": [
+      {"id": "enter", "text": "Leave Hollowmere by the east gate and enter the Sunken Barrow."},
+      {"id": "explore", "text": "Find out who is waking the dead - and what became of Edrin."}
+    ],
+    "rewards": {"xp": 600}
+  },
+  "hollow_king": {
+    "name": "The Hollow King", "type": "main",
+    "summary": "Someone below the iron door is calling the dead up by name.",
+    "stages": [
+      {"id": "confront", "text": "Go down to the lowest chamber of the Barrow and stop the Hollow King."},
+      {"id": "return", "text": "Tell Reeve Maren that the Barrow is quiet."}
+    ],
+    "rewards": {"xp": 1000, "gold": 150}
+  }
+}

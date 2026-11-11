@@ -1,0 +1,96 @@
+{
+  "_doc": "Base bestiary: ready-made stat blocks (see src/rules/monster_rules.gd). hp may be a number or dice like '2d8+3'. attacks: {name, bonus, damage, crit [range, mult], dtype, ranged, range}. dr: {amount, bypass: B|S|P|-}. ai: melee|ranged|caster (src/engine/combat_ai.gd). spells: [{id, uses}] (-1 = at will) with casterLevel + castingAbility. tags like 'undead' make creatures immune via 'immunities'. sprite: see docs/SPRITES.md. A campaign can add or override monsters in its own monsters.json.",
+  "dire_rat": {
+    "name": "Dire Rat", "cr": "1/3", "xp": 135, "hd": 1, "size": "small", "tags": ["animal", "living"],
+    "hp": 5, "ac": 14, "touch": 14, "flatFooted": 11, "init": 3, "speed": 40,
+    "saves": {"fort": 3, "ref": 5, "will": 1}, "bab": 0, "cmb": -1, "cmd": 12,
+    "abilities": {"str": 10, "dex": 17, "con": 13, "int": 2, "wis": 13, "cha": 4},
+    "attacks": [{"name": "Bite", "bonus": 1, "damage": "1d4", "crit": [20, 2], "dtype": "P"}],
+    "skills": {"perception": 4, "stealth": 11}, "ai": "melee",
+    "sprite": {"template": "rat", "height": 0.9, "look": {"fur": "#6b5a4a"}},
+    "desc": "A rat the size of a dog, all teeth and filth."
+  },
+  "goblin": {
+    "name": "Goblin", "cr": "1/3", "xp": 135, "hd": 1, "size": "small", "tags": ["humanoid", "living"],
+    "hp": 6, "ac": 16, "touch": 13, "flatFooted": 14, "init": 6, "speed": 30,
+    "saves": {"fort": 3, "ref": 2, "will": -1}, "bab": 1, "cmb": 0, "cmd": 12,
+    "abilities": {"str": 11, "dex": 15, "con": 12, "int": 10, "wis": 9, "cha": 6},
+    "attacks": [{"name": "Short sword", "bonus": 2, "damage": "1d4", "crit": [19, 2], "dtype": "S"}],
+    "skills": {"perception": -1, "stealth": 10}, "ai": "melee",
+    "sprite": {"template": "humanoid", "height": 0.66, "look": {"race": "goblin", "hairStyle": "bald", "eyes": "#e8d020", "outfit": "leather", "top": "#5a4630", "bottom": "#3d3226", "boots": "#2a2018", "weapon": "sword"}},
+    "desc": "A wiry, cackling raider with too many teeth."
+  },
+  "goblin_archer": {
+    "name": "Goblin Archer", "cr": "1/3", "xp": 135, "hd": 1, "size": "small", "tags": ["humanoid", "living"],
+    "hp": 6, "ac": 15, "touch": 13, "flatFooted": 13, "init": 6, "speed": 30,
+    "saves": {"fort": 3, "ref": 2, "will": -1}, "bab": 1, "cmb": 0, "cmd": 12,
+    "abilities": {"str": 11, "dex": 15, "con": 12, "int": 10, "wis": 9, "cha": 6},
+    "attacks": [{"name": "Shortbow", "bonus": 4, "damage": "1d4", "crit": [20, 3], "dtype": "P", "ranged": true, "range": 12}, {"name": "Dagger", "bonus": 2, "damage": "1d3", "crit": [19, 2], "dtype": "P"}],
+    "skills": {"perception": -1, "stealth": 10}, "ai": "ranged",
+    "sprite": {"template": "humanoid", "height": 0.66, "look": {"race": "goblin", "skin": "#7a9a48", "hairStyle": "hood", "eyes": "#e8d020", "outfit": "leather", "top": "#4a5230", "bottom": "#3d3226", "boots": "#2a2018", "weapon": "bow"}},
+    "desc": "A goblin that prefers to do its stabbing from a distance."
+  },
+  "skeleton": {
+    "name": "Skeleton", "cr": "1/3", "xp": 135, "hd": 1, "size": "medium", "tags": ["undead"], "immunities": ["mind", "sleep", "fear", "poison"],
+    "hp": 6, "ac": 16, "touch": 12, "flatFooted": 14, "init": 6, "speed": 30,
+    "saves": {"fort": 0, "ref": 2, "will": 2}, "bab": 0, "cmb": 2, "cmd": 14,
+    "abilities": {"str": 15, "dex": 14, "con": 10, "int": 3, "wis": 10, "cha": 10},
+    "attacks": [{"name": "Rusty scimitar", "bonus": 2, "damage": "1d6+2", "crit": [18, 2], "dtype": "S"}],
+    "dr": {"amount": 5, "bypass": "B"},
+    "skills": {"perception": 0}, "ai": "melee",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"style": "skeleton", "skin": "#d9d4c2", "hairStyle": "bald", "top": "#d9d4c2", "bottom": "#d9d4c2", "boots": "#d9d4c2", "weapon": "sword"}},
+    "desc": "Bones held together by old malice. Blades skitter off them; hammers do not."
+  },
+  "zombie": {
+    "name": "Zombie", "cr": "1/2", "xp": 200, "hd": 2, "size": "medium", "tags": ["undead"], "immunities": ["mind", "sleep", "fear", "poison"],
+    "hp": 12, "ac": 12, "touch": 10, "flatFooted": 12, "init": 0, "speed": 30, "staggered": true,
+    "saves": {"fort": 0, "ref": 0, "will": 3}, "bab": 1, "cmb": 4, "cmd": 14,
+    "abilities": {"str": 17, "dex": 10, "con": 10, "int": 3, "wis": 10, "cha": 10},
+    "attacks": [{"name": "Slam", "bonus": 4, "damage": "1d6+4", "crit": [20, 2], "dtype": "B"}],
+    "dr": {"amount": 5, "bypass": "S"},
+    "skills": {"perception": 0}, "ai": "melee",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"style": "zombie", "build": "rustic", "skin": "#7f9a78", "hair": "#3a3a30", "hairStyle": "short", "eyes": "#d8d8c0", "top": "#5a5248", "bottom": "#3a3630", "boots": "#3a3630"}},
+    "desc": "Slow, rotten and relentless. It can move or strike each round, not both."
+  },
+  "wolf": {
+    "name": "Wolf", "cr": "1", "xp": 400, "hd": 2, "size": "medium", "tags": ["animal", "living"],
+    "hp": 13, "ac": 14, "touch": 12, "flatFooted": 12, "init": 2, "speed": 50,
+    "saves": {"fort": 5, "ref": 5, "will": 1}, "bab": 1, "cmb": 2, "cmd": 14,
+    "abilities": {"str": 13, "dex": 15, "con": 15, "int": 2, "wis": 12, "cha": 6},
+    "attacks": [{"name": "Bite", "bonus": 2, "damage": "1d6+1", "crit": [20, 2], "dtype": "P"}],
+    "skills": {"perception": 8, "stealth": 6}, "ai": "melee",
+    "sprite": {"template": "wolf", "height": 1.1, "look": {"fur": "#7a7a80"}},
+    "desc": "Lean, grey and hungry."
+  },
+  "giant_spider": {
+    "name": "Giant Spider", "cr": "1", "xp": 400, "hd": 3, "size": "medium", "tags": ["vermin", "living"], "immunities": ["mind"],
+    "hp": 16, "ac": 14, "touch": 13, "flatFooted": 11, "init": 3, "speed": 30,
+    "saves": {"fort": 4, "ref": 4, "will": 1}, "bab": 2, "cmb": 2, "cmd": 15,
+    "abilities": {"str": 11, "dex": 17, "con": 12, "int": 1, "wis": 10, "cha": 2},
+    "attacks": [{"name": "Bite", "bonus": 2, "damage": "1d6", "crit": [20, 2], "dtype": "P"}],
+    "skills": {"perception": 4, "stealth": 7}, "ai": "melee",
+    "sprite": {"template": "spider", "height": 1.0, "look": {"body": "#2a2430"}},
+    "desc": "Eight legs, eight eyes, one very bad idea."
+  },
+  "bandit": {
+    "name": "Bandit", "cr": "1/2", "xp": 200, "hd": 2, "size": "medium", "tags": ["humanoid", "living"],
+    "hp": 11, "ac": 14, "touch": 12, "flatFooted": 12, "init": 2, "speed": 30,
+    "saves": {"fort": 3, "ref": 2, "will": 0}, "bab": 2, "cmb": 3, "cmd": 15,
+    "abilities": {"str": 13, "dex": 14, "con": 11, "int": 10, "wis": 10, "cha": 8},
+    "attacks": [{"name": "Short sword", "bonus": 3, "damage": "1d6+1", "crit": [19, 2], "dtype": "P"}],
+    "skills": {"perception": 3, "stealth": 5, "intimidate": 3}, "ai": "melee",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "masculine", "build": "athletic", "skin": "#c99872", "hair": "#2a1c12", "hairStyle": "hood", "beard": "stubble", "outfit": "leather", "top": "#5a4030", "bottom": "#33302c", "boots": "#231a12", "weapon": "sword"}},
+    "desc": "A desperate cutpurse with a notched blade."
+  },
+  "cultist": {
+    "name": "Cultist", "cr": "1/2", "xp": 200, "hd": 2, "size": "medium", "tags": ["humanoid", "living"],
+    "hp": 9, "ac": 12, "touch": 11, "flatFooted": 11, "init": 1, "speed": 30,
+    "saves": {"fort": 1, "ref": 1, "will": 4}, "bab": 1, "cmb": 1, "cmd": 12,
+    "abilities": {"str": 10, "dex": 12, "con": 11, "int": 11, "wis": 14, "cha": 10},
+    "attacks": [{"name": "Dagger", "bonus": 1, "damage": "1d4", "crit": [19, 2], "dtype": "P"}],
+    "spells": [{"id": "cause_fear", "uses": 1}, {"id": "daze", "uses": -1}], "casterLevel": 2, "castingAbility": "wis",
+    "skills": {"perception": 3}, "ai": "caster",
+    "sprite": {"template": "humanoid", "height": 0.95, "look": {"body": "masculine", "build": "slim", "skin": "#c9a88a", "hairStyle": "hood", "hair": "#3a1a2a", "outfit": "robe", "top": "#4a1f2e", "boots": "#1c1014", "weapon": "dagger"}},
+    "desc": "A robed fanatic muttering to something that should not answer."
+  }
+}

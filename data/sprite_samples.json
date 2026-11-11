@@ -1,0 +1,21 @@
+{
+  "_doc": "Example character looks for the procedural sprite generator (src/render/sprite_factory.gd). Copy a look into a companion or entity 'look' and change colours. Render them all with: godot --headless --path . -s res://tools/sprite_gallery.gd -- gallery.png   (docs/SPRITES.md explains every option).",
+  "hero": {"race": "human", "body": "masculine", "build": "heroic", "skin": "#d9a877", "hair": "#3b2a1a", "hairStyle": "short", "outfit": "armor", "top": "#8a8f98", "bottom": "#4a4038", "weapon": "sword", "shield": true},
+  "farmhand": {"race": "human", "body": "masculine", "build": "rustic", "skin": "#c98f66", "hair": "#a8742a", "hairStyle": "curly", "beard": "stubble", "outfit": "tunic", "top": "#8a7a5a", "bottom": "#5a4a32", "weapon": "none"},
+  "elf_mage": {"race": "elf", "body": "feminine", "skin": "#f1c9a5", "hair": "#d8d8e8", "hairStyle": "wavy", "outfit": "dress", "top": "#3a3f8a", "trim": "#c9a84a", "weapon": "staff"},
+  "swordswoman": {"race": "human", "body": "feminine", "build": "curvy", "skin": "#e0ac82", "hair": "#b8452a", "hairStyle": "long", "outfit": "bodice", "top": "#2f5a3a", "bottom": "#3a3028", "trim": "#d9b45a", "weapon": "sword"},
+  "half_orc": {"race": "half_orc", "body": "masculine", "hair": "#1a1410", "hairStyle": "mohawk", "outfit": "leather", "top": "#5a4030", "bottom": "#33302c", "weapon": "axe"},
+  "half_orc_woman": {"race": "half_orc", "body": "feminine", "hair": "#1a1410", "hairStyle": "ponytail", "outfit": "leather", "top": "#6a3030", "bottom": "#33302c", "weapon": "spear"},
+  "gnome": {"race": "gnome", "body": "masculine", "skin": "#e8b890", "hair": "#e07a2a", "hairStyle": "curly", "outfit": "tunic", "top": "#6a3a8a", "bottom": "#3a3a48", "weapon": "dagger"},
+  "gnome_woman": {"race": "gnome", "body": "feminine", "skin": "#e8b890", "hair": "#e060a0", "hairStyle": "bun", "outfit": "dress", "top": "#2a7a6a", "trim": "#f0d060", "weapon": "none"},
+  "dwarf": {"race": "dwarf", "body": "masculine", "skin": "#d9a070", "hair": "#b8452a", "hairStyle": "short", "outfit": "armor", "top": "#7a7f88", "bottom": "#4a3a2a", "weapon": "axe", "shield": true},
+  "dwarf_woman": {"race": "dwarf", "body": "feminine", "skin": "#e0ac82", "hair": "#b8452a", "hairStyle": "braids", "outfit": "armor", "top": "#c9c2a8", "bottom": "#5a4a3a", "trim": "#d9b45a", "weapon": "mace", "shield": true},
+  "halfling": {"race": "halfling", "body": "feminine", "skin": "#e0ac82", "hair": "#6b4a2a", "hairStyle": "curly", "outfit": "leather", "top": "#3d5a3a", "bottom": "#3a3028", "weapon": "dagger"},
+  "halfling_man": {"race": "halfling", "body": "masculine", "skin": "#e0ac82", "hair": "#3b2a1a", "hairStyle": "curly", "outfit": "tunic", "top": "#8a3a2a", "bottom": "#4a4030", "weapon": "none"},
+  "succubus": {"race": "human", "body": "feminine", "build": "curvy", "skin": "#e8a8a8", "hair": "#1a0a14", "hairStyle": "wavy", "lips": "#8a1030", "eyes": "#b02060", "outfit": "bodice", "top": "#5a1028", "bottom": "#2a0a18", "trim": "#d9a04a", "horns": "#2a1018", "wings": "bat", "tail": true, "weapon": "none"},
+  "old_wizard": {"race": "human", "body": "masculine", "build": "slim", "age": "old", "skin": "#d9a877", "hairStyle": "hat", "beard": true, "outfit": "robe", "top": "#3a3f7a", "trim": "#c9a84a", "weapon": "staff"},
+  "innkeeper": {"race": "human", "body": "feminine", "build": "heavy", "skin": "#e0ac82", "hair": "#6b4a2a", "hairStyle": "bun", "outfit": "dress", "top": "#8a5a3a", "skirt": "#b8a888", "trim": "#e8e2d0", "weapon": "none"},
+  "guard": {"race": "human", "body": "masculine", "build": "athletic", "skin": "#c98f66", "hair": "#3b2a1a", "hairStyle": "helm", "outfit": "armor", "top": "#7a2a2a", "bottom": "#3a3a40", "weapon": "spear", "shield": true},
+  "goblin": {"race": "goblin", "hairStyle": "bald", "eyes": "#e8d020", "outfit": "leather", "top": "#5a4630", "bottom": "#3d3226", "boots": "#2a2018", "weapon": "sword"},
+  "skeleton": {"style": "skeleton", "skin": "#d9d4c2", "hairStyle": "bald", "top": "#d9d4c2", "bottom": "#d9d4c2", "boots": "#d9d4c2", "weapon": "sword"}
+}

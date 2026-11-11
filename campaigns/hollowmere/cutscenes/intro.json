@@ -1,0 +1,25 @@
+{
+  "map": "town",
+  "steps": [
+    {"op": "fade", "to": "black", "seconds": 0},
+    {"op": "title", "text": "Embers of Hollowmere", "sub": "An OpenGate adventure", "seconds": 2.2},
+    {"op": "camera.set", "at": [9, 16], "z": 1.2, "look": "square", "fov": 62},
+    {"op": "fade", "to": "clear", "seconds": 1.5},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [12, 16], "z": 0.9, "look": "square", "fov": 55, "seconds": 6},
+      {"op": "narrate", "text": "Dusk settles over Hollowmere, and nobody lights a lamp they do not have to."}
+    ]},
+    {"op": "camera.set", "at": [21, 13], "z": 0.8, "look": [20, 7], "fov": 52},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [20, 11], "z": 0.75, "look": [20, 6], "fov": 42, "seconds": 5},
+      {"op": "narrate", "text": "For three weeks green lights have burned on the Barrow, and the town's dead have not rested. The Reeve has sent for help."}
+    ]},
+    {"op": "camera.set", "at": [7, 12], "z": 0.9, "look": "player", "fov": 50},
+    {"op": "parallel", "steps": [
+      {"op": "camera.move", "at": [8, 11], "z": 0.75, "look": [6, 13], "fov": 45, "seconds": 4},
+      {"op": "actor.move", "id": "player", "to": [6, 13], "speed": 1.8},
+      {"op": "narrate", "text": "You are what answered."}
+    ]},
+    {"op": "fade", "to": "black", "seconds": 0.6}
+  ]
+}
