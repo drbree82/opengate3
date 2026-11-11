@@ -24,6 +24,20 @@ const FALLBACK_LICENSE := "OpenGate is released under the MIT License. The full 
 const FALLBACK_NOTICES := "The list of third-party material is in the THIRD_PARTY_NOTICES.md file that comes with the game."
 const FALLBACK_RULES := "The game rules are Open Game Content, used under the Open Game License version 1.0a. The full licence text and its copyright notices are in the OGL.txt file that comes with the game."
 const GODOT_LICENSE_URL := "https://godotengine.org/license"
+
+## --- Paizo Community Use Policy (docs/LICENSING.md, "The name Pathfinder") -------------------------
+## The project refers to Paizo's trademarks ("Pathfinder") under Paizo's Community Use Policy. That policy
+## prescribes the notice below WORD FOR WORD (only the product name is ours) and asks for visible contact
+## information. Never reword PAIZO_NOTICE; README.md carries the same text and tests/test_notices.gd
+## checks that the two match. A fork must use its own name and contact address here (the permission is
+## personal to each project) or stop using Paizo's trademarks.
+const PRODUCT_NAME := "OpenGate"
+const PAIZO_NOTICE := "%s uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy (paizo.com/licenses/communityuse). We are expressly prohibited from charging you to use or access this content. %s is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit paizo.com."
+const PAIZO_TRADEMARKS := "Pathfinder and Pathfinder Roleplaying Game are trademarks of Paizo Inc."
+## Where to reach the people behind this project (the policy asks for up-to-date contact information).
+const CONTACT_URL := "https://github.com/drbree82/opengate3/issues"
+## One line for the title screen; the full notice is on the Licences screen.
+const PAIZO_SHORT := "An unofficial, free fan project. Uses trademarks owned by Paizo Inc. under Paizo's Community Use Policy - not published, endorsed or approved by Paizo. See Licences."
 const RULE := "------------------------------------------------------------------------"
 
 
@@ -48,6 +62,17 @@ static func project_notices() -> String:
 ## The Open Game License notice for the game rules (OGL.txt). Never edit the licence wording in that file.
 static func rules_license() -> String:
 	return _read(RULES_LICENSE, FALLBACK_RULES)
+
+
+## The notice Paizo's Community Use Policy prescribes, with this project's name filled in.
+static func paizo_notice() -> String:
+	return PAIZO_NOTICE % [PRODUCT_NAME, PRODUCT_NAME]
+
+
+## Everything the Community Use Policy asks a project to show: the notice, Paizo's trademark line and
+## where to contact the project.
+static func community_use() -> String:
+	return "%s\n\n%s\n\nThis game is free. Contact: %s" % [paizo_notice(), PAIZO_TRADEMARKS, CONTACT_URL]
 
 
 static func godot_version() -> String:
@@ -134,6 +159,7 @@ static func full_text() -> String:
 	parts.append("LICENCES AND THIRD-PARTY NOTICES")
 	parts.append(RULE + "\nTHIS GAME\n" + RULE + "\n" + project())
 	parts.append(RULE + "\nTHIRD-PARTY MATERIAL IN THIS GAME\n" + RULE + "\n" + project_notices())
+	parts.append(RULE + "\nPAIZO COMMUNITY USE NOTICE\n" + RULE + "\n" + community_use())
 	parts.append(RULE + "\nGAME RULES (OPEN GAME LICENSE)\n" + RULE + "\n" + rules_license())
 	parts.append(RULE + "\nGODOT ENGINE\n" + RULE + "\n" + engine())
 	parts.append(RULE + "\nTHIRD-PARTY COMPONENTS OF GODOT ENGINE\n" + RULE + "\n" + components_text())

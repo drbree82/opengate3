@@ -96,6 +96,12 @@ Dependency direction is one-way: `core <- rules <- engine <- render/ui`. Never m
   Everything in `data/` today comes from the **Core Rulebook** and the first **Bestiary**. If you add
   rules content from any other book (Bestiary 2, Advanced Player's Guide, ...), add that book's
   copyright notice to Section 15 of `OGL.txt` in the same change (docs/LICENSING.md says how).
+- **Paizo Community Use Policy** (docs/LICENSING.md): the project may use the name "Pathfinder" only
+  while it follows that policy. So: the game stays **free** (never add a price, paywall, sign-up gate
+  or paid unlock); the notice in `README.md`, on the title screen and in `Notices.PAIZO_NOTICE` is
+  never removed or reworded; nothing may suggest Paizo made or approves the game; do not add Paizo
+  logos, artwork, maps or text, and do not imitate the look of Paizo's books; all content (story,
+  sprites, portraits, audio) stays suitable for all ages - no adult or offensive material.
 - **Licences** (docs/LICENSING.md): the game runs on Godot Engine (MIT), so every build must show
   Godot's licence notices. Never remove the **Licences** screen (`src/ui/licenses_screen.gd`) or its
   buttons, never edit licence text (that includes the wording of `OGL.txt`), and when you add anything made by someone else (asset, font,

@@ -77,10 +77,35 @@ func test_open_game_license(t) -> void:
 		t.ok(notices.contains("\n" + title), "Section 15 has the notice for '%s'" % title)
 
 
+## Paizo Community Use Policy: the prescribed notice must be in the game and in the README, word for word.
+func test_paizo_community_use_notice(t) -> void:
+	var notice := Notices.paizo_notice()
+	t.ok(notice.begins_with("OpenGate uses trademarks and/or copyrights owned by Paizo Inc."), "names the product and Paizo")
+	for phrase in ["used under Paizo's Community Use Policy (paizo.com/licenses/communityuse)",
+			"We are expressly prohibited from charging you to use or access this content.",
+			"OpenGate is not published, endorsed, or specifically approved by Paizo.",
+			"For more information about Paizo Inc. and Paizo products, visit paizo.com."]:
+		t.ok(notice.contains(phrase), "the notice keeps Paizo's wording: '%s'" % phrase)
+	t.ok(not notice.contains("%s"), "the product name is filled in")
+	var shown := Notices.community_use()
+	t.ok(shown.contains(notice), "the Licences screen text carries the notice")
+	t.ok(shown.contains(Notices.PAIZO_TRADEMARKS), "... and Paizo's trademark line")
+	t.ok(shown.contains(Notices.CONTACT_URL), "... and the contact address")
+	t.ok(Notices.CONTACT_URL.begins_with("https://"), "the contact address is a link")
+	t.ok(Notices.PAIZO_SHORT.contains("Community Use Policy") and Notices.PAIZO_SHORT.contains("not published, endorsed or approved by Paizo"),
+		"the title-screen line names the policy and says the game is unofficial")
+	var readme := FileAccess.get_file_as_string("res://README.md")
+	t.ok(readme.contains(notice), "README.md carries exactly the same notice as the game")
+	t.ok(readme.contains(Notices.PAIZO_TRADEMARKS), "README.md carries Paizo's trademark line")
+	t.ok(readme.contains(Notices.CONTACT_URL), "README.md shows the contact address")
+	t.ok(Notices.project_notices().contains(notice), "THIRD_PARTY_NOTICES.md carries the notice")
+
+
 func test_full_text(t) -> void:
 	var text := Notices.full_text()
 	for heading in ["THIS GAME", "GAME RULES (OPEN GAME LICENSE)", "GODOT ENGINE", "THIRD-PARTY COMPONENTS OF GODOT ENGINE", "LICENCE TEXT: Expat"]:
 		t.ok(text.contains(heading), "full text has the section '%s'" % heading)
 	t.ok(text.contains(Engine.get_license_text().strip_edges()), "full text carries Godot's licence")
 	t.ok(text.contains("OPEN GAME LICENSE Version 1.0a"), "full text carries the Open Game License")
+	t.ok(text.contains(Notices.paizo_notice()), "full text carries the Paizo Community Use notice")
 	t.ok(text.length() > 20000, "full text carries the component licence texts")

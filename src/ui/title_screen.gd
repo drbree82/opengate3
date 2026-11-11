@@ -17,7 +17,7 @@ func setup(main_node) -> void:
 	var title := UiKit.label("OpenGate", 54, UiKit.GOLD)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	content.add_child(title)
-	var tag := UiKit.label("An open Pathfinder adventure framework", 16, UiKit.DIM)
+	var tag := UiKit.label("An unofficial, open Pathfinder adventure framework", 16, UiKit.DIM)
 	tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	content.add_child(tag)
 
@@ -52,6 +52,12 @@ func setup(main_node) -> void:
 	saves_box = sl[1]
 	right.add_child(sl[0])
 	row.add_child(right)
+
+	# Required while the game uses the name "Pathfinder" (Paizo Community Use Policy, docs/LICENSING.md).
+	var legal := UiKit.label(Notices.PAIZO_SHORT, 12, UiKit.DIM)
+	legal.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	legal.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(legal)
 
 	campaigns = Campaign.list()
 	_draw()

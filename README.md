@@ -3,6 +3,9 @@
 An open framework for building and playing Baldur's-Gate-style RPGs with the **Pathfinder (1st edition)**
 rules. The computer is the Game Master; you play solo with a party of companions.
 
+OpenGate is an **unofficial, free fan project**. It is not made, endorsed or approved by Paizo - see
+[Paizo Community Use notice](#paizo-community-use-notice).
+
 Built with Godot 4 (GDScript). Runs on Linux. No art or audio files are required: rooms, textures,
 characters and sound effects are generated in code, and ElevenLabs can add voices, music and portraits.
 
@@ -64,6 +67,19 @@ Characters are drawn by code from a short description (race, body, build, hair, 
 ## For developers and AI agents
 
 Start with [AGENTS.md](AGENTS.md). The short version: change something, run `./check.sh`.
+
+## Paizo Community Use notice
+
+> OpenGate uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy (paizo.com/licenses/communityuse). We are expressly prohibited from charging you to use or access this content. OpenGate is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit paizo.com.
+
+Pathfinder and Pathfinder Roleplaying Game are trademarks of Paizo Inc.
+
+OpenGate is free for everyone: no price, no paywall, no sign-up. Nobody may charge for it or for
+access to it while it refers to Paizo's trademarks under this policy. If you fork it, the permission
+does not pass to you automatically - follow the policy yourself (with your own project name and
+contact address) or remove Paizo's trademarks. Details: [docs/LICENSING.md](docs/LICENSING.md).
+
+**Contact:** open an issue at <https://github.com/drbree82/opengate3/issues>.
 
 ## Licence
 

@@ -23,7 +23,8 @@ A sprite definition (used in `entities.json`, monsters, and built automatically 
 The art direction: every kind of character should read at a glance and suit who they are -
 attractive where that fits the character (an elven enchantress, a classically handsome knight),
 plain and sturdy where that fits (a farmhand), and unmistakably their own race (orc, gnome, dwarf).
-Keep it tasteful: characters are always clothed.
+Keep it tasteful: characters are always clothed, and nothing may be adult, offensive or unsuitable for
+minors - that is also a condition of Paizo's Community Use Policy (docs/LICENSING.md).
 
 | Key | Values | Notes |
 |---|---|---|

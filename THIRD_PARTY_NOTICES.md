@@ -56,7 +56,14 @@ with its Section 15 copyright notices (Open Game License, System Reference Docum
 Roleplaying Game Reference Document, Core Rulebook and Bestiary). In the game: Licences -> "Game rules".
 
 The project uses the game mechanics only. It contains no Paizo setting material, characters, fiction
-or artwork, and it is not published, endorsed or approved by Paizo. Background: docs/LICENSING.md.
+or artwork. Background: docs/LICENSING.md.
+
+The name "Pathfinder" is used under Paizo's Community Use Policy, which asks for this notice:
+
+OpenGate uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy (paizo.com/licenses/communityuse). We are expressly prohibited from charging you to use or access this content. OpenGate is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit paizo.com.
+
+Pathfinder and Pathfinder Roleplaying Game are trademarks of Paizo Inc.
+This game is free. Contact: https://github.com/drbree82/opengate3/issues
 
 ## ElevenLabs (generated audio)
 

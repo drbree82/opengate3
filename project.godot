@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="OpenGate"
-config/description="An open, data-driven Pathfinder (1e) RPG framework with a retro 2.5D view."
+config/description="An unofficial, free, data-driven RPG framework using the Pathfinder (1e) rules, with a retro 2.5D view."
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"

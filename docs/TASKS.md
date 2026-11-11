@@ -108,11 +108,10 @@ Each task says where the code is and what "done" means.
 - [x] **[S] Open Game License file.** Done 2026-11-12: `OGL.txt` (designation of Open Game Content, the
   licence text, Section 15), shown in the game under Licences -> "Game rules" and guarded by
   `tests/test_notices.gd`.
-- [ ] **[S] Owner decision: the name "Pathfinder".** Section 7 of the Open Game License says not to
-  advertise compatibility with a trademark without the owner's permission. Either adopt Paizo's Community
-  Use Policy (free, non-commercial only; add the notice it prescribes to README and the Licences screen)
-  or describe the rules without the trademark (README, AGENTS.md, title screen tagline in
-  `src/ui/title_screen.gd`). Do NOT pick for the owner. Details in docs/LICENSING.md.
+- [x] **[S] The name "Pathfinder".** Decided by the owner on 2026-11-12: the project follows Paizo's
+  Community Use Policy. The prescribed notice is in README.md, on the title screen (short form) and on the
+  Licences screen ("Game rules" tab); `tests/test_notices.gd` guards it. The conditions are listed in
+  docs/LICENSING.md - read them before adding content or anything to do with money.
 - [ ] **[M] Export preset for Linux.** Create `export_presets.cfg` (Linux x86_64), include
   `LICENSE, THIRD_PARTY_NOTICES.md, OGL.txt` and the campaign/data files in the non-resource filter, and add
   `tools/build.sh` that exports to `build/` and then runs `tools/write_notices.gd` so the notices file
