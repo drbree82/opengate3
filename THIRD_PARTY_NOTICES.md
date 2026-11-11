@@ -41,18 +41,22 @@ with every Godot version. Instead:
 - in the game they are listed under Licences -> "Third-party" and "Licence texts"
   (read live from the engine that is running);
 - `godot --headless --path . -s res://tools/write_notices.gd` writes all of them, together with this
-  file and LICENSE, to `build/THIRD_PARTY_NOTICES.txt`, to ship next to an exported build.
+  file, LICENSE and OGL.txt, to `build/THIRD_PARTY_NOTICES.txt`, to ship next to an exported build.
 
 The game's text is drawn with Godot's built-in default font (Open Sans, SIL Open Font License 1.1),
 which is one of those components. The project adds no other fonts.
 
-## Pathfinder Roleplaying Game rules
+## Pathfinder Roleplaying Game rules (Open Game Content)
 
 The rules data in `data/*.json` and the rules maths in `src/rules/` follow the Pathfinder Roleplaying
 Game Reference Document (first edition), which Paizo Inc. published as Open Game Content under the
-Open Game License version 1.0a. The project uses the game mechanics only. It contains no Paizo setting
-material, characters, fiction or artwork, and it is not published, endorsed or approved by Paizo.
-What that licence asks for, and what is still to be decided: docs/LICENSING.md.
+Open Game License version 1.0a. That material is used under that licence. The file `OGL.txt` in the
+repository root says exactly which parts are Open Game Content and contains the full licence text
+with its Section 15 copyright notices (Open Game License, System Reference Document, Pathfinder
+Roleplaying Game Reference Document, Core Rulebook and Bestiary). In the game: Licences -> "Game rules".
+
+The project uses the game mechanics only. It contains no Paizo setting material, characters, fiction
+or artwork, and it is not published, endorsed or approved by Paizo. Background: docs/LICENSING.md.
 
 ## ElevenLabs (generated audio)
 

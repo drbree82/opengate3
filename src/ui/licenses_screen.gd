@@ -1,11 +1,12 @@
 class_name LicensesScreen
 extends Modal
 ## "Licences" screen, opened from the title screen and the pause menu (main.open_licenses).
-## It shows the notices a distributed game has to show: this game's own licence, Godot Engine's licence
-## and the third-party code built into the engine. Keep a way to reach this screen in every build.
+## It shows the notices a distributed game has to show: this game's own licence, the Open Game License
+## for the Pathfinder rules (OGL.txt), Godot Engine's licence and the third-party code built into the
+## engine. Keep a way to reach this screen in every build.
 ## All of the text comes from Notices (src/core/notices.gd). Background: docs/LICENSING.md.
 
-const TABS := ["This game", "Godot Engine", "Third-party", "Licence texts"]
+const TABS := ["This game", "Game rules", "Godot Engine", "Third-party", "Licence texts"]
 
 var tab := "This game"
 var tab_row: HBoxContainer
@@ -62,6 +63,8 @@ func _pick_license(_index: int) -> void:
 func _draw() -> void:
 	picker.visible = tab == "Licence texts"
 	match tab:
+		"Game rules":
+			body.text = Notices.rules_license()
 		"Godot Engine":
 			body.text = Notices.engine()
 		"Third-party":

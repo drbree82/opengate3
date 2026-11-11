@@ -11,13 +11,18 @@ extends RefCounted
 ##           tools/write_notices.gd      (writes the same text to a file to ship next to an exported build)
 ## Adding your own asset or library? List it in THIRD_PARTY_NOTICES.md (repo root), not in this file.
 
-## This game's own licence and its own third-party list. Both are plain text files in the repo root.
+## This game's own licence, its own third-party list and the Open Game License notice for the rules.
+## All three are plain text files in the repo root.
 ## An exported build only contains them if the export preset's include filter lists them
 ## (docs/LICENSING.md); FALLBACK_* is shown when they are missing.
 const PROJECT_LICENSE := "res://LICENSE"
 const PROJECT_NOTICES := "res://THIRD_PARTY_NOTICES.md"
+## The Open Game License notice for the Pathfinder rules data: which parts are Open Game Content, the
+## full licence text and its Section 15 copyright notices. It must travel with the rules data.
+const RULES_LICENSE := "res://OGL.txt"
 const FALLBACK_LICENSE := "OpenGate is released under the MIT License. The full text is in the LICENSE file that comes with the game."
 const FALLBACK_NOTICES := "The list of third-party material is in the THIRD_PARTY_NOTICES.md file that comes with the game."
+const FALLBACK_RULES := "The game rules are Open Game Content, used under the Open Game License version 1.0a. The full licence text and its copyright notices are in the OGL.txt file that comes with the game."
 const GODOT_LICENSE_URL := "https://godotengine.org/license"
 const RULE := "------------------------------------------------------------------------"
 
@@ -38,6 +43,11 @@ static func project() -> String:
 ## The game's own list of third-party material (THIRD_PARTY_NOTICES.md).
 static func project_notices() -> String:
 	return _read(PROJECT_NOTICES, FALLBACK_NOTICES)
+
+
+## The Open Game License notice for the game rules (OGL.txt). Never edit the licence wording in that file.
+static func rules_license() -> String:
+	return _read(RULES_LICENSE, FALLBACK_RULES)
 
 
 static func godot_version() -> String:
@@ -117,13 +127,14 @@ static func license_text(id: String) -> String:
 	return str(Engine.get_license_info().get(id, "")).strip_edges()
 
 
-## Everything in one text: this game's licence and notices, Godot's licence, the component list and every
-## licence text. tools/write_notices.gd saves this next to an exported build.
+## Everything in one text: this game's licence and notices, the Open Game License notice for the rules,
+## Godot's licence, the component list and every licence text. tools/write_notices.gd saves this next to an exported build.
 static func full_text() -> String:
 	var parts: Array = []
 	parts.append("LICENCES AND THIRD-PARTY NOTICES")
 	parts.append(RULE + "\nTHIS GAME\n" + RULE + "\n" + project())
 	parts.append(RULE + "\nTHIRD-PARTY MATERIAL IN THIS GAME\n" + RULE + "\n" + project_notices())
+	parts.append(RULE + "\nGAME RULES (OPEN GAME LICENSE)\n" + RULE + "\n" + rules_license())
 	parts.append(RULE + "\nGODOT ENGINE\n" + RULE + "\n" + engine())
 	parts.append(RULE + "\nTHIRD-PARTY COMPONENTS OF GODOT ENGINE\n" + RULE + "\n" + components_text())
 	for id in license_ids():

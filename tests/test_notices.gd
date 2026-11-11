@@ -48,11 +48,39 @@ func test_project_files(t) -> void:
 	var notes := Notices.project_notices()
 	t.ok(notes.contains("Godot Engine"), "THIRD_PARTY_NOTICES.md covers Godot Engine")
 	t.ok(notes.contains("ElevenLabs"), "THIRD_PARTY_NOTICES.md covers the generated audio")
+	t.ok(notes.contains("OGL.txt"), "THIRD_PARTY_NOTICES.md points to the Open Game License notice")
+
+
+## OGL.txt: the Open Game License for the Pathfinder rules data. Its wording must never change; only
+## Section 15 grows when rules content from another book is added (docs/LICENSING.md).
+func test_open_game_license(t) -> void:
+	t.ok(FileAccess.file_exists(Notices.RULES_LICENSE), "OGL.txt exists in the repo root")
+	var text := Notices.rules_license()
+	t.ok(text != Notices.FALLBACK_RULES, "OGL.txt is read, not the fallback")
+	t.ok(text.contains("DESIGNATION OF OPEN GAME CONTENT"), "says which parts are Open Game Content")
+	var start := text.find("OPEN GAME LICENSE Version 1.0a")
+	var s15 := text.find("15. COPYRIGHT NOTICE")
+	t.ok(start >= 0 and s15 > start, "licence heading and Section 15 are present")
+	if start < 0 or s15 <= start:
+		return
+	# the licence itself (heading .. end of section 14), compared without line breaks
+	var re := RegEx.new()
+	re.compile("\\s+")
+	var body := re.sub(text.substr(start, s15 - start), " ", true).strip_edges()
+	t.eq(body.sha256_text(), "21d786a654d675532025362c566c445f430a3d1655e51f3d1c45740accd4db31",
+		"the licence wording is unchanged (never edit it - restore OGL.txt from git if this fails)")
+	for n in range(1, 15):
+		t.ok(body.contains(" %d. " % n), "section %d is present" % n)
+	var notices := text.substr(s15)
+	for title in ["Open Game License v 1.0a", "System Reference Document", "Pathfinder Roleplaying Game Reference Document",
+			"Pathfinder Roleplaying Game Core Rulebook", "Pathfinder Roleplaying Game Bestiary", "OpenGate"]:
+		t.ok(notices.contains("\n" + title), "Section 15 has the notice for '%s'" % title)
 
 
 func test_full_text(t) -> void:
 	var text := Notices.full_text()
-	for heading in ["THIS GAME", "GODOT ENGINE", "THIRD-PARTY COMPONENTS OF GODOT ENGINE", "LICENCE TEXT: Expat"]:
+	for heading in ["THIS GAME", "GAME RULES (OPEN GAME LICENSE)", "GODOT ENGINE", "THIRD-PARTY COMPONENTS OF GODOT ENGINE", "LICENCE TEXT: Expat"]:
 		t.ok(text.contains(heading), "full text has the section '%s'" % heading)
 	t.ok(text.contains(Engine.get_license_text().strip_edges()), "full text carries Godot's licence")
+	t.ok(text.contains("OPEN GAME LICENSE Version 1.0a"), "full text carries the Open Game License")
 	t.ok(text.length() > 20000, "full text carries the component licence texts")

@@ -105,19 +105,19 @@ Each task says where the code is and what "done" means.
 
 ## Licensing and release (read docs/LICENSING.md first)
 
-- [ ] **[S] Owner decision: Open Game License file.** The Pathfinder rules data is Open Game Content.
-  The OGL asks for a copy of the licence and a "Section 15" copyright notice to travel with it; neither is
-  in the repo yet. If the owner says yes: add `OGL.md` with the UNMODIFIED licence text (take it from an
-  official source, never from memory) and the Section 15 notice, link it from `THIRD_PARTY_NOTICES.md`,
-  README and docs/LICENSING.md, and show it on the Licences screen ("This game" tab).
-- [ ] **[S] Owner decision: the name "Pathfinder".** Either adopt Paizo's Community Use Policy (free,
-  non-commercial only; add the notice it prescribes to README and the Licences screen) or describe the
-  rules without the trademark. Details in docs/LICENSING.md.
+- [x] **[S] Open Game License file.** Done 2026-11-12: `OGL.txt` (designation of Open Game Content, the
+  licence text, Section 15), shown in the game under Licences -> "Game rules" and guarded by
+  `tests/test_notices.gd`.
+- [ ] **[S] Owner decision: the name "Pathfinder".** Section 7 of the Open Game License says not to
+  advertise compatibility with a trademark without the owner's permission. Either adopt Paizo's Community
+  Use Policy (free, non-commercial only; add the notice it prescribes to README and the Licences screen)
+  or describe the rules without the trademark (README, AGENTS.md, title screen tagline in
+  `src/ui/title_screen.gd`). Do NOT pick for the owner. Details in docs/LICENSING.md.
 - [ ] **[M] Export preset for Linux.** Create `export_presets.cfg` (Linux x86_64), include
-  `LICENSE, THIRD_PARTY_NOTICES.md` and the campaign/data files in the non-resource filter, and add
+  `LICENSE, THIRD_PARTY_NOTICES.md, OGL.txt` and the campaign/data files in the non-resource filter, and add
   `tools/build.sh` that exports to `build/` and then runs `tools/write_notices.gd` so the notices file
   always ships with the game. Done: the exported game starts from `build/`, plays the intro with sound,
-  and Licences -> "This game" shows the real LICENSE text (not the fallback line).
+  and Licences -> "This game" and "Game rules" show the real LICENSE and OGL texts (not the one-line fallbacks).
 
 ## Known rough edges
 

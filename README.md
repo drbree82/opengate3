@@ -74,9 +74,10 @@ Start with [AGENTS.md](AGENTS.md). The short version: change something, run `./c
   under **Licences** (title screen and pause menu), and `tools/write_notices.gd` writes them to a
   file to ship with a build.
 - The **game mechanics** follow the Pathfinder Roleplaying Game Reference Document, which is Open
-  Game Content under the Open Game License 1.0a. This project contains no Paizo Product Identity
-  (no setting names, characters or prose from published books) and is not affiliated with or
-  endorsed by Paizo.
+  Game Content under the Open Game License 1.0a. The rules data is used under that licence:
+  [OGL.txt](OGL.txt) says which parts are Open Game Content and carries the licence text and its
+  copyright notices. This project contains no Paizo Product Identity (no setting names, characters
+  or prose from published books) and is not affiliated with or endorsed by Paizo.
 
 Everything from third parties is listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 What each licence asks for, in plain language, and the checklist to run before publishing a build:

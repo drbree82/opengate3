@@ -46,6 +46,7 @@ campaigns/_template  smallest complete campaign; also the fixture used by tests
 campaigns/hollowmere the starter campaign: 1 town, 1 camp, 1 dungeon, 5 missions
 LICENSE              MIT licence of this project
 THIRD_PARTY_NOTICES.md  everything that is NOT ours (Godot Engine, Pathfinder rules, ElevenLabs audio) - docs/LICENSING.md
+OGL.txt              Open Game License for the Pathfinder rules data (never change its wording) - docs/LICENSING.md
 src/core/            util.gd (JSON, helpers), rng.gd (all randomness), notices.gd (licence texts from the engine)
 src/rules/           PURE Pathfinder maths. No nodes, no game state. Fully unit-tested.
 src/engine/          game flow WITHOUT any screen: game.gd, world, scripts, dialogue, combat, cutscenes
@@ -91,10 +92,13 @@ Dependency direction is one-way: `core <- rules <- engine <- render/ui`. Never m
   `campaign_validator.gd` its fields, document it in docs/SCRIPTING.md, add a test.
 - **Secrets**: the ElevenLabs key is in `.env.local`. Never print it, never put it in code, never commit it.
 - Rules text must be written in your own words. The mechanics come from the Pathfinder 1e rules
-  (Open Game License); do not copy setting names or prose from published books.
+  (Open Game License, `OGL.txt`); do not copy setting names or prose from published books.
+  Everything in `data/` today comes from the **Core Rulebook** and the first **Bestiary**. If you add
+  rules content from any other book (Bestiary 2, Advanced Player's Guide, ...), add that book's
+  copyright notice to Section 15 of `OGL.txt` in the same change (docs/LICENSING.md says how).
 - **Licences** (docs/LICENSING.md): the game runs on Godot Engine (MIT), so every build must show
   Godot's licence notices. Never remove the **Licences** screen (`src/ui/licenses_screen.gd`) or its
-  buttons, never edit licence text, and when you add anything made by someone else (asset, font,
+  buttons, never edit licence text (that includes the wording of `OGL.txt`), and when you add anything made by someone else (asset, font,
   library, copied code) add it to `THIRD_PARTY_NOTICES.md` in the same change.
 
 ## GDScript 4 pitfalls (these have all bitten this project)
