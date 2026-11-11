@@ -56,8 +56,16 @@ Campaign sounds are played with `{"op": "sfx", "name": "<name>"}`.
 
 ## Portraits
 
-Note: ElevenLabs image generation needs a **Pro plan or above** (on lower plans the API answers
-HTTP 402 and the tool reports it). Until then the game uses the pixel sprites as portraits.
+Note: through the **API**, ElevenLabs image generation needs a **Pro plan or above** (on lower plans
+every image model answers HTTP 402 and the tool says so). The ElevenLabs **website** offers image
+generation on lower plans too, so there are two ways to get portraits:
+
+- Pro or above: `npm run portraits -- <campaign>` paints them all.
+- Any plan: `npm run portraits -- <campaign> --prompts` prints one ready-to-paste prompt per
+  character and the file name to save it under. Paint each on the website (square, 1:1) and save it
+  as `campaigns/<id>/portraits/<character id>.png` (`.jpg` and `.webp` work too).
+
+Without a portrait file the game uses the pixel sprite as the portrait.
 
 `npm run portraits -- <campaign>` paints one image per companion and per entity that has a
 `"portrait"` prompt or a humanoid sprite with a name. The prompt is built from the character's

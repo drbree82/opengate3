@@ -105,6 +105,8 @@ func _run_tour() -> void:
 	match tour:
 		"title":
 			await _tour_title()
+		"licenses":
+			await _tour_licenses()
 		"combat":
 			await _tour_combat()
 		"live":
@@ -136,6 +138,22 @@ func _tour_title() -> void:
 	main.overlay._show_custom()
 	await wait(0.5)
 	await shot("builder")
+
+
+## Title screen -> Licences: one screenshot per tab, then Back (must return to the title screen).
+func _tour_licenses() -> void:
+	main.show_title()
+	await wait(0.4)
+	main.open_licenses(main.show_title)
+	await wait(0.4)
+	for tab_name in LicensesScreen.TABS:
+		main.overlay.select_tab(tab_name)
+		await wait(0.3)
+		await shot("licences_" + tab_name.to_lower().replace(" ", "_").replace("-", "_"))
+	main.close_overlay()
+	await wait(0.4)
+	print("after Back the overlay is: ", "TitleScreen" if main.overlay is TitleScreen else str(main.overlay))
+	await shot("licences_back_to_title")
 
 
 ## New game -> intro cutscene -> exploring -> first dialogue with choices.

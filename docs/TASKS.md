@@ -8,8 +8,12 @@ Each task says where the code is and what "done" means.
 
 ## Good first tasks
 
-- [ ] **[S] Paint the portraits.** `npm run portraits -- hollowmere` (prompts are ready in companions.json /
-  entities.json). Blocked on 2026-11-11: ElevenLabs image generation answered "requires a Pro plan or above".
+- [ ] **[S] Paint the portraits.** Prompts are ready (`npm run portraits -- hollowmere --prompts`).
+  The ElevenLabs **API** refuses image generation below the Pro plan (checked 2026-11-11 and again
+  2026-11-12 with every image model: "This endpoint requires a Pro plan or above"). The ElevenLabs
+  **website** does offer image generation on lower plans, so until the plan changes: paint each prompt
+  there (square, 1:1) and save it as `campaigns/hollowmere/portraits/<character id>.png` - the game
+  picks the files up with no code change. On Pro or above `npm run portraits -- hollowmere` does it all.
   Done: `campaigns/hollowmere/portraits/*.png` exist and show on the sheet, hero cards and in dialogue.
 
 - [ ] **[S] Item tooltips.** `src/ui/sheet_panel.gd` `_gear()`: show weapon damage/crit and armor numbers
@@ -98,6 +102,22 @@ Each task says where the code is and what "done" means.
 - [ ] **[M] Companion personal quests** (one each) and camp conversations.
 - [ ] **[S] More side quests in town** (the orchard keeper, the missing shrine bell).
 - [ ] **[S] Balance pass** using real play (boss fight at level 1 vs level 2).
+
+## Licensing and release (read docs/LICENSING.md first)
+
+- [ ] **[S] Owner decision: Open Game License file.** The Pathfinder rules data is Open Game Content.
+  The OGL asks for a copy of the licence and a "Section 15" copyright notice to travel with it; neither is
+  in the repo yet. If the owner says yes: add `OGL.md` with the UNMODIFIED licence text (take it from an
+  official source, never from memory) and the Section 15 notice, link it from `THIRD_PARTY_NOTICES.md`,
+  README and docs/LICENSING.md, and show it on the Licences screen ("This game" tab).
+- [ ] **[S] Owner decision: the name "Pathfinder".** Either adopt Paizo's Community Use Policy (free,
+  non-commercial only; add the notice it prescribes to README and the Licences screen) or describe the
+  rules without the trademark. Details in docs/LICENSING.md.
+- [ ] **[M] Export preset for Linux.** Create `export_presets.cfg` (Linux x86_64), include
+  `LICENSE, THIRD_PARTY_NOTICES.md` and the campaign/data files in the non-resource filter, and add
+  `tools/build.sh` that exports to `build/` and then runs `tools/write_notices.gd` so the notices file
+  always ships with the game. Done: the exported game starts from `build/`, plays the intro with sound,
+  and Licences -> "This game" shows the real LICENSE text (not the fallback line).
 
 ## Known rough edges
 

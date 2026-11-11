@@ -162,9 +162,11 @@ func set_overlay(m: Modal) -> void:
 
 
 func close_overlay() -> void:
-	if overlay != null and is_instance_valid(overlay):
-		overlay.close()
+	# Clear `overlay` BEFORE closing: a `closed` handler may open the next screen (see open_licenses).
+	var m := overlay
 	overlay = null
+	if m != null and is_instance_valid(m):
+		m.close()
 
 
 func show_title() -> void:
@@ -185,6 +187,15 @@ func open_menu() -> void:
 	var m := PauseMenu.new()
 	set_overlay(m)
 	m.setup(self)
+
+
+## The licence notices every build must be able to show (docs/LICENSING.md).
+## `back` re-opens the screen the player came from, e.g. main.open_licenses(main.show_title).
+func open_licenses(back: Callable) -> void:
+	var l := LicensesScreen.new()
+	set_overlay(l)
+	l.setup(self)
+	l.closed.connect(back)
 
 
 func open_level_up(char_id: String) -> void:

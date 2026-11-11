@@ -44,6 +44,7 @@ func setup(main_node) -> void:
 	new_btn.add_theme_color_override("font_color", UiKit.GOLD)
 	buttons.add_child(new_btn)
 	buttons.add_child(UiKit.spacer())
+	buttons.add_child(UiKit.button("Licences", main.open_licenses.bind(main.show_title), "Licences and third-party notices"))
 	buttons.add_child(UiKit.button("Quit", func(): main.get_tree().quit()))
 	right.add_child(buttons)
 	right.add_child(UiKit.label("Saved games", 15, UiKit.DIM))

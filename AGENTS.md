@@ -25,11 +25,12 @@ If it fails, fix the **first** error shown and run it again.
 | Play | `./run.sh` (fullscreen) or `./run.sh --windowed` |
 | Skip menus while developing | `./run.sh --windowed -- --campaign=hollowmere --hero=kaelen --skip-intro` |
 | **Live UI test** (real mouse + keyboard events in the real window, ~5 min) | `./run.sh --windowed -- --shots=/tmp/live --tour=live --campaign=hollowmere --hero=kaelen` then read `/tmp/live/live_log.txt` (every line must say `ok`; last known-good run: docs/live_test_log.txt). `--tour=live-dungeon` runs only the door / trap / fight half |
-| Screenshot tour (look at UI changes) | `./run.sh --windowed -- --shots=/tmp/shots --tour=play --campaign=hollowmere --hero=kaelen` (tours: `title`, `play`, `combat`) |
+| Screenshot tour (look at UI changes) | `./run.sh --windowed -- --shots=/tmp/shots --tour=play --campaign=hollowmere --hero=kaelen` (tours: `title`, `licenses`, `play`, `combat`) |
 | Full campaign report (errors + warnings) | `godot --headless --path . -s res://tools/validate_campaign.gd -- hollowmere` |
 | Look at a map without playing | `godot --path . -s res://tools/render_map.gd -- hollowmere town /tmp/shots start square` |
 | Look at character sprites | `godot --headless --path . -s res://tools/sprite_gallery.gd -- /tmp/gallery.png` |
 | New campaign from the template | `tools/new_campaign.sh my_campaign "My Campaign"` |
+| Licence notices file to ship with a build | `godot --headless --path . -s res://tools/write_notices.gd` (writes `build/THIRD_PARTY_NOTICES.txt`; see docs/LICENSING.md) |
 | Voices / music / sound effects / portraits (ElevenLabs) | `npm run voices -- hollowmere --list` etc. See docs/VOICE.md |
 
 Godot is expected on the PATH as `godot` (this machine: `~/.local/bin/godot` -> 4.7.2). Set `GODOT=/path` otherwise.
@@ -43,7 +44,9 @@ data/*.json          RULES DATA: skills, races, classes, feats, items, spells, m
 campaigns/<id>/      CONTENT: one folder per campaign (docs/CAMPAIGN_FORMAT.md)
 campaigns/_template  smallest complete campaign; also the fixture used by tests
 campaigns/hollowmere the starter campaign: 1 town, 1 camp, 1 dungeon, 5 missions
-src/core/            util.gd (JSON, helpers), rng.gd (all randomness)
+LICENSE              MIT licence of this project
+THIRD_PARTY_NOTICES.md  everything that is NOT ours (Godot Engine, Pathfinder rules, ElevenLabs audio) - docs/LICENSING.md
+src/core/            util.gd (JSON, helpers), rng.gd (all randomness), notices.gd (licence texts from the engine)
 src/rules/           PURE Pathfinder maths. No nodes, no game state. Fully unit-tested.
 src/engine/          game flow WITHOUT any screen: game.gd, world, scripts, dialogue, combat, cutscenes
 src/render/          3D room + procedural textures and sprites (Godot nodes)
@@ -89,6 +92,10 @@ Dependency direction is one-way: `core <- rules <- engine <- render/ui`. Never m
 - **Secrets**: the ElevenLabs key is in `.env.local`. Never print it, never put it in code, never commit it.
 - Rules text must be written in your own words. The mechanics come from the Pathfinder 1e rules
   (Open Game License); do not copy setting names or prose from published books.
+- **Licences** (docs/LICENSING.md): the game runs on Godot Engine (MIT), so every build must show
+  Godot's licence notices. Never remove the **Licences** screen (`src/ui/licenses_screen.gd`) or its
+  buttons, never edit licence text, and when you add anything made by someone else (asset, font,
+  library, copied code) add it to `THIRD_PARTY_NOTICES.md` in the same change.
 
 ## GDScript 4 pitfalls (these have all bitten this project)
 
@@ -121,6 +128,7 @@ Dependency direction is one-way: `core <- rules <- engine <- render/ui`. Never m
 | a prop or creature sprite | `src/render/sprite_factory.gd`: `_draw_simple()` + `TEMPLATES`; a character look is just JSON (docs/SPRITES.md) |
 | a UI screen | subclass `Modal` (src/ui/modal.gd) like `shop_screen.gd`, open it from `src/main.gd` |
 | a sound effect | add a recipe to `RECIPES` in `src/ui/audio_bank.gd`, or a prompt to `data/sfx.json` and run `npm run sfx` |
+| a third-party asset, font or library | add it, keep its licence file next to it, and add an entry to `THIRD_PARTY_NOTICES.md` (docs/LICENSING.md). No licence, no add |
 
 ## Definition of done
 

@@ -44,6 +44,7 @@ func setup(main_node) -> void:
 	mute.toggled.connect(func(on): main.audio.muted = on)
 	content.add_child(mute)
 
+	content.add_child(UiKit.button("Licences", main.open_licenses.bind(main.open_menu), "Licences and third-party notices"))
 	content.add_child(UiKit.button("Quit to title", func(): main.show_title()))
 	content.add_child(UiKit.button("Quit game", func(): main.get_tree().quit()))
 

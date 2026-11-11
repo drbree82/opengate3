@@ -4,8 +4,13 @@
 // list, the hero cards and in dialogue, and falls back to the pixel sprite when there is no file.
 //
 //   npm run portraits -- <campaign> --list     who would be painted, and the prompt for each (free)
+//   npm run portraits -- <campaign> --prompts  one complete, ready-to-paste prompt per missing portrait (free)
 //   npm run portraits -- <campaign>            paint the portraits that do not exist yet
 //   options: --only=<id>  --force  --yes  --model=<id>  --resolution=512|1K
+//
+// PLAN NOTE: the image API answers HTTP 402 below the ElevenLabs Pro plan (all models, checked 2026-11-12).
+// The ElevenLabs website can still paint images on lower plans: use --prompts, paint each one there
+// (square, 1:1) and save it as campaigns/<id>/portraits/<character id>.png - the game finds it by name.
 //
 // Who gets a portrait: every companion, and every named NPC / monster template in entities.json and
 // the campaign's monsters.json that has a humanoid sprite or a "portrait" prompt.
@@ -129,6 +134,18 @@ if (flags.list) {
   process.exit(0);
 }
 
+const fullPrompt = (s) => `${STYLE}\n\nSubject: ${describe(s)}`;
+
+if (flags.prompts) {
+  const missing = list.filter((s) => flags.force || !hasFile(s.id));
+  for (const s of missing) {
+    console.log(`=== ${s.id}  ->  save as ${path.relative(process.cwd(), path.join(outDir, `${s.id}.png`))}  (square, 1:1) ===`);
+    console.log(fullPrompt(s) + "\n");
+  }
+  console.log(`${missing.length} prompt(s). Characters that already have a portrait are skipped (--force lists them too).`);
+  process.exit(0);
+}
+
 const todo = list.filter((s) => flags.force || !hasFile(s.id));
 if (!todo.length) {
   console.log("Nothing to paint: every character already has a portrait. (--force repaints)");
@@ -142,7 +159,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let failed = 0;
 for (const s of todo) {
   try {
-    const created = await api.flows.image.create({ modelId: MODEL, prompt: `${STYLE}\n\nSubject: ${describe(s)}`, aspectRatio: "1:1", resolution: RESOLUTION });
+    const created = await api.flows.image.create({ modelId: MODEL, prompt: fullPrompt(s), aspectRatio: "1:1", resolution: RESOLUTION });
     let result = null;
     for (let i = 0; i < 90; i++) {
       await sleep(2500);
@@ -162,6 +179,11 @@ for (const s of todo) {
   } catch (err) {
     failed += 1;
     console.error(`  FAIL ${s.id}: ${describeError(err)}`);
+    if (err?.statusCode === 402) {
+      console.error("\nThe ElevenLabs API only paints images on the Pro plan and above. On a lower plan you can still\n" +
+        "paint them on the ElevenLabs website: run this tool with --prompts, paint each prompt there (square, 1:1)\n" +
+        `and save it as ${path.relative(process.cwd(), outDir)}/<character id>.png. The game finds the files by name.`);
+    }
     if ([401, 402].includes(err?.statusCode)) break;
   }
 }

@@ -67,11 +67,17 @@ Start with [AGENTS.md](AGENTS.md). The short version: change something, run `./c
 
 ## Licence
 
-The **code and the original content** of this repository (engine, tools, the starter campaign, generated
-art and audio) are released under the [MIT License](LICENSE).
+- The **code and the original content** of this repository (engine, tools, the starter campaign,
+  generated art and audio) are released under the [MIT License](LICENSE).
+- The game runs on **[Godot Engine](https://godotengine.org)**, which is MIT-licensed too. Every
+  build has to carry Godot's licence notice and those of the libraries inside it: the game shows them
+  under **Licences** (title screen and pause menu), and `tools/write_notices.gd` writes them to a
+  file to ship with a build.
+- The **game mechanics** follow the Pathfinder Roleplaying Game Reference Document, which is Open
+  Game Content under the Open Game License 1.0a. This project contains no Paizo Product Identity
+  (no setting names, characters or prose from published books) and is not affiliated with or
+  endorsed by Paizo.
 
-The **game mechanics** follow the Pathfinder Roleplaying Game Reference Document, which is Open Game
-Content under the Open Game License 1.0a. This project contains no Paizo Product Identity (no setting
-names, characters or prose from published books) and is not affiliated with or endorsed by Paizo.
-If you distribute a game built with it, include the Open Game License text and the required
-Section 15 copyright notices alongside the MIT licence.
+Everything from third parties is listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+What each licence asks for, in plain language, and the checklist to run before publishing a build:
+[docs/LICENSING.md](docs/LICENSING.md).
