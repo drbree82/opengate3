@@ -1,0 +1,21 @@
+{
+  "_doc": "Original campaign variant, not the published Pathfinder tiefling package. No energy resistance, darkness spell or standard tiefling mechanics are implied. Traits list the two authored abilities; checks and durations are implemented in this campaign\u2019s dialogues and map triggers.",
+  "oath_tiefling": {
+    "name": "Succubus-descended Tiefling (campaign)",
+    "size": "medium",
+    "speed": 30,
+    "height": 0.95,
+    "abilityMods": {
+      "dex": 2,
+      "cha": 2,
+      "wis": -2
+    },
+    "traits": [
+      "Original campaign ancestry: +2 Dex, +2 Cha, -2 Wis",
+      "Succubus Spittle (permanent innate ability): contact-based Charisma check in marked NPC dialogue; temporary openness, not truth or obedience. One attempt per NPC scene.",
+      "Invisible Pheromone Cloud: once per long rest, Charisma check at marked guard approaches; ten exploration tile entries. Living eligible humanoids only; undead, trolls and other unlisted creatures are immune."
+    ],
+    "modifiers": [],
+    "desc": "A mortal with succubus ancestry. This campaign-specific lineage and its powers are original additions, not standard Pathfinder racial rules."
+  }
+}

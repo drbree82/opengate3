@@ -1,0 +1,30 @@
+{
+  "start": "travel",
+  "nodes": {
+    "travel": {
+      "speaker": "",
+      "text": "Follow the family road to the manor",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Continue.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "manor",
+              "marker": "start"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "hasItem": "counterseal"
+          }
+        },
+        {
+          "text": "Stay here.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

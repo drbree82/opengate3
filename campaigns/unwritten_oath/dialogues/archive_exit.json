@@ -1,0 +1,30 @@
+{
+  "start": "go",
+  "nodes": {
+    "go": {
+      "speaker": "",
+      "text": "The archive doors open onto the river road.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Travel to the market.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "market",
+              "marker": "start"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "flag": "prologue_complete"
+          }
+        },
+        {
+          "text": "Finish the hearing first.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "\u201cA name belongs first to the person who bears it. No ancestor may spend it.\u201d Beneath the words is an empty space for descendants to add their own names. Principle: NAME.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "clue_name",
+          "value": true
+        }
+      ]
+    }
+  }
+}

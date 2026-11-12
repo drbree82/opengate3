@@ -1,0 +1,756 @@
+{
+  "seris": {
+    "companion": "seris",
+    "when": [
+      "absent"
+    ],
+    "dialogue": "seris"
+  },
+  "rowan": {
+    "companion": "rowan",
+    "when": [
+      "absent"
+    ],
+    "dialogue": "rowan"
+  },
+  "registrar": {
+    "kind": "npc",
+    "name": "Registrar Ilyra",
+    "dialogue": "registrar",
+    "facing": "S",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "feminine",
+        "age": "old",
+        "hair": "#c6c1b2",
+        "hairStyle": "bun",
+        "outfit": "robe",
+        "top": "#767087",
+        "weapon": "none"
+      }
+    }
+  },
+  "ledger": {
+    "kind": "prop",
+    "name": "The Collection Ledger",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.9
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "ledger"
+      }
+    ]
+  },
+  "archive_exit": {
+    "kind": "prop",
+    "name": "Road to the Lantern Market",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "archive_exit"
+      }
+    ]
+  },
+  "clerk": {
+    "kind": "npc",
+    "name": "Clerk Tavin",
+    "dialogue": "clerk",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "outfit": "tunic",
+        "top": "#7f6540",
+        "hairStyle": "short"
+      }
+    }
+  },
+  "keeper": {
+    "kind": "npc",
+    "name": "Vault Keeper Dain",
+    "dialogue": "keeper",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "outfit": "tunic",
+        "top": "#7f6540",
+        "hairStyle": "short"
+      }
+    }
+  },
+  "bailiff": {
+    "kind": "npc",
+    "name": "Bailiff Edras",
+    "dialogue": "bailiff",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "outfit": "tunic",
+        "top": "#7f6540",
+        "hairStyle": "short"
+      }
+    }
+  },
+  "proof_clerk": {
+    "kind": "prop",
+    "name": "Public record",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "proof_clerk"
+      }
+    ]
+  },
+  "proof_keeper": {
+    "kind": "prop",
+    "name": "Public record",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "proof_keeper"
+      }
+    ]
+  },
+  "proof_bailiff": {
+    "kind": "prop",
+    "name": "Public record",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "proof_bailiff"
+      }
+    ]
+  },
+  "sister": {
+    "kind": "npc",
+    "name": "Lysa, Mara\u2019s sister",
+    "dialogue": "sister",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "feminine",
+        "outfit": "tunic",
+        "hairStyle": "braids",
+        "top": "#606d82"
+      }
+    }
+  },
+  "bell_cache": {
+    "kind": "prop",
+    "name": "The Fallen Bell",
+    "blocking": true,
+    "sprite": {
+      "template": "chest",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "bell_cache"
+      }
+    ]
+  },
+  "counterseal_cache": {
+    "kind": "prop",
+    "name": "Counterseal Chest",
+    "blocking": true,
+    "sprite": {
+      "template": "chest",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "counterseal_cache"
+      }
+    ]
+  },
+  "register": {
+    "kind": "prop",
+    "name": "Register of Names",
+    "blocking": true,
+    "sprite": {
+      "template": "chest",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "register"
+      }
+    ]
+  },
+  "lantern": {
+    "kind": "prop",
+    "name": "Mara\u2019s Lantern",
+    "blocking": true,
+    "sprite": {
+      "template": "chest",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "lantern"
+      }
+    ]
+  },
+  "market_history": {
+    "kind": "prop",
+    "name": "A Toll Ledger",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "market_history"
+      }
+    ]
+  },
+  "ferry_history": {
+    "kind": "prop",
+    "name": "The Flood Marker",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "ferry_history"
+      }
+    ]
+  },
+  "vault_history": {
+    "kind": "prop",
+    "name": "The Clerk\u2019s Unsent Letter",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "vault_history"
+      }
+    ]
+  },
+  "stone_name": {
+    "kind": "prop",
+    "name": "The First Inscription",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "stone_name"
+      }
+    ]
+  },
+  "stone_will": {
+    "kind": "prop",
+    "name": "The Second Inscription",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "stone_will"
+      }
+    ]
+  },
+  "stone_release": {
+    "kind": "prop",
+    "name": "The Third Inscription",
+    "blocking": true,
+    "sprite": {
+      "template": "bookshelf",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "stone_release"
+      }
+    ]
+  },
+  "family_seal": {
+    "kind": "prop",
+    "name": "The Family Archive Seal",
+    "blocking": true,
+    "sprite": {
+      "template": "altar",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "family_seal"
+      }
+    ]
+  },
+  "camp_fire": {
+    "kind": "prop",
+    "name": "Sanctuary Fire",
+    "blocking": true,
+    "sprite": {
+      "template": "campfire",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "camp_fire"
+      }
+    ]
+  },
+  "envoy": {
+    "kind": "npc",
+    "name": "The Archlord\u2019s Envoy",
+    "dialogue": "envoy",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "outfit": "robe",
+        "top": "#382336",
+        "hairStyle": "long",
+        "skin": "#b5a5a5"
+      }
+    }
+  },
+  "market_to_archive": {
+    "kind": "prop",
+    "name": "Return to the archive",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "market_to_archive"
+      }
+    ]
+  },
+  "market_to_ferry": {
+    "kind": "prop",
+    "name": "Road to the old ferry",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "market_to_ferry"
+      }
+    ]
+  },
+  "ferry_to_market": {
+    "kind": "prop",
+    "name": "Return to the market",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "ferry_to_market"
+      }
+    ]
+  },
+  "ferry_to_vault": {
+    "kind": "prop",
+    "name": "Enter the Counting House",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "ferry_to_vault"
+      }
+    ]
+  },
+  "vault_to_ferry": {
+    "kind": "prop",
+    "name": "Return to the ferry",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "vault_to_ferry"
+      }
+    ]
+  },
+  "vault_to_manor": {
+    "kind": "prop",
+    "name": "Follow the family road to the manor",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "vault_to_manor"
+      }
+    ]
+  },
+  "manor_to_vault": {
+    "kind": "prop",
+    "name": "Return to the Counting House",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "manor_to_vault"
+      }
+    ]
+  },
+  "manor_to_court": {
+    "kind": "prop",
+    "name": "Road to the tribunal",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "manor_to_court"
+      }
+    ]
+  },
+  "court_to_manor": {
+    "kind": "prop",
+    "name": "Return to the manor",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "court_to_manor"
+      }
+    ]
+  },
+  "approach_ferry": {
+    "kind": "prop",
+    "name": "Scout the guarded passage",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "approach_ferry"
+      }
+    ]
+  },
+  "approach_vault": {
+    "kind": "prop",
+    "name": "Scout the guarded passage",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "approach_vault"
+      }
+    ]
+  },
+  "approach_manor": {
+    "kind": "prop",
+    "name": "Scout the guarded passage",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "approach_manor"
+      }
+    ]
+  },
+  "approach_court": {
+    "kind": "prop",
+    "name": "Scout the guarded passage",
+    "blocking": true,
+    "sprite": {
+      "template": "sign",
+      "height": 0.7
+    },
+    "interact": [
+      {
+        "op": "dialogue.start",
+        "id": "approach_court"
+      }
+    ]
+  },
+  "seris_camp": {
+    "companion": "seris",
+    "when": [
+      "camp"
+    ]
+  },
+  "rowan_camp": {
+    "companion": "rowan",
+    "when": [
+      "camp"
+    ]
+  },
+  "oren_camp": {
+    "companion": "oren",
+    "when": [
+      "camp"
+    ]
+  },
+  "mara": {
+    "kind": "npc",
+    "name": "Mara",
+    "dialogue": "mara",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "feminine",
+        "outfit": "tunic",
+        "top": "#b4c7c9",
+        "skin": "#d9d7c6",
+        "hairStyle": "braids"
+      }
+    }
+  },
+  "ferry_human_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Human Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "human"
+      }
+    }
+  },
+  "ferry_dwarf_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Dwarf Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.8,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "dwarf"
+      }
+    }
+  },
+  "vault_human_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Human Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "human"
+      }
+    }
+  },
+  "vault_dwarf_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Dwarf Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.8,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "dwarf"
+      }
+    }
+  },
+  "court_human_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Human Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "human"
+      }
+    }
+  },
+  "court_dwarf_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Dwarf Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.8,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "dwarf"
+      }
+    }
+  },
+  "court_elf_guard": {
+    "kind": "monster",
+    "monster": "bandit",
+    "name": "Elf Retainer",
+    "sprite": {
+      "template": "humanoid",
+      "height": 0.95,
+      "look": {
+        "body": "masculine",
+        "build": "athletic",
+        "skin": "#c99872",
+        "hair": "#2a1c12",
+        "hairStyle": "hood",
+        "beard": "stubble",
+        "outfit": "leather",
+        "top": "#5a4030",
+        "bottom": "#33302c",
+        "boots": "#231a12",
+        "weapon": "sword",
+        "race": "elf"
+      }
+    }
+  }
+}

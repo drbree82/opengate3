@@ -1,0 +1,254 @@
+{
+  "ferry_wolves": {
+    "name": "Ferry Wolves",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "ferry_wolves_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "ferry_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "ferry_collectors": {
+    "name": "Ferry Collectors",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "ferry_collectors_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "ferry_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "vault_dead": {
+    "name": "Vault Dead",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "vault_dead_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "vault_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "vault_collectors": {
+    "name": "Vault Collectors",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "vault_collectors_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "vault_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "vault_watch": {
+    "name": "Vault Watch",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "vault_watch_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "vault_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "manor_dead": {
+    "name": "Manor Dead",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "manor_dead_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "manor_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "manor_collectors": {
+    "name": "Manor Collectors",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "manor_collectors_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "manor_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "manor_webs": {
+    "name": "Manor Webs",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "manor_webs_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "manor_collectors",
+        "hostile": true
+      }
+    ]
+  },
+  "court_guard": {
+    "name": "Court Guard",
+    "xp": 100,
+    "onVictory": [
+      {
+        "op": "flag.set",
+        "flag": "court_guard_done",
+        "value": true
+      }
+    ],
+    "onStart": [
+      {
+        "op": "flag.set",
+        "flag": "cloud_active",
+        "value": false
+      },
+      {
+        "op": "flag.set",
+        "flag": "cloud_steps",
+        "value": 0
+      },
+      {
+        "op": "group.hostile",
+        "group": "court_guard",
+        "hostile": true
+      }
+    ]
+  }
+}

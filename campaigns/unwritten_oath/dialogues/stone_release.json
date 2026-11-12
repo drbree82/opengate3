@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "\u201cEvery service has an end. A promise without release becomes a prison.\u201d The oldest family seal shows an open hand, not a clasped one. Principle: RELEASE.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "clue_release",
+          "value": true
+        }
+      ]
+    }
+  }
+}

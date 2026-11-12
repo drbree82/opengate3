@@ -1,0 +1,209 @@
+{
+  "name": "The Counting House",
+  "subtitle": "The Unwritten Oath",
+  "allowCamp": true,
+  "outdoor": false,
+  "sky": "",
+  "ambient": 0.65,
+  "defaults": {
+    "wall": "stone",
+    "floor": "flagstone",
+    "ceiling": "plank"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {
+      "trigger": "cloud_step"
+    },
+    "D": {
+      "door": "door_wood",
+      "trigger": "cloud_step"
+    },
+    "s": {
+      "marker": "start",
+      "trigger": "cloud_step"
+    },
+    "c": {
+      "camera": true,
+      "trigger": "cloud_step"
+    },
+    "T": {
+      "entity": "torch",
+      "trigger": "cloud_step"
+    },
+    "A": {
+      "entity": "keeper",
+      "trigger": "cloud_step"
+    },
+    "B": {
+      "entity": "proof_keeper",
+      "trigger": "cloud_step"
+    },
+    "C": {
+      "entity": "vault_history",
+      "trigger": "cloud_step"
+    },
+    "E": {
+      "entity": "counterseal_cache",
+      "trigger": "cloud_step"
+    },
+    "F": {
+      "entity": "register",
+      "trigger": "cloud_step"
+    },
+    "G": {
+      "entity": "lantern",
+      "trigger": "cloud_step"
+    },
+    "H": {
+      "entity": "vault_to_ferry",
+      "trigger": "cloud_step"
+    },
+    "I": {
+      "entity": "vault_to_manor",
+      "trigger": "cloud_step"
+    },
+    "J": {
+      "entity": "approach_vault",
+      "trigger": "cloud_step"
+    },
+    "K": {
+      "entity": "skeleton",
+      "group": "vault_dead",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "L": {
+      "entity": "skeleton",
+      "group": "vault_dead",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "M": {
+      "entity": "skeleton",
+      "group": "vault_dead",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "N": {
+      "entity": "vault_human_guard",
+      "group": "vault_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "O": {
+      "entity": "vault_dwarf_guard",
+      "group": "vault_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "P": {
+      "entity": "zombie",
+      "group": "vault_watch",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "Q": {
+      "entity": "zombie",
+      "group": "vault_watch",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    }
+  },
+  "rows": [
+    "#########################",
+    "#...........#...........#",
+    "#.T.........#.........T.#",
+    "#.....C.M...#........E..#",
+    "#...........D......c....#",
+    "#......K.L..#.........I.#",
+    "#...........#...........#",
+    "#...........#.....F..P..#",
+    "#...........#...........#",
+    "#...........#........Q..#",
+    "#...........#...........#",
+    "#...........#......O....#",
+    "#....cA.....D..J..N.....#",
+    "#...........#...........#",
+    "#.Hs.B......#........G..#",
+    "#...........#...........#",
+    "#########################"
+  ],
+  "onEnter": [
+    {
+      "op": "flag.set",
+      "flag": "cloud_active",
+      "value": false
+    },
+    {
+      "op": "flag.set",
+      "flag": "cloud_steps",
+      "value": 0
+    }
+  ],
+  "triggers": {
+    "cloud_step": {
+      "once": false,
+      "do": [
+        {
+          "op": "flag.inc",
+          "flag": "cloud_steps",
+          "by": -1,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "vault_collectors",
+          "hostile": false,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "vault_collectors",
+          "hostile": true,
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "narrate",
+          "text": "The invisible cloud fades. The guards are alert again.",
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "flag.set",
+          "flag": "cloud_active",
+          "value": false,
+          "if": {
+            "flag": "cloud_steps",
+            "equals": 0
+          }
+        }
+      ]
+    }
+  }
+}

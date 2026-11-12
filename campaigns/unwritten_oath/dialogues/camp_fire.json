@@ -1,0 +1,219 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "",
+      "text": "The sanctuary asks no oath of its guests. Here you can rest, speak privately, or release Mara\u2019s soul.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Rest until morning.",
+          "do": [
+            {
+              "op": "rest"
+            },
+            {
+              "op": "flag.set",
+              "flag": "cloud_used",
+              "value": false
+            },
+            {
+              "op": "flag.set",
+              "flag": "cloud_active",
+              "value": false
+            },
+            {
+              "op": "flag.set",
+              "flag": "cloud_steps",
+              "value": 0
+            }
+          ],
+          "goto": "end"
+        },
+        {
+          "text": "Talk with Seris about her gifts.",
+          "goto": "gifts"
+        },
+        {
+          "text": "Speak with Rowan.",
+          "do": [
+            {
+              "op": "dialogue.start",
+              "id": "rowan"
+            }
+          ],
+          "goto": "end"
+        },
+        {
+          "text": "Talk with Seris about the people in the ledger.",
+          "goto": "past"
+        },
+        {
+          "text": "Talk with Seris about using charm.",
+          "goto": "charm",
+          "if": {
+            "flag": "charm_used_ever"
+          }
+        },
+        {
+          "text": "Talk about Rowan and freedom.",
+          "goto": "freedom"
+        },
+        {
+          "text": "Release Mara\u2019s soul.",
+          "goto": "release",
+          "if": {
+            "all": [
+              {
+                "hasItem": "soul_lantern"
+              },
+              {
+                "flag": "mara_memory"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Entrust the other names to the sanctuary.",
+          "goto": "names",
+          "if": {
+            "hasItem": "names_register"
+          }
+        },
+        {
+          "text": "Return to the road.",
+          "do": [
+            {
+              "op": "camp.leave"
+            }
+          ],
+          "goto": "end"
+        },
+        {
+          "text": "Leave the fire.",
+          "goto": "end"
+        }
+      ]
+    },
+    "gifts": {
+      "speaker": "seris",
+      "text": "My blood gives me ways to soften another person\u2019s resistance. Succubus Spittle works through brief contact; sometimes it opens a conversation that would otherwise close. The cloud can let us pass living guards. Neither gift tells me whether I should use it. If I use someone\u2019s trust as a tool, I must answer for that choice. You can ask me to try at marked conversations and guard approaches; persuasion and evidence remain alternatives.",
+      "goto": "end"
+    },
+    "freedom": {
+      "speaker": "seris",
+      "text": "I used to think the kindest cage was almost a home. Rowan taught me what that sounded like from inside. I want him beside me. I want him free more. If those wishes cannot both be true, I know which one I must let go. I am afraid that saying it will be easier than doing it.",
+      "goto": "end"
+    },
+    "release": {
+      "speaker": "",
+      "text": "You open the lantern without demanding payment, service or testimony. Mara steps into the sanctuary\u2019s light. \u201cI remember the river,\u201d she says. \u201cGive me a little time.\u201d She goes to the empty chair near the north wall. Speak with her when she is ready.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "item.take",
+          "id": "soul_lantern"
+        },
+        {
+          "op": "flag.set",
+          "flag": "mara_free",
+          "value": true
+        },
+        {
+          "op": "quest.complete",
+          "id": "mara"
+        },
+        {
+          "op": "entity.spawn",
+          "template": "mara",
+          "at": [
+            18,
+            5
+          ],
+          "id": "mara",
+          "persist": true
+        }
+      ]
+    },
+    "names": {
+      "speaker": "oren",
+      "text": "We will follow these names. You have given us directions, not ownership. Some may refuse our help. We will listen.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "quest.complete",
+          "id": "names"
+        },
+        {
+          "op": "flag.set",
+          "flag": "names_delivered",
+          "value": true
+        }
+      ]
+    },
+    "past": {
+      "speaker": "seris",
+      "text": "I used to keep two ledgers. One for the archlord, one for myself. In his I wrote the debts. In mine I wrote names, children, places people wanted to see again. I told myself remembering was resistance. Sometimes it was. Sometimes it was a way to feel less guilty while obeying. The second ledger is useful now because it can guide us back. It does not make the first one disappear.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Restitution begins with what the victims need.",
+          "goto": "victims"
+        },
+        {
+          "text": "Was there ever a time you refused?",
+          "goto": "refusal"
+        }
+      ]
+    },
+    "victims": {
+      "speaker": "seris",
+      "text": "Then let them tell us. Mara may never want to see me again. I can still make sure she has somewhere to live. I can give evidence against the collectors. I can return what I took. None of that requires her to call me good.",
+      "goto": "end"
+    },
+    "refusal": {
+      "speaker": "seris",
+      "text": "Once. A girl had inherited a debt her father never knew he carried. I hid her beyond the boundary. The archlord ordered me to find her, and the mark made every road feel like fire except the one that led to her. I learned to walk that road very slowly. She escaped while I was still learning how to bear it. That was the first time I understood that resisting an order could be a long series of small decisions, not one heroic moment.",
+      "goto": "end"
+    },
+    "charm": {
+      "speaker": "seris",
+      "text": "It was easier when he smiled. That is what frightens me. I could call the result necessary and stop asking whose choice I borrowed. Getting a clue is not the same as earning trust.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Use evidence and persuasion when there is another route.",
+          "goto": "restraint"
+        },
+        {
+          "text": "The power can be useful, but we must own its consequences.",
+          "goto": "accountability"
+        }
+      ]
+    },
+    "restraint": {
+      "speaker": "seris",
+      "text": "Then let us leave some doors closed until we can open them honestly.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "charm_ethic",
+          "value": "restraint"
+        }
+      ]
+    },
+    "accountability": {
+      "speaker": "seris",
+      "text": "Then no calling a compelled confidence friendship. No asking the court to treat it as free testimony. And no using it on Rowan to make this less painful.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "charm_ethic",
+          "value": "accountability"
+        }
+      ]
+    }
+  }
+}

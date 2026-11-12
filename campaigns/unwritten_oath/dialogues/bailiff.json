@@ -1,0 +1,149 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "bailiff",
+      "text": "The tribunal hears only what can be entered into the record. Anger is not evidence, however deserved.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Ask directly, without magic.",
+          "goto": "plain"
+        },
+        {
+          "text": "[Succubus Spittle] Offer a brief kiss; use the contact to charm him.",
+          "if": {
+            "all": [
+              {
+                "inParty": "seris"
+              },
+              {
+                "not": {
+                  "flag": "spittle_bailiff"
+                }
+              }
+            ]
+          },
+          "do": [
+            {
+              "op": "flag.set",
+              "flag": "spittle_bailiff",
+              "value": true
+            },
+            {
+              "op": "flag.set",
+              "flag": "charm_used_ever",
+              "value": true
+            }
+          ],
+          "check": {
+            "ability": "cha",
+            "dc": 15,
+            "who": "seris",
+            "label": "Succubus Spittle: Bailiff Edras"
+          },
+          "success": "charmed",
+          "failure": "resisted"
+        },
+        {
+          "text": "Ask about the history of this place.",
+          "goto": "lore"
+        },
+        {
+          "text": "Leave for now.",
+          "goto": "end"
+        }
+      ]
+    },
+    "plain": {
+      "speaker": "bailiff",
+      "text": "The court notice beside the entrance grants you the right to question me.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Make the case patiently.",
+          "check": {
+            "skill": "diplomacy",
+            "dc": 15,
+            "who": "best"
+          },
+          "success": "information",
+          "failure": "alternative"
+        },
+        {
+          "text": "Use the documentary evidence instead.",
+          "goto": "document",
+          "if": {
+            "flag": "evidence_bailiff"
+          }
+        },
+        {
+          "text": "Leave.",
+          "goto": "end"
+        }
+      ]
+    },
+    "alternative": {
+      "speaker": "bailiff",
+      "text": "I will not risk my livelihood on a stranger\u2019s word. Bring evidence. You can still learn what you need without changing my mind.",
+      "goto": "end"
+    },
+    "document": {
+      "speaker": "bailiff",
+      "text": "That record settles it. No favour owed.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Hear the details.",
+          "goto": "information"
+        }
+      ],
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_bailiff",
+          "value": true
+        }
+      ]
+    },
+    "information": {
+      "speaker": "bailiff",
+      "text": "The archlord\u2019s envoy cannot contradict the original grant while the counterseal is displayed. Present the limits of delegation, then the living witness\u2019s testimony.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_bailiff",
+          "value": true
+        }
+      ]
+    },
+    "charmed": {
+      "speaker": "bailiff",
+      "text": "His reserve softens for this conversation. The archlord\u2019s envoy cannot contradict the original grant while the counterseal is displayed. Present the limits of delegation, then the living witness\u2019s testimony. The warmth fades as you part. Nothing here binds him to silence or loyalty.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_bailiff",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "charmed_bailiff",
+          "value": true
+        }
+      ]
+    },
+    "resisted": {
+      "speaker": "bailiff",
+      "text": "He draws away. \u201cThat felt like more than a greeting. Speak plainly if you want something.\u201d The attempt fails; ordinary conversation and the evidence route remain open.",
+      "goto": "end"
+    },
+    "lore": {
+      "speaker": "bailiff",
+      "text": "The archlord\u2019s collectors turned help into debt. A meal became a favour, a favour became an oath, and every oath acquired a clause its signer had never seen. Some of us learned not to ask questions. That habit has lasted longer than the fear that taught it.",
+      "goto": "end"
+    }
+  }
+}

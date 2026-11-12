@@ -1,0 +1,72 @@
+{
+  "start": [
+    {
+      "if": {
+        "flag": "mara_free"
+      },
+      "node": "hello"
+    },
+    {
+      "node": "absent"
+    }
+  ],
+  "nodes": {
+    "absent": {
+      "speaker": "",
+      "text": "Only an empty chair waits here. Mara\u2019s soul is still in the Counting House.",
+      "goto": "end"
+    },
+    "hello": {
+      "speaker": "mara",
+      "text": "Do not ask me to make this comfortable. Seris brought me to the vault. Seris helped bring me out. Both belong in the account.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Ask what happened at the ferry.",
+          "goto": "ferry"
+        },
+        {
+          "text": "Ask whether she will testify freely.",
+          "goto": "testify"
+        },
+        {
+          "text": "Tell her she owes us nothing.",
+          "goto": "nothing"
+        },
+        {
+          "text": "Leave her to rest.",
+          "goto": "end"
+        }
+      ]
+    },
+    "ferry": {
+      "speaker": "mara",
+      "text": "The collectors came after the flood. They said the bridge toll applied to my boat. I showed them the boundary map. Seris read it. I saw her understand. Then the order came through the mark on her hand, and understanding did not stop her. I remember her shaking. I remember being taken anyway. If you want to write a simple story about a good person forced to do wrong, find another witness. My life was not simple from the other side of her fear.",
+      "goto": "end"
+    },
+    "nothing": {
+      "speaker": "mara",
+      "text": "Good. Then we can begin speaking as people instead of accounts. I will decide what I can give. You can decide whether to listen when it is not what you hoped to hear.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "mara_respected",
+          "value": true
+        }
+      ]
+    },
+    "testify": {
+      "speaker": "mara",
+      "text": "I will tell the court what I saw. Not because you rescued me, and not to make Seris feel forgiven. Other people are still in those lanterns. I want the machinery that took us stopped.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "free_testimony",
+          "value": true
+        }
+      ]
+    }
+  }
+}

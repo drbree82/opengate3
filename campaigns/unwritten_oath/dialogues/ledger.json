@@ -1,0 +1,64 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The ledger names two separate claims: Seris\u2019s delegated patron bond and the archlord\u2019s superior lien. Cancelling only the first transfers collection to the second. A dispute supported by testimony can suspend collection without cancelling either claim. Another page records Mara\u2019s soul among those Seris collected.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Preserve Mara\u2019s testimony and disclose all clauses to Rowan.",
+          "goto": "preserve"
+        },
+        {
+          "text": "Read the clauses; leave Mara\u2019s testimony for now.",
+          "goto": "clauses"
+        }
+      ],
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "ledger_read",
+          "value": true
+        }
+      ]
+    },
+    "preserve": {
+      "speaker": "",
+      "text": "You copy the clauses and Mara\u2019s testimony into the public record. Her soul remains captive; the record gives the rescuers a name and a destination. Rowan receives his own copy.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "testimony_preserved",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "rowan_informed",
+          "value": true
+        },
+        {
+          "op": "quest.start",
+          "id": "restitution"
+        },
+        {
+          "op": "quest.complete",
+          "id": "restitution"
+        }
+      ]
+    },
+    "clauses": {
+      "speaker": "",
+      "text": "You record the two claims. The registrar will still need evidence of abuse before she can issue a stay.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "rowan_informed",
+          "value": true
+        }
+      ]
+    }
+  }
+}

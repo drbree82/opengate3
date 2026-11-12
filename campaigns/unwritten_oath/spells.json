@@ -1,0 +1,279 @@
+{
+  "_doc": "Existing core spell entries with an added original campaign class list. All base class levels and effects are preserved.",
+  "acid_splash": {
+    "name": "Acid Splash",
+    "school": "conjuration",
+    "levels": {
+      "wizard": 0,
+      "oath_warlock": 0
+    },
+    "range": 6,
+    "target": "enemy",
+    "attack": "ranged_touch",
+    "damage": {
+      "dice": "1d3",
+      "type": "acid"
+    },
+    "fx": "#9bd13a",
+    "desc": "Ranged touch attack: 1d3 acid damage."
+  },
+  "ray_of_frost": {
+    "name": "Ray of Frost",
+    "school": "evocation",
+    "levels": {
+      "wizard": 0,
+      "oath_warlock": 0
+    },
+    "range": 6,
+    "target": "enemy",
+    "attack": "ranged_touch",
+    "damage": {
+      "dice": "1d3",
+      "type": "cold"
+    },
+    "fx": "#9fd8ff",
+    "desc": "Ranged touch attack: 1d3 cold damage."
+  },
+  "disrupt_undead": {
+    "name": "Disrupt Undead",
+    "school": "necromancy",
+    "levels": {
+      "wizard": 0,
+      "oath_warlock": 0
+    },
+    "range": 6,
+    "target": "enemy",
+    "attack": "ranged_touch",
+    "only": "undead",
+    "damage": {
+      "dice": "1d6",
+      "type": "positive"
+    },
+    "fx": "#fff2a8",
+    "desc": "Ranged touch attack: 1d6 damage to an undead creature."
+  },
+  "daze": {
+    "name": "Daze",
+    "school": "enchantment",
+    "tags": [
+      "mind"
+    ],
+    "levels": {
+      "wizard": 0,
+      "oath_warlock": 0
+    },
+    "range": 6,
+    "target": "enemy",
+    "hdLimit": 4,
+    "save": {
+      "type": "will",
+      "effect": "negates"
+    },
+    "effect": {
+      "conditions": [
+        "dazed"
+      ],
+      "duration": {
+        "rounds": 1
+      }
+    },
+    "fx": "#d9a8ff",
+    "desc": "A creature of 4 HD or less loses its next action (Will negates)."
+  },
+  "magic_missile": {
+    "name": "Magic Missile",
+    "school": "evocation",
+    "levels": {
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 22,
+    "target": "enemy",
+    "damage": {
+      "dice": "1d4+1",
+      "scale": {
+        "per": 2,
+        "offset": 1,
+        "max": 5
+      },
+      "type": "force"
+    },
+    "fx": "#c8a8ff",
+    "desc": "Unerring darts of force: 1d4+1 damage, one more missile every two levels."
+  },
+  "burning_hands": {
+    "name": "Burning Hands",
+    "school": "evocation",
+    "levels": {
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 3,
+    "target": "cone",
+    "area": 3,
+    "save": {
+      "type": "ref",
+      "effect": "half"
+    },
+    "damage": {
+      "dice": "1d4",
+      "scale": {
+        "per": 1,
+        "max": 5
+      },
+      "type": "fire"
+    },
+    "fx": "#ff8a2a",
+    "desc": "15-ft cone of flame: 1d4 fire damage per level (Reflex half). Hits everyone in the cone."
+  },
+  "shocking_grasp": {
+    "name": "Shocking Grasp",
+    "school": "evocation",
+    "levels": {
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 1,
+    "target": "enemy",
+    "attack": "melee_touch",
+    "damage": {
+      "dice": "1d6",
+      "scale": {
+        "per": 1,
+        "max": 5
+      },
+      "type": "electricity"
+    },
+    "fx": "#a8e8ff",
+    "desc": "Melee touch attack: 1d6 electricity damage per level."
+  },
+  "sleep": {
+    "name": "Sleep",
+    "school": "enchantment",
+    "tags": [
+      "mind",
+      "sleep"
+    ],
+    "levels": {
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 22,
+    "target": "burst",
+    "area": 2,
+    "hdLimit": 4,
+    "enemiesOnly": true,
+    "save": {
+      "type": "will",
+      "effect": "negates"
+    },
+    "effect": {
+      "name": "Asleep",
+      "conditions": [
+        "asleep"
+      ],
+      "duration": {
+        "roundsPerLevel": 10
+      }
+    },
+    "fx": "#8aa0ff",
+    "desc": "Creatures of 4 HD or less in a 10-ft burst fall asleep (Will negates). Damage wakes them."
+  },
+  "mage_armor": {
+    "name": "Mage Armor",
+    "school": "conjuration",
+    "levels": {
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 1,
+    "target": "ally",
+    "effect": {
+      "modifiers": [
+        {
+          "target": "ac",
+          "value": 4,
+          "type": "armor"
+        }
+      ],
+      "duration": {
+        "rest": true
+      }
+    },
+    "fx": "#a8c8ff",
+    "desc": "+4 armor bonus to AC until the next rest."
+  },
+  "scorching_ray": {
+    "name": "Scorching Ray",
+    "school": "evocation",
+    "levels": {
+      "wizard": 2,
+      "oath_warlock": 2
+    },
+    "range": 6,
+    "target": "enemy",
+    "attack": "ranged_touch",
+    "damage": {
+      "dice": "4d6",
+      "type": "fire"
+    },
+    "fx": "#ff5a1a",
+    "desc": "Ranged touch attack: 4d6 fire damage."
+  },
+  "bulls_strength": {
+    "name": "Bull's Strength",
+    "school": "transmutation",
+    "levels": {
+      "wizard": 2,
+      "cleric": 2,
+      "oath_warlock": 2
+    },
+    "range": 1,
+    "target": "ally",
+    "effect": {
+      "modifiers": [
+        {
+          "target": "ability.str",
+          "value": 4,
+          "type": "enhancement"
+        }
+      ],
+      "duration": {
+        "encounter": true
+      }
+    },
+    "fx": "#ffb0a0",
+    "desc": "+4 enhancement bonus to Strength."
+  },
+  "cause_fear": {
+    "name": "Cause Fear",
+    "school": "necromancy",
+    "tags": [
+      "mind",
+      "fear"
+    ],
+    "levels": {
+      "cleric": 1,
+      "wizard": 1,
+      "oath_warlock": 1
+    },
+    "range": 6,
+    "target": "enemy",
+    "hdLimit": 5,
+    "save": {
+      "type": "will",
+      "effect": "negates"
+    },
+    "effect": {
+      "name": "Frightened",
+      "conditions": [
+        "frightened"
+      ],
+      "duration": {
+        "rounds": 2
+      }
+    },
+    "fx": "#7a5aa8",
+    "desc": "One creature of 5 HD or less is frightened for 2 rounds (Will negates)."
+  }
+}

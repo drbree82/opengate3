@@ -1,0 +1,48 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "A light moves inside the glass. It answers neither rank nor command. When you speak of a ferryman who feared water but crossed anyway, it steadies. The vessel can be carried safely to the sanctuary.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Take it and preserve the record.",
+          "do": [
+            {
+              "op": "item.give",
+              "id": "soul_lantern"
+            },
+            {
+              "op": "flag.set",
+              "flag": "taken_lantern",
+              "value": true
+            },
+            {
+              "op": "quest.stage",
+              "id": "mara",
+              "stage": "release"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "all": [
+              {
+                "not": {
+                  "flag": "taken_lantern"
+                }
+              },
+              {
+                "flag": "mara_memory"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Leave it for now.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

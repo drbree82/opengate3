@@ -1,0 +1,189 @@
+{
+  "name": "The House of the Open Hand",
+  "subtitle": "The Unwritten Oath",
+  "allowCamp": true,
+  "outdoor": false,
+  "sky": "",
+  "ambient": 0.65,
+  "defaults": {
+    "wall": "stone",
+    "floor": "flagstone",
+    "ceiling": "plank"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {
+      "trigger": "cloud_step"
+    },
+    "D": {
+      "door": "door_wood",
+      "trigger": "cloud_step"
+    },
+    "s": {
+      "marker": "start",
+      "trigger": "cloud_step"
+    },
+    "c": {
+      "camera": true,
+      "trigger": "cloud_step"
+    },
+    "T": {
+      "entity": "torch",
+      "trigger": "cloud_step"
+    },
+    "A": {
+      "entity": "stone_name",
+      "trigger": "cloud_step"
+    },
+    "B": {
+      "entity": "stone_will",
+      "trigger": "cloud_step"
+    },
+    "C": {
+      "entity": "stone_release",
+      "trigger": "cloud_step"
+    },
+    "E": {
+      "entity": "family_seal",
+      "trigger": "cloud_step"
+    },
+    "F": {
+      "entity": "manor_to_vault",
+      "trigger": "cloud_step"
+    },
+    "G": {
+      "entity": "manor_to_court",
+      "trigger": "cloud_step"
+    },
+    "H": {
+      "entity": "approach_manor",
+      "trigger": "cloud_step"
+    },
+    "I": {
+      "entity": "skeleton",
+      "group": "manor_dead",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "J": {
+      "entity": "skeleton",
+      "group": "manor_dead",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "K": {
+      "entity": "cultist",
+      "group": "manor_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "L": {
+      "entity": "cultist",
+      "group": "manor_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "M": {
+      "entity": "giant_spider",
+      "group": "manor_webs",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    }
+  },
+  "rows": [
+    "#########################",
+    "#...........#...........#",
+    "#.T.........#.........T.#",
+    "#.....B.....#...........#",
+    "#...........D......C....#",
+    "#...........#.....M.....#",
+    "#......I.J..#...........#",
+    "#...........#...........#",
+    "#...........#.........G.#",
+    "#...........#...........#",
+    "#...........#...........#",
+    "#...........#......L....#",
+    "#....c......D..H..K.....#",
+    "#.....A.....#...........#",
+    "#.Fs........#........E..#",
+    "#...........#...........#",
+    "#########################"
+  ],
+  "onEnter": [
+    {
+      "op": "flag.set",
+      "flag": "cloud_active",
+      "value": false
+    },
+    {
+      "op": "flag.set",
+      "flag": "cloud_steps",
+      "value": 0
+    }
+  ],
+  "triggers": {
+    "cloud_step": {
+      "once": false,
+      "do": [
+        {
+          "op": "flag.inc",
+          "flag": "cloud_steps",
+          "by": -1,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "manor_collectors",
+          "hostile": false,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "manor_collectors",
+          "hostile": true,
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "narrate",
+          "text": "The invisible cloud fades. The guards are alert again.",
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "flag.set",
+          "flag": "cloud_active",
+          "value": false,
+          "if": {
+            "flag": "cloud_steps",
+            "equals": 0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "Pages of numbers have been overwritten with names. Mara. Iven. Tal. A child\u2019s parent. Someone\u2019s teacher. Seris recognises entries she made and others she never saw. Copying this register will make the wider rescue possible.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Take it and preserve the record.",
+          "do": [
+            {
+              "op": "item.give",
+              "id": "names_register"
+            },
+            {
+              "op": "flag.set",
+              "flag": "taken_register",
+              "value": true
+            },
+            {
+              "op": "quest.start",
+              "id": "names"
+            },
+            {
+              "op": "quest.stage",
+              "id": "names",
+              "stage": "deliver"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "not": {
+              "flag": "taken_register"
+            }
+          }
+        },
+        {
+          "text": "Leave it for now.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "_doc": "Original campaign class; wizard chassis reused from existing core rules, with Charisma casting. This is not a published Pathfinder warlock class.",
+  "oath_warlock": {
+    "name": "Pact Warlock (campaign)",
+    "hitDie": 6,
+    "bab": "half",
+    "goodSaves": [
+      "will"
+    ],
+    "skillRanks": 2,
+    "classSkills": [
+      "appraise",
+      "craft",
+      "fly",
+      "knowledge_arcana",
+      "knowledge_dungeoneering",
+      "knowledge_engineering",
+      "knowledge_geography",
+      "knowledge_history",
+      "knowledge_local",
+      "knowledge_nature",
+      "knowledge_nobility",
+      "knowledge_planes",
+      "knowledge_religion",
+      "linguistics",
+      "profession",
+      "spellcraft"
+    ],
+    "weaponProf": [
+      "club",
+      "dagger",
+      "light_crossbow",
+      "quarterstaff"
+    ],
+    "armorProf": [],
+    "casting": {
+      "ability": "cha",
+      "slots": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          3,
+          2
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          4,
+          3,
+          3,
+          2
+        ],
+        [
+          4,
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          4,
+          4,
+          3,
+          3,
+          2
+        ],
+        [
+          4,
+          4,
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          4,
+          4,
+          4,
+          3,
+          3,
+          2
+        ]
+      ]
+    },
+    "spellbook": {
+      "cantrips": "all",
+      "level1": 3,
+      "perLevel": 2
+    },
+    "features": [
+      {
+        "level": 1,
+        "id": "pact_spells",
+        "name": "Pact Spellcasting",
+        "desc": "Original campaign class: Charisma-based arcane casting using the engine\u2019s normal daily slots and learned spells. Seris is Rowan\u2019s patron in the story; the player retains control of Rowan."
+      }
+    ],
+    "startingKit": {
+      "equipped": {
+        "mainHand": "quarterstaff"
+      },
+      "inventory": [
+        {
+          "id": "potion_clw",
+          "qty": 1
+        },
+        {
+          "id": "dagger",
+          "qty": 1
+        }
+      ],
+      "gold": 40
+    },
+    "look": {
+      "outfit": "robe",
+      "top": "#3a3f7a",
+      "bottom": "#3a3f7a",
+      "boots": "#2a1c12",
+      "hairStyle": "long",
+      "trim": "#c9a84a"
+    },
+    "desc": "Original campaign pact caster using the existing wizard combat chassis and spell progression, with Charisma casting. No D&D invocations, pact slots or patron-control rules are implied."
+  }
+}
