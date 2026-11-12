@@ -8,6 +8,13 @@ extends RefCounted
 ##                               ranged  shoot when there is a clear line, otherwise approach
 ##                               caster  use spells first (heals for hurt allies, then attacks)
 ## To add a style: add a branch in decide().
+##
+## Movement (_approach): walk to the nearest FREE tile next to any foe; allies and bodies on the floor
+## are not obstacles (Encounter.can_pass / can_stop). If the front line fills every such tile, queue up
+## behind it (_path_closer) rather than stand still.
+
+## Movement budget used to look for a way to the enemy across the whole map (in squares).
+const FAR := 80.0
 
 var game
 
@@ -84,8 +91,10 @@ func _pick_attack(c: Ent, stats: Dictionary, foes: Array, enc, style: String) ->
 func _can_reach_melee(c: Ent, foes: Array, enc) -> bool:
 	if enc.melee_attack_index(c) < 0:
 		return false
-	var reach: Dictionary = Grid.reachable(c.cell(), float(c.combat.moveLeft), enc.blocked_for(c))
+	var reach: Dictionary = enc.reach_within(c, float(c.combat.moveLeft))
 	for cell in reach:
+		if not Encounter.reach_stop(reach, cell):
+			continue
 		for f in foes:
 			if Grid.cheb(cell, f.cell()) <= 1:
 				return true
@@ -149,10 +158,12 @@ func _approach(c: Ent, stats: Dictionary, foes: Array, enc, style: String) -> Ar
 		for f in foes:
 			if Grid.line_of_sight(enc.world.map, c.cell(), f.cell()) and Grid.dist(c.cell(), f.cell()) <= 8:
 				return []
-	var target := _nearest(c, foes)
-	if target == null or Grid.cheb(c.cell(), target.cell()) <= 1:
-		return []
-	var path: Array = Grid.find_path(c.cell(), target.cell(), enc.blocked_for(c), true, 1500)
+	for f in foes:
+		if Grid.cheb(c.cell(), f.cell()) <= 1:
+			return []
+	var path := _path_to_melee(c, foes, enc)
+	if path.is_empty():
+		path = _path_closer(c, foes, enc)
 	if path.is_empty():
 		return []
 	var budget: float = float(c.combat.moveLeft)
@@ -167,4 +178,39 @@ func _approach(c: Ent, stats: Dictionary, foes: Array, enc, style: String) -> Ar
 			break
 		out.append(step)
 		prev = step
+	# allies may be walked through but not stopped on: end the move on the last free tile
+	while not out.is_empty() and not enc.can_stop(c, out[-1]):
+		out.pop_back()
+	return out
+
+
+## The cheapest walk to a free tile next to any foe ([] if no such tile can be reached at all).
+## Allies and bodies on the floor do not stop it (see "Who may walk where" in encounter.gd).
+func _path_to_melee(c: Ent, foes: Array, enc) -> Array:
+	var reach: Dictionary = enc.reach_within(c, FAR)
+	var best = null
+	var best_cost := 1.0e9
+	for cell in reach:
+		if not Encounter.reach_stop(reach, cell) or float(reach[cell].cost) >= best_cost:
+			continue
+		for f in foes:
+			if Grid.cheb(cell, f.cell()) <= 1:
+				best = cell
+				best_cost = float(reach[cell].cost)
+				break
+	return Grid.path_from(reach, best) if best != null else []
+
+
+## No free tile next to a foe (a doorway held by the front line, say): queue up behind the others.
+## Plans the walk as if no creature were in the way, then follows it until an enemy blocks it.
+func _path_closer(c: Ent, foes: Array, enc) -> Array:
+	var target := _nearest(c, foes)
+	if target == null:
+		return []
+	var plan: Array = Grid.find_path(c.cell(), target.cell(), enc.is_hard, true, 1500)
+	var out: Array = []
+	for step in plan:
+		if not enc.can_pass(c, step):
+			break
+		out.append(step)
 	return out

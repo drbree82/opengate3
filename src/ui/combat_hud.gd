@@ -236,7 +236,7 @@ func _paint() -> void:
 				hl[o.cell()] = FOE
 	else:
 		for cell in reach:
-			if cell == ent.cell():
+			if cell == ent.cell() or not Encounter.reach_stop(reach, cell):
 				continue
 			hl[cell] = MOVE if float(reach[cell].cost) <= float(cs.moveLeft) + 0.001 else DASH
 		for o in enc.enemies_of(ent):
@@ -266,10 +266,15 @@ func on_pick(p: Dictionary) -> void:
 	if ent == null:
 		return
 	var target: Ent = p.ent
-	if target == null and p.cell != null:
+	# No creature under the cursor, or only a body: whoever STANDS on the clicked tile is meant.
+	if (target == null or not target.can_act()) and p.cell != null:
 		for o in enc.combatants:
-			if o.alive() and o.cell() == p.cell:
+			if o.can_act() and o.cell() == p.cell:
 				target = o
+		if target == null:
+			for o in enc.combatants:
+				if o.alive() and o.cell() == p.cell:
+					target = o
 	if mode == "spell":
 		var sp: Dictionary = game.db.spells[spell_id]
 		var kind: String = sp.get("target", "enemy")
@@ -307,5 +312,5 @@ func on_pick(p: Dictionary) -> void:
 				return
 		game.io.float_text(ent, problem, "info")
 		return
-	if p.cell != null and reach.has(p.cell) and p.cell != ent.cell():
+	if p.cell != null and Encounter.reach_stop(reach, p.cell) and p.cell != ent.cell():
 		_choose({"type": "move", "path": Grid.path_from(reach, p.cell)})

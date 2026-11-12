@@ -366,10 +366,15 @@ func pick(screen: Vector2) -> Dictionary:
 		return out
 	var map: MapData = game.world.map
 	var cam_cell := Vector2i(floori(game.cam.px), floori(game.cam.py))
+	# A body on the floor never steals the click from someone standing on or behind it:
+	# it is only picked when nothing upright is under the cursor.
 	var best_d := 1.0e9
+	var body: Ent = null
+	var body_d := 1.0e9
 	for e in nodes:
 		if e.hidden:
 			continue
+		var lying: bool = e.dead or e.down()
 		var feet_w := Vector3(e.x, 0.0, e.y)
 		if camera.is_position_behind(feet_w):
 			continue
@@ -382,9 +387,17 @@ func pick(screen: Vector2) -> Dictionary:
 		if screen.x < feet.x - half_w or screen.x > feet.x + half_w or screen.y < head.y or screen.y > feet.y + 2.0:
 			continue
 		var d := camera.global_position.distance_to(feet_w)
-		if d < best_d and Grid.line_of_sight(map, cam_cell, e.cell()):
+		if not Grid.line_of_sight(map, cam_cell, e.cell()):
+			continue
+		if lying:
+			if d < body_d:
+				body_d = d
+				body = e
+		elif d < best_d:
 			best_d = d
 			out.ent = e
+	if out.ent == null:
+		out.ent = body
 	var origin := camera.project_ray_origin(screen)
 	var dir := camera.project_ray_normal(screen)
 	var t_floor := -origin.y / dir.y if dir.y < -0.0001 else 200.0

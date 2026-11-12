@@ -132,3 +132,114 @@ func test_triggers_doors_and_save(t) -> void:
 	t.eq(g2.world.leader_ent().cell(), g.world.leader_ent().cell(), "position restored")
 	await g2.rest()
 	t.eq(g2.leader().hp, g2.stats(g2.leader()).hpMax, "rest heals")
+
+
+## A body on the floor never blocks movement: a slain monster or an unconscious hero lying in a
+## doorway must not seal the corridor for anyone (enemies included).
+func test_bodies_do_not_block(t) -> void:
+	var g := _game(5)
+	g.load_campaign("_template")
+	await g.new_game(_hero())
+	Party.add(g, "ally")
+	var door := Vector2i(8, 4)
+	g.world.open_door(door)
+	var rats: Array = g.world.ents_in_group("rats")
+	t.eq(rats.size(), 2, "two rats on the map")
+	var hero: Ent = g.world.leader_ent()
+	var ally: Ent = g.world.by_id("ally")
+	hero.set_cell(Vector2i(4, 4))
+	ally.set_cell(Vector2i(2, 2))
+	var corpse: Ent = rats[0]
+	var rat: Ent = rats[1]
+	corpse.set_cell(door)
+	rat.set_cell(Vector2i(11, 4))
+	var blocked := func(c): return g.world.is_blocked(c, rat)
+	t.eq(Grid.find_path(rat.cell(), hero.cell(), blocked, true), [], "a living rat in the doorway blocks it")
+	await g.damage_ent(corpse, 999)
+	t.ok(corpse.dead, "the rat in the doorway is slain")
+	t.ok(not g.world.is_blocked(door, rat), "a corpse does not block its tile")
+	t.ok(not Grid.find_path(rat.cell(), hero.cell(), blocked, true).is_empty(), "the other rat can walk over the corpse")
+	# an unconscious hero in the doorway does not block either
+	ally.set_cell(door)
+	await g.damage_ent(ally, int(ally.actor.hp) + 1)
+	t.ok(ally.down() and not ally.dead, "the ally is unconscious")
+	t.ok(not g.world.is_blocked(door, rat), "an unconscious body does not block its tile")
+	t.ok(not Grid.find_path(rat.cell(), hero.cell(), blocked, true).is_empty(), "the rat can walk over the unconscious ally")
+
+
+## Combat movement (encounter.gd "Who may walk where"): allies may be walked through but not stopped
+## on, enemies block, and the AI queues up behind its own front line instead of standing still.
+func test_combat_movement_rules(t) -> void:
+	var g := _game(5)
+	g.load_campaign("_template")
+	await g.new_game(_hero())
+	var door := Vector2i(8, 4)
+	g.world.open_door(door)
+	var rats: Array = g.world.ents_in_group("rats")
+	var hero: Ent = g.world.leader_ent()
+	var front: Ent = rats[0]
+	var back: Ent = rats[1]
+	hero.set_cell(Vector2i(6, 4))
+	front.set_cell(Vector2i(9, 4))
+	back.set_cell(Vector2i(12, 4))
+	for e in rats:
+		e.side = "enemy"
+	var enc := Encounter.new(g, "rats", rats)
+	for e in enc.combatants:
+		e.combat = {"init": 0, "moveLeft": 8.0, "standard": true, "moved": 0.0, "aoo": true, "acted": true, "stable": false}
+	g.encounter = enc
+	g.mode = "combat"
+	t.ok(enc.can_pass(back, front.cell()), "a rat may walk through its ally's tile")
+	t.ok(not enc.can_stop(back, front.cell()), "... but not stop on it")
+	t.ok(not enc.can_pass(back, hero.cell()), "an enemy blocks its tile")
+	t.ok(not enc.can_pass(hero, front.cell()), "and the same goes the other way")
+	var reach: Dictionary = enc.reach_for(back)
+	t.ok(reach.has(front.cell()) and not Encounter.reach_stop(reach, front.cell()), "the ally's tile is pass-through only")
+	t.ok(Encounter.reach_stop(reach, door), "the doorway beyond the ally can be reached")
+	# the back rat runs past its ally into the doorway, next to the hero
+	var action: Dictionary = enc.ai.decide(back, enc)
+	t.eq(action.get("type", ""), "move", "the back rat moves instead of waiting")
+	await enc.execute(back, action)
+	t.eq(Grid.cheb(back.cell(), hero.cell()), 1, "it ends next to the hero")
+	t.ok(back.cell() != front.cell(), "and not on its ally's tile")
+	# doorway held by the hero: the rat behind queues up as close as it can
+	hero.set_cell(door)
+	front.set_cell(Vector2i(9, 4))
+	back.set_cell(Vector2i(13, 2))
+	back.combat.moveLeft = 8.0
+	back.combat.standard = true
+	back.combat.moved = 0.0
+	action = enc.ai.decide(back, enc)
+	t.eq(action.get("type", ""), "move", "with the doorway held it still closes in")
+	await enc.execute(back, action)
+	t.eq(Grid.cheb(back.cell(), hero.cell()), 1, "it slips diagonally past its ally to reach the hero")
+	# a move that would end on an ally is cut short
+	back.set_cell(Vector2i(12, 4))
+	back.combat.moveLeft = 8.0
+	back.combat.standard = true
+	await enc.execute(back, {"type": "move", "path": [Vector2i(11, 4), Vector2i(10, 4), Vector2i(9, 4)]})
+	t.eq(back.cell(), Vector2i(10, 4), "a move never ends on an ally's tile")
+	g.encounter = null
+	g.mode = "explore"
+
+
+## The journal's creature list: fighting something records it, killing it counts.
+func test_bestiary(t) -> void:
+	var g := _game(11)
+	g.load_campaign("_template")
+	await g.new_game(_hero())
+	Party.add(g, "ally")
+	t.eq(g.state.bestiary, {}, "nothing met yet")
+	g.world.open_door(Vector2i(8, 4))
+	var res: String = await g.start_combat("rats")
+	t.eq(int(g.state.bestiary.dire_rat.met), 1, "the rats are in the bestiary after one fight")
+	var foes: Array = g.state.journal.filter(func(e): return e.kind == "foes")
+	t.eq(foes.size(), 1, "one 'You face' journal line")
+	t.eq(foes[0].text, "You face: 2 x Dire Rat.", "it names and counts the creatures")
+	t.eq(foes[0].creatures, [{"id": "dire_rat", "count": 2}], "and carries their ids for the tooltip")
+	if res == "victory":
+		t.eq(int(g.state.bestiary.dire_rat.slain), 2, "both kills are counted")
+	var json = JSON.parse_string(JSON.stringify(g.save_data()))
+	var g2 := _game()
+	t.ok(g2.load_data(Util.intify(json)), "save with a bestiary loads")
+	t.eq(int(g2.state.bestiary.dire_rat.met), 1, "bestiary restored")

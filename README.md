@@ -27,7 +27,7 @@ characters and sound effects are generated in code, and ElevenLabs can add voice
 | | |
 |---|---|
 | **Top left: character sheet** - stats, skills, gear, spells, traits. Click gold names to roll them. | **Top right: dice tray** - every d20, check, attack and damage roll is animated here with its full breakdown. |
-| **Bottom left: journal** - the story, your dialogue choices (with skill checks), quests, and the log. | **Bottom right: the world** - a retro 3D view of the room built from a 2D map, with animated 2D sprites. |
+| **Bottom left: journal** - the story, your dialogue choices (with skill checks), quests, the creatures you have fought (point at a name for its stats, strengths and weaknesses), and the log. | **Bottom right: the world** - a retro 3D view of the room built from a 2D map, with animated 2D sprites. |
 
 ## Controls
 

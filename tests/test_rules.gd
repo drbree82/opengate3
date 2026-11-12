@@ -268,3 +268,39 @@ func test_data_integrity(t) -> void:
 		var sp: Dictionary = db.spells[sid]
 		for cond in sp.get("effect", {}).get("conditions", []):
 			t.ok(db.conditions.has(cond), "spell %s uses unknown condition %s" % [sid, cond])
+
+
+## Creature sheets for the journal (src/rules/monster_lore.gd): numbers plus plain-English notes.
+func test_monster_lore(t) -> void:
+	var sk := MonsterLore.describe("skeleton", db)
+	t.eq(sk.name, "Skeleton", "name")
+	t.eq(sk.kind, "CR 1/3 - medium undead", "challenge rating, size and type in one line")
+	t.eq(sk.stats[1], ["Armor class", "16  (touch 12, flat-footed 14)"], "armor class row")
+	t.eq(sk.stats[2], ["Saves", "Fortitude +0, Reflex +2, Will +2"], "saves row")
+	var strengths := "\n".join(sk.strengths)
+	var weaknesses := "\n".join(sk.weaknesses)
+	t.ok(strengths.contains("5 less damage unless the weapon is bludgeoning"), "damage reduction is explained")
+	t.ok(strengths.contains("Immune to mind-affecting magic, sleep, fear and poison"), "immunities are listed")
+	t.ok(strengths.contains("Sleep"), "... with the spells that are wasted on it")
+	t.ok(weaknesses.contains("Use bludgeoning weapons"), "the way round the damage reduction is a weakness")
+	t.ok(weaknesses.contains("Disrupt Undead"), "spells made for undead are suggested")
+	t.ok(not weaknesses.contains("Sleep") and not weaknesses.contains("Hold Person"), "no spell it is immune to is suggested")
+	t.ok(weaknesses.contains("touch attacks only need to beat 12"), "low touch armor class is pointed out")
+	t.ok("\n".join(sk.powers).contains("Rusty scimitar: +2 to hit, 1d6+2 slashing damage, critical on 18-20 (x2)."), "attacks are spelled out")
+	var zombie := "\n".join(MonsterLore.describe("zombie", db).weaknesses)
+	t.ok(zombie.contains("move OR attack"), "the zombie's single action is explained")
+	var cultist := MonsterLore.describe("cultist", db)
+	t.ok("\n".join(cultist.powers).contains("Casts Daze (at will)"), "spells are listed with their uses")
+	t.ok("\n".join(cultist.powers).contains("Casts Cause Fear (once)"), "limited spells say how often")
+	t.ok("\n".join(cultist.weaknesses).contains("Sleep"), "low hit dice: Sleep is suggested")
+	t.ok("\n".join(MonsterLore.describe("goblin_archer", db).powers).contains("ranged (up to 12 squares)"), "ranged attacks show their range")
+	t.eq(MonsterLore.cr_value({"cr": "1/3"}) < 0.5, true, "fractional challenge ratings are read")
+	t.eq(MonsterLore.describe("no_such_monster", db), {}, "unknown id gives an empty sheet")
+	# hand-written notes in the data come first
+	var custom := {"monsters": {"x": {"name": "X", "hp": 4, "ac": 10, "attacks": [], "lore": {"weaknesses": ["Hates rain."]}}}, "spells": {}, "skills": {}}
+	t.eq(MonsterLore.describe("x", custom).weaknesses[0], "Hates rain.", "\"lore\" notes from the data are listed first")
+	# every monster in the base data gets a complete sheet
+	for mid in db.monsters:
+		var d := MonsterLore.describe(mid, db)
+		t.ok(d.stats.size() >= 6 and not d.powers.is_empty(), "%s has a full sheet" % mid)
+		t.ok(MonsterLore.text(mid, db).contains(d.name), "%s has a plain-text sheet" % mid)

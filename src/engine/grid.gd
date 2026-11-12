@@ -4,6 +4,9 @@ extends RefCounted
 ## Tiles are Vector2i. One tile = one 5-ft square. Diagonal steps cost 1.5 (the Pathfinder
 ## "every second diagonal counts double" rule, averaged) and may not cut wall corners.
 ## `blocked` arguments are Callables: func(cell: Vector2i) -> bool.
+## `corner` (optional, same shape) says which tiles are HARD corners that a diagonal step may not cut.
+## Leave it out and every blocked tile is a hard corner. Combat passes "walls and props only", so a
+## creature can step diagonally past another creature but never through the corner of a wall.
 
 const DIRS := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)]
 
@@ -33,19 +36,20 @@ static func path_cost(from: Vector2i, path: Array) -> float:
 	return total
 
 
-static func _can_step(a: Vector2i, d: Vector2i, blocked: Callable) -> bool:
+static func _can_step(a: Vector2i, d: Vector2i, blocked: Callable, corner := Callable()) -> bool:
 	var b := a + d
 	if blocked.call(b):
 		return false
 	if d.x != 0 and d.y != 0:
-		if blocked.call(Vector2i(a.x + d.x, a.y)) or blocked.call(Vector2i(a.x, a.y + d.y)):
+		var hard: Callable = corner if corner.is_valid() else blocked
+		if hard.call(Vector2i(a.x + d.x, a.y)) or hard.call(Vector2i(a.x, a.y + d.y)):
 			return false
 	return true
 
 
 ## A* path from `from` to `to`. Returns the tiles to walk (excluding `from`), or [] if unreachable.
 ## adjacent_ok = stop on any tile next to `to` (use when `to` is occupied, e.g. walking up to an NPC).
-static func find_path(from: Vector2i, to: Vector2i, blocked: Callable, adjacent_ok := false, max_nodes := 3000) -> Array:
+static func find_path(from: Vector2i, to: Vector2i, blocked: Callable, adjacent_ok := false, max_nodes := 3000, corner := Callable()) -> Array:
 	if from == to or (adjacent_ok and cheb(from, to) <= 1):
 		return []
 	var open: Array = [[0.0, from]]
@@ -70,7 +74,7 @@ static func find_path(from: Vector2i, to: Vector2i, blocked: Callable, adjacent_
 			var nb: Vector2i = cur + d
 			if closed.has(nb):
 				continue
-			if not _can_step(cur, d, blocked):
+			if not _can_step(cur, d, blocked, corner):
 				continue
 			var ng: float = float(g[cur]) + step_cost(cur, nb)
 			if not g.has(nb) or ng < float(g[nb]):
@@ -89,14 +93,14 @@ static func _heuristic(a: Vector2i, b: Vector2i) -> float:
 
 
 ## Every tile reachable within `budget` movement. Returns {cell: {cost: float, prev: Vector2i}}.
-static func reachable(from: Vector2i, budget: float, blocked: Callable) -> Dictionary:
+static func reachable(from: Vector2i, budget: float, blocked: Callable, corner := Callable()) -> Dictionary:
 	var out := {from: {"cost": 0.0, "prev": from}}
 	var frontier: Array = [from]
 	while not frontier.is_empty():
 		var cur: Vector2i = frontier.pop_front()
 		var base: float = out[cur].cost
 		for d in DIRS:
-			if not _can_step(cur, d, blocked):
+			if not _can_step(cur, d, blocked, corner):
 				continue
 			var nb: Vector2i = cur + d
 			var cost := base + step_cost(cur, nb)

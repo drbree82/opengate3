@@ -381,6 +381,13 @@ func _monsters() -> void:
 				_err("unknown spell \"%s\"" % sp.get("id", ""))
 		if m.get("attacks", []).is_empty():
 			_err("needs at least one attack")
+		var lore = m.get("lore", {})
+		if typeof(lore) != TYPE_DICTIONARY:
+			_err("\"lore\" must be an object: {strengths: [..], weaknesses: [..], powers: [..]}")
+		else:
+			for k in lore:
+				if not (k in ["strengths", "weaknesses", "powers"]) or typeof(lore[k]) != TYPE_ARRAY:
+					_err("\"lore\" may only hold the lists strengths, weaknesses and powers (found \"%s\")" % k)
 
 
 func _quests() -> void:

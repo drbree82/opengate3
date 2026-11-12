@@ -12,6 +12,17 @@ Each task says where the code is and what "done" means.
   made on the ElevenLabs website (the API still refuses image generation below the Pro plan). How to make
   matching ones for new characters: docs/VOICE.md, "Portraits". `tests/test_hollowmere.gd test_portraits` guards them.
 
+- [x] **[M] Creature sheets in the journal.** Done 2026-11-12: Journal -> Creatures lists what the party has fought;
+  pointing at a name (there, or in a "You face: ..." story line) opens a tooltip with the stat block and
+  plain-English strengths, weaknesses and powers (`src/rules/monster_lore.gd`, `journal_panel.gd`).
+  Follow-ups: [S] show the same tooltip when the mouse rests on an enemy in the 3D view or on its initiative
+  chip (`combat_hud.gd on_hover`, call `main.journal.show_creature(id)`); [S] hide numbers until a Knowledge
+  check succeeds (optional rule, `campaign.rules`).
+- [x] **[M] Bodies and allies in the way.** Done 2026-11-12: bodies never block, allies can be walked through
+  (not stopped on), monsters queue up behind their own front line instead of standing still, and a body's
+  sprite no longer steals mouse clicks from someone standing behind it (`encounter.gd can_pass/can_stop`,
+  `combat_ai.gd _approach`, `world_view.gd pick`). Tests: `tests/test_engine.gd test_combat_movement_rules`.
+
 - [ ] **[S] Item tooltips.** `src/ui/sheet_panel.gd` `_gear()`: show weapon damage/crit and armor numbers
   as a tooltip (`[hint=...]` BBCode). Done: hovering an item in Gear shows its stats.
 - [ ] **[S] More passive feats.** `data/feats.json`: add Skill Focus variants, Run, Endurance, Spell Focus

@@ -243,6 +243,16 @@ func _tour_combat() -> void:
 		t += main.get_process_delta_time()
 	await wait(0.3)
 	await shot("player_turn")
+	# creature sheets: point the real mouse at the first name on the journal's Creatures tab
+	main.journal._select_tab("Creatures")
+	await wait(0.3)
+	await hover_at(main.journal.creatures.global_position + Vector2(30, 60))
+	await wait(0.3)
+	print("creature tooltip shows: ", main.journal.tip_id if main.journal.tip_id != "" else "NOTHING (hover failed)")
+	await shot("creature_tooltip")
+	await hover_at(main.journal.global_position + Vector2(300, 8))
+	main.journal._select_tab("Story")
+	await wait(0.2)
 	if main.view.combat.waiting() and g.encounter != null:
 		var me: Ent = main.view.combat.ent
 		var foes: Array = g.encounter.enemies_of(me)
@@ -288,6 +298,19 @@ func key(code: int, hold := 0.06) -> void:
 		ev.pressed = pressed
 		Input.parse_input_event(ev)
 		await wait(hold if pressed else 0.06)
+
+
+## Moves the mouse to a position of the window's 1600x900 canvas without clicking.
+func hover_at(pos: Vector2) -> void:
+	var mv := InputEventMouseMotion.new()
+	mv.position = pos
+	mv.global_position = pos
+	# RichTextLabel link hover reads the real cursor position, so move the real cursor as well
+	main.get_viewport().warp_mouse(pos)
+	await main.get_tree().process_frame
+	main.get_viewport().push_input(mv, true)
+	await main.get_tree().process_frame
+	await main.get_tree().process_frame
 
 
 ## A left mouse click at a position of the window's 1600x900 canvas.

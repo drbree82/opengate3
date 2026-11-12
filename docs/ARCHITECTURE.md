@@ -25,7 +25,8 @@ game (dialogue, cutscenes, full fights, a complete campaign play-through) can ru
 | `Ent` | engine/ent.gd | One entity on the map (party member, NPC, monster, prop). Plain data. |
 | `ScriptRunner` | engine/script_runner.gd | Runs JSON actions (`ops`) and tests JSON conditions (`conds`). |
 | `Dialogue`, `Cutscene`, `Quests`, `Party`, `GM` | engine/*.gd | Static helpers for each kind of content. |
-| `Encounter`, `CombatAI` | engine/encounter.gd, combat_ai.gd | One fight; decisions for monsters. |
+| `Encounter`, `CombatAI` | engine/encounter.gd, combat_ai.gd | One fight; decisions for monsters. Who may walk where: `Encounter.can_pass` / `can_stop`. |
+| `MonsterLore` | rules/monster_lore.gd | Creature sheet for the journal (numbers + plain-English notes). `game.state.bestiary` records which creatures the party has fought. |
 | `CamRig` | engine/cam_rig.gd | Camera numbers (room / chase / dialogue framing / scripted). |
 | `Anims` | engine/anims.gd | Tiny tween runner that is instant in tests. |
 | `WorldView` | render/world_view.gd | Draws the world; answers "what is under the mouse". |

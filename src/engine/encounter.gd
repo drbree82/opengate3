@@ -19,6 +19,7 @@ extends RefCounted
 ##
 ## Simplifications versus the tabletop rules (documented in docs/RULES.md):
 ##   - movement may be split around a standard action; a single 1-square step never provokes
+##   - allies can be walked through, bodies never block (see "Who may walk where" below)
 ##   - one attack per standard action (no full attacks yet), no reach weapons, no cover
 ##   - spells are cast from per-level slots without preparation
 
@@ -68,6 +69,7 @@ func run() -> String:
 	game.mode_changed.emit()
 	game.journal("combat", "Combat begins%s" % (": " + str(def.name) if def.has("name") else "!"))
 	game.io.sfx("combat")
+	game.note_foes(combatants.filter(func(e): return e.side == "enemy"))
 	game.io.banner("Roll for initiative!", def.get("name", ""))
 	await _roll_initiative()
 	if def.has("onStart"):
@@ -281,8 +283,37 @@ func allies_of(c: Ent, include_down := false) -> Array:
 	return out
 
 
+## --- Who may walk where (Pathfinder movement, simplified) -----------------------------------------
+##   walls, closed doors, props (pillars...)  nobody passes
+##   a standing enemy                          blocks its tile
+##   a standing ally                           you may walk THROUGH the tile but not stop on it
+##   a body (dead or unconscious, any side)    never blocks: walk over it, stop on it
+## A diagonal step may not cut the corner of a wall or prop, but may slip past a creature.
+
+## May `c` walk through this tile?
+func can_pass(c: Ent, cell: Vector2i) -> bool:
+	if world.map.blocks_move(cell.x, cell.y):
+		return false
+	var o: Ent = world.ent_at(cell, c)
+	return o == null or (o.actor != null and o.side == c.side)
+
+
+## May `c` end its movement on this tile?
+func can_stop(c: Ent, cell: Vector2i) -> bool:
+	return not world.map.blocks_move(cell.x, cell.y) and world.ent_at(cell, c) == null
+
+
+## Walls and props: the corners a diagonal step may not cut.
+func is_hard(cell: Vector2i) -> bool:
+	if world.map.blocks_move(cell.x, cell.y):
+		return true
+	var o: Ent = world.ent_at(cell)
+	return o != null and o.actor == null
+
+
+## Callable for Grid: true where `c` cannot walk (see can_pass).
 func blocked_for(c: Ent) -> Callable:
-	return func(cell: Vector2i): return world.is_blocked(cell, c)
+	return func(cell: Vector2i): return not can_pass(c, cell)
 
 
 ## Movement budget this turn: remaining move, plus a second move if the standard action is unused.
@@ -293,9 +324,25 @@ func move_budget(c: Ent) -> float:
 	return float(cs.moveLeft) + (float(game.stats(c.actor).squares) if cs.standard else 0.0)
 
 
-## Tiles the combatant can reach this turn: {cell: {cost, prev}} (see Grid.reachable).
+## Tiles the combatant can get to with `budget` movement: {cell: {cost, prev, pass?}} (see
+## Grid.reachable). Tiles marked "pass": true hold a standing ally: fine to walk through, not to
+## stop on. Use reach_stop() before offering a tile as a destination.
+func reach_within(c: Ent, budget: float) -> Dictionary:
+	var out: Dictionary = Grid.reachable(c.cell(), budget, blocked_for(c), is_hard)
+	for cell in out:
+		if cell != c.cell() and not can_stop(c, cell):
+			out[cell]["pass"] = true
+	return out
+
+
+## Tiles the combatant can reach this turn (see reach_within).
 func reach_for(c: Ent) -> Dictionary:
-	return Grid.reachable(c.cell(), move_budget(c), blocked_for(c))
+	return reach_within(c, move_budget(c))
+
+
+## Is `cell` in a reach_within() result AND a tile to stop on?
+static func reach_stop(reach: Dictionary, cell: Vector2i) -> bool:
+	return reach.has(cell) and not reach[cell].get("pass", false)
 
 
 func is_single_action(c: Ent) -> bool:
@@ -456,11 +503,15 @@ func _do_move(c: Ent, path: Array) -> bool:
 	var prev := c.cell()
 	for step in path:
 		var sc := Grid.step_cost(prev, step)
-		if Grid.cheb(prev, step) != 1 or world.is_blocked(step, c) or cost + sc > budget + 0.001:
+		if Grid.cheb(prev, step) != 1 or not can_pass(c, step) or cost + sc > budget + 0.001:
 			break
 		cost += sc
 		walk.append(step)
 		prev = step
+	# never end the move on a tile where an ally is standing
+	while not walk.is_empty() and not can_stop(c, walk[-1]):
+		cost -= Grid.step_cost(walk[-2] if walk.size() > 1 else c.cell(), walk[-1])
+		walk.pop_back()
 	if walk.is_empty():
 		return false
 	if cost > float(cs.moveLeft) + 0.001:

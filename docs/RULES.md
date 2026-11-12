@@ -16,9 +16,11 @@ starts with a `_doc` entry describing its fields.
 | Modifier stacking | mods.gd | typed bonuses do not stack (highest wins) except dodge/circumstance/untyped; penalties stack |
 | Derived stats | char_rules.gd `derive()` | hp, AC (touch, flat-footed), saves, initiative, CMB/CMD, speed, attacks, spell slots |
 | Monsters | data/monsters.json, monster_rules.gd | stat blocks; same stats shape as characters |
+| Creature sheets | monster_lore.gd | the journal's readout of a monster: numbers plus plain-English strengths, weaknesses and powers, worked out from the stat block |
 | Checks | checks.gd | skill, save (natural 1/20), ability, initiative |
 | Attacks | combat_rules.gd | natural 1/20, critical threat + confirmation, multipliers, damage reduction, sneak attack |
 | Combat flow | engine/encounter.gd | initiative, rounds, move + standard action, flat-footed, flanking (+2), attacks of opportunity, range penalties, total defense, dying and stabilising |
+| Combat movement | engine/encounter.gd `can_pass` / `can_stop` | walls and props block; a standing enemy blocks its square; a standing ally can be walked through but not stopped on; a body (dead or unconscious) never blocks; diagonal steps may not cut wall corners |
 | Conditions and effects | effects.gd, data/conditions.json | durations in rounds / encounter / rest |
 | Spells | spell_rules.gd, data/spells.json | touch attacks, saves (negates/half), damage, healing, buffs, cones and bursts, HD limits, immunities; cleric channel energy |
 | Experience | progression.gd | medium track, level-ups (hp roll, skill ranks, feats, ability increase, wizard spells) |
@@ -41,6 +43,9 @@ starts with a `_doc` entry describing its fields.
 
 **A monster** - add a stat block to `data/monsters.json` (copy `goblin`). `ai` is `melee`, `ranged`
 or `caster`. Give it `spells: [{"id": "...", "uses": 1}]` to make it cast.
+The journal's creature sheet (strengths, weaknesses, powers) is written automatically from the stat
+block by `src/rules/monster_lore.gd`. For something the numbers cannot say, add your own sentences:
+`"lore": {"strengths": ["..."], "weaknesses": ["Hates daylight."], "powers": ["..."]}`.
 
 **A spell** - add to `data/spells.json`; the fields are explained at the top of
 `src/rules/spell_rules.gd`. Example: `"shield_of_faith"`. Most spells need no code.

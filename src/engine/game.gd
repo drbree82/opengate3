@@ -10,7 +10,8 @@ extends RefCounted
 ## numbers, strings, bools. Never store objects (Ent, Vector2, ...) in it.
 ##   campaignId, flags {}, quests {}, roster {id: character}, party [ids], leader, playerId,
 ##   companions {id: absent|party|camp|player}, approval {}, gold, inventory [{id, qty}],
-##   mapId, pos {x, y}, maps {mapId: per-map state}, journal [entries], day, campReturn
+##   mapId, pos {x, y}, maps {mapId: per-map state}, journal [entries], day, campReturn,
+##   bestiary {monsterId: {met, slain}} (creatures fought so far - the journal's Creatures tab)
 
 signal journal_added(entry)   # a line was added to the journal
 signal state_changed          # party, inventory, quests, hp... changed: panels should redraw
@@ -77,7 +78,7 @@ func _blank_state(campaign_id: String) -> Dictionary:
 	return {
 		"campaignId": campaign_id, "flags": {}, "quests": {}, "roster": {}, "party": [], "leader": "", "playerId": "",
 		"companions": {}, "approval": {}, "gold": 0, "inventory": [], "mapId": "", "pos": {}, "maps": {},
-		"journal": [], "day": 1, "campReturn": null,
+		"journal": [], "day": 1, "campReturn": null, "bestiary": {},
 	}
 
 
@@ -204,7 +205,7 @@ func ent_of(character: Dictionary) -> Ent:
 # Journal and story text
 # ----------------------------------------------------------------------------------------------
 
-## Adds a journal entry. kind: narration | speech | choice | system | quest | roll | combat
+## Adds a journal entry. kind: narration | speech | choice | system | quest | roll | combat | foes
 func journal(kind: String, text: String, extra: Dictionary = {}) -> Dictionary:
 	var e := {"kind": kind, "text": text}
 	e.merge(extra)
@@ -246,6 +247,46 @@ func speaker_name(speaker: String) -> String:
 		if e != null:
 			return e.name
 	return speaker
+
+
+## Records that the party has met a creature (and optionally killed one). state.bestiary is what the
+## journal's Creatures tab lists: {monsterId: {"met": times fought, "slain": count}}.
+func note_creature(monster_id: String, slain := 0) -> void:
+	if monster_id == "" or not db.monsters.has(monster_id):
+		return
+	if not state.has("bestiary"):
+		state["bestiary"] = {}
+	var rec: Dictionary = state.bestiary.get(monster_id, {"met": 0, "slain": 0})
+	if slain > 0:
+		rec.slain = int(rec.slain) + slain
+	else:
+		rec.met = int(rec.met) + 1
+	state.bestiary[monster_id] = rec
+
+
+## Journal line naming the creatures the party is up against ("You face: 2 Skeletons, Cultist") and
+## their entry in the bestiary. The journal pane turns each name into a hover tooltip.
+func note_foes(foes: Array) -> void:
+	var ids: Array = []
+	var counts := {}
+	for e in foes:
+		var mid := str(e.actor.get("monsterId", "")) if e.actor != null else ""
+		if mid == "" or not db.monsters.has(mid):
+			continue
+		if not counts.has(mid):
+			ids.append(mid)
+			counts[mid] = 0
+			note_creature(mid)
+		counts[mid] += 1
+	if ids.is_empty():
+		return
+	var names: Array = []
+	var list: Array = []
+	for mid in ids:
+		var label := str(db.monsters[mid].name)
+		names.append(label if counts[mid] == 1 else "%d x %s" % [counts[mid], label])
+		list.append({"id": mid, "count": counts[mid]})
+	journal("foes", "You face: %s." % ", ".join(names), {"creatures": list})
 
 
 ## GM narration (journal + voice if a clip exists).
@@ -601,6 +642,8 @@ func damage_ent(ent: Ent, amount: int, kind := "damage") -> void:
 			if st.kind == "pc":
 				ent.actor["dead"] = true
 			journal("combat", "%s %s" % [ent.name, "dies!" if st.kind == "pc" else "is slain."])
+			if st.kind == "monster":
+				note_creature(str(ent.actor.get("monsterId", "")), 1)
 			io.sfx("down")
 	state_changed.emit()
 	combat_changed.emit()
