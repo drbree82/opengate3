@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Paints character portraits with ElevenLabs image generation (flows.image).
-// The game shows campaigns/<id>/portraits/<character id>.png on the character sheet, the party
+// The game shows campaigns/<id>/portraits/<character id>.png (or .webp / .jpg) on the character sheet, the party
 // list, the hero cards and in dialogue, and falls back to the pixel sprite when there is no file.
 //
 //   npm run portraits -- <campaign> --list     who would be painted, and the prompt for each (free)

@@ -11,6 +11,8 @@ characters and sound effects are generated in code, and ElevenLabs can add voice
 
 ![Exploring Hollowmere](docs/img/screenshot_explore.png)
 
+![The people of Hollowmere](docs/img/portraits.jpg)
+
 ## Play
 
 ```bash

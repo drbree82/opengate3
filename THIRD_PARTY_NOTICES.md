@@ -65,13 +65,20 @@ OpenGate uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo
 Pathfinder and Pathfinder Roleplaying Game are trademarks of Paizo Inc.
 This game is free. Contact: https://github.com/drbree82/opengate3/issues
 
-## ElevenLabs (generated audio)
+## ElevenLabs (generated audio and portraits)
 
 The voice lines (`campaigns/hollowmere/voice/`), the music (`campaigns/hollowmere/music/`) and the
 sound effects (`assets/sfx/`) were generated with ElevenLabs (https://elevenlabs.io) on the project
 owner's subscription, using ElevenLabs' stock voices. The prompts and scripts are the project's own
-(`campaign.json`, `data/sfx.json`, `tools/gen_*.mjs`). ElevenLabs' terms of service apply to how these
-files may be used; check them again before selling a build.
+(`campaign.json`, `data/sfx.json`, `tools/gen_*.mjs`).
+
+The twelve character portraits (`campaigns/hollowmere/portraits/*.webp`, shown together in
+`docs/img/portraits.jpg`) were generated on 2026-11-12 with ElevenLabs' Image & Video tool on the
+same subscription, using the Seedream 5.5 image model, from the project's own prompts
+(`npm run portraits -- hollowmere --prompts`), then scaled down to 768 pixels.
+
+ElevenLabs' terms of service apply to how these files may be used; check them again before selling
+a build.
 
 ## @elevenlabs/elevenlabs-js (development tool, not part of the game)
 
@@ -80,8 +87,9 @@ MIT License, Copyright (c) 2026 Elevenlabs. Used only by the generator scripts i
 
 ## Art
 
-All sprites and textures are drawn by the game's own code (`src/render/`).
-There are no third-party images, models or sound recordings in the repository.
+All sprites and textures are drawn by the game's own code (`src/render/`). The painted character
+portraits are listed under ElevenLabs above. There are no other third-party images, models or sound
+recordings in the repository.
 
 ## Adding something that is not yours?
 

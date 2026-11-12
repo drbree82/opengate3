@@ -207,3 +207,20 @@ func test_starter_campaign_shape(t) -> void:
 		if g.world.template(p.entity).get("kind", "") == "monster":
 			monsters += 1
 	t.ok(monsters >= 6, "the dungeon holds its three fights (%d monsters)" % monsters)
+
+
+## Painted portraits (campaigns/hollowmere/portraits/<id>.webp): every companion and the named people of
+## the story have one. If you add a companion, paint one too (docs/VOICE.md, "Portraits").
+func test_portraits(t) -> void:
+	var g := Game.new(null, 1)
+	g.instant = true
+	t.ok(g.load_campaign("hollowmere"), "campaign loads")
+	var dir: String = g.campaign.get("dir", "")
+	var ids: Array = g.campaign.companions.keys().filter(func(k): return not str(k).begins_with("_"))
+	ids.append_array(["reeve", "bram", "tova", "elsbeth", "gate_guard", "edrin", "snagrot", "varrek"])
+	t.eq(ids.size(), 12, "four companions and eight named characters")
+	for id in ids:
+		var tex := Portraits.painted(dir, str(id))
+		t.ok(tex != null, "%s has a painted portrait" % id)
+		if tex != null:
+			t.eq(tex.get_width(), tex.get_height(), "%s's portrait is square" % id)

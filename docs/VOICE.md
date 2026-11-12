@@ -67,6 +67,17 @@ generation on lower plans too, so there are two ways to get portraits:
 
 Without a portrait file the game uses the pixel sprite as the portrait.
 
+The starter campaign's twelve portraits were made the second way on 2026-11-12 (ElevenLabs website,
+Image & Video, model Seedream 5.5, aspect 1:1, resolution 1K, one generation, "auto-improve prompts"
+off - about 73 credits each) and saved as 768-pixel `.webp` files (about 80 KB each):
+`magick in.webp -resize 768x768 -quality 90 campaigns/<id>/portraits/<character id>.webp`.
+Use the same settings for new characters so they match. Keep portraits suitable for all ages
+(docs/LICENSING.md), and note new ones in `THIRD_PARTY_NOTICES.md`.
+
+After adding a portrait file run `./check.sh`: Godot imports it and writes `<file>.import` next to
+it. Commit that `.import` file too - `src/ui/portraits.gd` loads the imported texture, which is what
+makes portraits work in an exported build.
+
 `npm run portraits -- <campaign>` paints one image per companion and per entity that has a
 `"portrait"` prompt or a humanoid sprite with a name. The prompt is built from the character's
 race, class, look and bio plus `campaign.json "portraitStyle"`; set `"portrait": "..."` on a

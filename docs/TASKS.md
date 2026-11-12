@@ -8,13 +8,9 @@ Each task says where the code is and what "done" means.
 
 ## Good first tasks
 
-- [ ] **[S] Paint the portraits.** Prompts are ready (`npm run portraits -- hollowmere --prompts`).
-  The ElevenLabs **API** refuses image generation below the Pro plan (checked 2026-11-11 and again
-  2026-11-12 with every image model: "This endpoint requires a Pro plan or above"). The ElevenLabs
-  **website** does offer image generation on lower plans, so until the plan changes: paint each prompt
-  there (square, 1:1) and save it as `campaigns/hollowmere/portraits/<character id>.png` - the game
-  picks the files up with no code change. On Pro or above `npm run portraits -- hollowmere` does it all.
-  Done: `campaigns/hollowmere/portraits/*.png` exist and show on the sheet, hero cards and in dialogue.
+- [x] **[S] Paint the portraits.** Done 2026-11-12: twelve portraits in `campaigns/hollowmere/portraits/*.webp`,
+  made on the ElevenLabs website (the API still refuses image generation below the Pro plan). How to make
+  matching ones for new characters: docs/VOICE.md, "Portraits". `tests/test_hollowmere.gd test_portraits` guards them.
 
 - [ ] **[S] Item tooltips.** `src/ui/sheet_panel.gd` `_gear()`: show weapon damage/crit and armor numbers
   as a tooltip (`[hint=...]` BBCode). Done: hovering an item in Gear shows its stats.
@@ -117,6 +113,10 @@ Each task says where the code is and what "done" means.
   `tools/build.sh` that exports to `build/` and then runs `tools/write_notices.gd` so the notices file
   always ships with the game. Done: the exported game starts from `build/`, plays the intro with sound,
   and Licences -> "This game" and "Game rules" show the real LICENSE and OGL texts (not the one-line fallbacks).
+  Also on the way: `src/render/tex_factory.gd` (campaign `textures/*.png`) and `src/render/sprite_factory.gd`
+  (sprite sheets) still read raw image files with `Image.load_from_file`, which does not work in an exported
+  build. Give them the same treatment as `src/ui/portraits.gd` (`ResourceLoader.exists(path)` -> `load(path)`,
+  raw file only as a fallback).
 
 ## Known rough edges
 

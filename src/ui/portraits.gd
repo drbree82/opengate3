@@ -1,8 +1,8 @@
 class_name Portraits
 extends RefCounted
 ## Finds the picture to show for a character.
-## A painted portrait (campaigns/<id>/portraits/<character id>.png|jpg|webp, made by
-## `npm run portraits`) is used when it exists; otherwise the pixel sprite's idle frame.
+## A painted portrait (campaigns/<id>/portraits/<character id>.png|jpg|webp, see docs/VOICE.md
+## "Portraits") is used when it exists; otherwise the pixel sprite's idle frame.
 ##   Portraits.apply(texture_rect, game, character_or_id)     # sets texture + the right filtering
 
 const EXTS := ["png", "jpg", "jpeg", "webp"]
@@ -20,11 +20,21 @@ static func painted(campaign_dir: String, id: String) -> Texture2D:
 	var tex: Texture2D = null
 	for ext in EXTS:
 		var path := "%s/portraits/%s.%s" % [campaign_dir, id, ext]
+		# Files inside the project are imported by Godot (./check.sh or the editor does it; the result is
+		# the `<file>.import` sidecar). Loading the imported texture also works in an exported build,
+		# where the raw image file no longer exists.
+		if ResourceLoader.exists(path):
+			var res = load(path)
+			if res is Texture2D:
+				tex = res
+				break
+		# Not imported (a file dropped in while the game runs, or a campaign outside res://): read it raw.
 		if FileAccess.file_exists(path):
 			var img := Image.load_from_file(path)
 			if img != null:
 				if img.get_width() > 512:
 					img.resize(512, int(512.0 * img.get_height() / img.get_width()), Image.INTERPOLATE_LANCZOS)
+				img.generate_mipmaps()
 				tex = ImageTexture.create_from_image(img)
 				break
 	_cache[key] = tex
@@ -48,7 +58,8 @@ static func apply(rect: TextureRect, game, who) -> void:
 	var tex := painted(game.campaign.get("dir", ""), id)
 	if tex != null:
 		rect.texture = tex
-		rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		# portraits are shown much smaller than they are painted: mipmaps keep them smooth
+		rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		return
 	rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
