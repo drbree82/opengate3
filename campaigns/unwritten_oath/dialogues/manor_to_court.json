@@ -1,0 +1,30 @@
+{
+  "start": "travel",
+  "nodes": {
+    "travel": {
+      "speaker": "",
+      "text": "Road to the tribunal",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Continue.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "court",
+              "marker": "start"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "hasItem": "original_grant"
+          }
+        },
+        {
+          "text": "Stay here.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

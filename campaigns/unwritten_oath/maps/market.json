@@ -1,0 +1,77 @@
+{
+  "name": "The Lantern Market",
+  "subtitle": "The Unwritten Oath",
+  "allowCamp": true,
+  "outdoor": true,
+  "sky": "dusk",
+  "ambient": 0.65,
+  "defaults": {
+    "wall": "stone",
+    "floor": "grass",
+    "ceiling": "sky"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {},
+    "D": {
+      "door": "door_wood"
+    },
+    "s": {
+      "marker": "start"
+    },
+    "c": {
+      "camera": true
+    },
+    "T": {
+      "entity": "torch"
+    },
+    "A": {
+      "entity": "clerk"
+    },
+    "B": {
+      "entity": "proof_clerk"
+    },
+    "C": {
+      "entity": "market_history"
+    },
+    "E": {
+      "entity": "market_to_archive"
+    },
+    "F": {
+      "entity": "market_to_ferry"
+    }
+  },
+  "rows": [
+    "#########################",
+    "#.......................#",
+    "#.T...................T.#",
+    "#....................F..#",
+    "#..................c....#",
+    "#...B...................#",
+    "#.................C.....#",
+    "#.......................#",
+    "#.......................#",
+    "#.......................#",
+    "#.......................#",
+    "#......A................#",
+    "#....c..................#",
+    "#.......................#",
+    "#.Es....................#",
+    "#.......................#",
+    "#########################"
+  ],
+  "onEnter": [
+    {
+      "op": "flag.set",
+      "flag": "cloud_active",
+      "value": false
+    },
+    {
+      "op": "flag.set",
+      "flag": "cloud_steps",
+      "value": 0
+    }
+  ]
+}

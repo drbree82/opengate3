@@ -1,0 +1,84 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "sister",
+      "text": "Mara rang the ferry bell once for the living and twice for the dead. When the collectors came, they took the boat, the bell, then her. Seris was there. I will not pretend a rescue can make that memory clean.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Ask for the memory that can identify her soul.",
+          "goto": "memory"
+        },
+        {
+          "text": "Offer to recover the bell.",
+          "goto": "bell"
+        },
+        {
+          "text": "Return the bell.",
+          "goto": "returned",
+          "if": {
+            "hasItem": "mara_bell"
+          }
+        },
+        {
+          "text": "Listen to the story of the ferry.",
+          "goto": "history"
+        },
+        {
+          "text": "Leave.",
+          "goto": "end"
+        }
+      ]
+    },
+    "memory": {
+      "speaker": "sister",
+      "text": "She hated deep water. Everyone thought a ferryman must love it. She crossed because people needed crossing. Tell her I remember the courage, not the fear.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "mara_memory",
+          "value": true
+        },
+        {
+          "op": "quest.stage",
+          "id": "mara",
+          "stage": "vault"
+        }
+      ]
+    },
+    "bell": {
+      "speaker": "sister",
+      "text": "The raiders left it in the ruined boathouse. Bring it back because it is ours, not because it will buy my forgiveness.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "quest.start",
+          "id": "bell"
+        }
+      ]
+    },
+    "returned": {
+      "speaker": "sister",
+      "text": "You brought it back. Keep it until Mara is free; let it call her by her own name. When she comes home, she can hang it herself.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "quest.complete",
+          "id": "bell"
+        },
+        {
+          "op": "flag.set",
+          "flag": "bell_returned",
+          "value": true
+        }
+      ]
+    },
+    "history": {
+      "speaker": "sister",
+      "text": "The river used to mark the edge of the archlord\u2019s grant. His agents could collect a toll at the bridge, never at the ferry. When the bridge fell, they quietly began calling every crossing a bridge. Mara kept the old maps. They called that defiance. She called it knowing where she lived. The map in the manor still shows the original boundary.",
+      "goto": "end"
+    }
+  }
+}

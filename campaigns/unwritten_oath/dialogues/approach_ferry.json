@@ -1,0 +1,76 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "",
+      "text": "Seris can veil the party\u2019s passage past these living humanoid guards. The cloud lasts ten exploration tile entries, ends on combat or travel, and can be used once between long rests. A failed Charisma check spends the use. It does not open locks or hide you from undead, trolls, animals or constructs. The party, including Rowan, is never a target: only the listed guards\u2019 hostility is suppressed.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Cast Invisible Pheromone Cloud.",
+          "if": {
+            "all": [
+              {
+                "inParty": "seris"
+              },
+              {
+                "not": {
+                  "flag": "cloud_used"
+                }
+              }
+            ]
+          },
+          "do": [
+            {
+              "op": "flag.set",
+              "flag": "cloud_used",
+              "value": true
+            }
+          ],
+          "check": {
+            "ability": "cha",
+            "dc": 12,
+            "who": "seris"
+          },
+          "success": "passed",
+          "failure": "failed"
+        },
+        {
+          "text": "Use the unguarded route or face them openly.",
+          "goto": "end"
+        }
+      ]
+    },
+    "passed": {
+      "speaker": "seris",
+      "text": "Stay close. Keep walking. Do not mistake their inattention for friendship.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "cloud_active",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "cloud_steps",
+          "value": 10
+        },
+        {
+          "op": "group.hostile",
+          "group": "ferry_collectors",
+          "hostile": false
+        },
+        {
+          "op": "narrate",
+          "text": "Invisible Pheromone Cloud takes hold. Ten tile entries remain. Move around the guards; they are neither defeated nor loyal. Undead and other immune creatures remain dangerous."
+        }
+      ]
+    },
+    "failed": {
+      "speaker": "",
+      "text": "The guards remain alert. The daily use is spent; you can take the longer route, fight, or return to sanctuary and rest.",
+      "goto": "end"
+    }
+  }
+}

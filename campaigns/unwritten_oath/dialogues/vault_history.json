@@ -1,0 +1,10 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "\u201cI was told the names were removed to spare us grief. Now I think they were removed to spare us hesitation. If you find this, copy the register. Do not destroy it in anger. A burning ledger is a lovely sight until the rescuers ask where everyone is.\u201d The letter is signed only with a trembling initial.",
+      "goto": "end"
+    }
+  }
+}

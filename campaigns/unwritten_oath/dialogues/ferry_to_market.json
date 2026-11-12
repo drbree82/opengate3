@@ -1,0 +1,27 @@
+{
+  "start": "travel",
+  "nodes": {
+    "travel": {
+      "speaker": "",
+      "text": "Return to the market",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Continue.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "market",
+              "marker": "start"
+            }
+          ],
+          "goto": "end"
+        },
+        {
+          "text": "Stay here.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

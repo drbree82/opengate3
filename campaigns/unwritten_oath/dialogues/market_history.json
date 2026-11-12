@@ -1,0 +1,10 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The first ledger lists sacks of grain and repairs to the bridge. The second begins charging interest on help. The third has no column for repayment. Someone has written in the margin: \u201cA debt that cannot end is not a debt. It is a claim of ownership.\u201d The handwriting resembles Seris\u2019s.",
+      "goto": "end"
+    }
+  }
+}

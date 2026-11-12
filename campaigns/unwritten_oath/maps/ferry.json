@@ -1,0 +1,179 @@
+{
+  "name": "The Drowned Ferry",
+  "subtitle": "The Unwritten Oath",
+  "allowCamp": true,
+  "outdoor": true,
+  "sky": "dusk",
+  "ambient": 0.65,
+  "defaults": {
+    "wall": "stone",
+    "floor": "grass",
+    "ceiling": "sky"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {
+      "trigger": "cloud_step"
+    },
+    "D": {
+      "door": "door_wood",
+      "trigger": "cloud_step"
+    },
+    "s": {
+      "marker": "start",
+      "trigger": "cloud_step"
+    },
+    "c": {
+      "camera": true,
+      "trigger": "cloud_step"
+    },
+    "T": {
+      "entity": "torch",
+      "trigger": "cloud_step"
+    },
+    "A": {
+      "entity": "sister",
+      "trigger": "cloud_step"
+    },
+    "B": {
+      "entity": "bell_cache",
+      "trigger": "cloud_step"
+    },
+    "C": {
+      "entity": "ferry_history",
+      "trigger": "cloud_step"
+    },
+    "E": {
+      "entity": "ferry_to_market",
+      "trigger": "cloud_step"
+    },
+    "F": {
+      "entity": "ferry_to_vault",
+      "trigger": "cloud_step"
+    },
+    "G": {
+      "entity": "approach_ferry",
+      "trigger": "cloud_step"
+    },
+    "H": {
+      "entity": "wolf",
+      "group": "ferry_wolves",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "I": {
+      "entity": "wolf",
+      "group": "ferry_wolves",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "J": {
+      "entity": "ferry_human_guard",
+      "group": "ferry_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "K": {
+      "entity": "ferry_dwarf_guard",
+      "group": "ferry_collectors",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    }
+  },
+  "rows": [
+    "#########################",
+    "#.......................#",
+    "#.T...................T.#",
+    "#...................B...#",
+    "#...C..............c....#",
+    "#......H.I..............#",
+    "#.......................#",
+    "#.......................#",
+    "#..#######..............#",
+    "#.......................#",
+    "#.......................#",
+    "#..................K....#",
+    "#....c.........G..J.....#",
+    "#.....A...............F.#",
+    "#.Es....................#",
+    "#.......................#",
+    "#########################"
+  ],
+  "onEnter": [
+    {
+      "op": "flag.set",
+      "flag": "cloud_active",
+      "value": false
+    },
+    {
+      "op": "flag.set",
+      "flag": "cloud_steps",
+      "value": 0
+    }
+  ],
+  "triggers": {
+    "cloud_step": {
+      "once": false,
+      "do": [
+        {
+          "op": "flag.inc",
+          "flag": "cloud_steps",
+          "by": -1,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "ferry_collectors",
+          "hostile": false,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "ferry_collectors",
+          "hostile": true,
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "narrate",
+          "text": "The invisible cloud fades. The guards are alert again.",
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "flag.set",
+          "flag": "cloud_active",
+          "value": false,
+          "if": {
+            "flag": "cloud_steps",
+            "equals": 0
+          }
+        }
+      ]
+    }
+  }
+}

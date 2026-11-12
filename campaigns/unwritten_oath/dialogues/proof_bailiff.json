@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The tribunal notice requires its officers to explain procedure to any petitioner, without fee or obligation.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "evidence_bailiff",
+          "value": true
+        }
+      ]
+    }
+  }
+}

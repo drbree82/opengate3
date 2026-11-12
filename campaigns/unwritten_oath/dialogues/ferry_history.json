@@ -1,0 +1,10 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "Flood marks rise above your head. Below them, names are scratched into the stone in pairs: the person carried and the person who carried them. No price appears. Seris remembers the archlord calling this place wasteful. She had believed him then, before she learned what his profitable crossings cost.",
+      "goto": "end"
+    }
+  }
+}

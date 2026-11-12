@@ -1,0 +1,40 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The seal is not a weapon. Its impression limits the holder\u2019s powers: service may be delegated; ownership of an unsigned soul may not. The archlord\u2019s collectors omitted that second line from their copies.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Take it and preserve the record.",
+          "do": [
+            {
+              "op": "item.give",
+              "id": "counterseal"
+            },
+            {
+              "op": "flag.set",
+              "flag": "taken_counterseal_cache",
+              "value": true
+            },
+            {
+              "op": "quest.complete",
+              "id": "docket"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "not": {
+              "flag": "taken_counterseal_cache"
+            }
+          }
+        },
+        {
+          "text": "Leave it for now.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

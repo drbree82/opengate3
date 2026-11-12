@@ -1,0 +1,146 @@
+{
+  "hearing": {
+    "name": "A Stay of Collection",
+    "type": "main",
+    "summary": "Secure time to challenge the archlord without transferring Rowan to him.",
+    "stages": [
+      {
+        "id": "gather",
+        "text": "Hear Seris and Rowan, then examine the ledger."
+      },
+      {
+        "id": "petition",
+        "text": "Ask the registrar to stay collection. Address the missing testimony if necessary."
+      },
+      {
+        "id": "choice",
+        "text": "Let Rowan decide where to go during the stay."
+      }
+    ],
+    "rewards": {}
+  },
+  "restitution": {
+    "name": "The First Name",
+    "type": "side",
+    "summary": "Preserve the record of a soul Seris collected. A name is the beginning of restitution, not absolution.",
+    "stages": [
+      {
+        "id": "preserve",
+        "text": "Read the ledger and preserve the victim\u2019s testimony."
+      }
+    ],
+    "rewards": {}
+  },
+  "docket": {
+    "name": "The Missing Counterseal",
+    "type": "main",
+    "summary": "Find proof that the archlord claimed authority he was never granted.",
+    "stages": [
+      {
+        "id": "market",
+        "text": "Ask the market clerk about the missing counterseal."
+      },
+      {
+        "id": "vault",
+        "text": "Recover the counterseal from the Counting House vault."
+      }
+    ],
+    "rewards": {
+      "xp": 600
+    }
+  },
+  "mara": {
+    "name": "A Name Is Not a Number",
+    "type": "main",
+    "summary": "Recover Mara\u2019s memory and release her captive soul.",
+    "stages": [
+      {
+        "id": "ferry",
+        "text": "Meet Mara\u2019s sister at the old ferry."
+      },
+      {
+        "id": "vault",
+        "text": "Find Mara\u2019s soul lantern in the vault."
+      },
+      {
+        "id": "release",
+        "text": "Release her at the sanctuary. Let her choose whether to speak."
+      }
+    ],
+    "rewards": {
+      "xp": 500
+    }
+  },
+  "bloodline": {
+    "name": "The Ancestor\u2019s Signature",
+    "type": "main",
+    "summary": "Learn what Seris\u2019s ancestor actually promised.",
+    "stages": [
+      {
+        "id": "manor",
+        "text": "Explore the ancestral manor; read all three inscriptions."
+      },
+      {
+        "id": "seal",
+        "text": "Open the family archive using its three principles."
+      }
+    ],
+    "rewards": {
+      "xp": 700
+    }
+  },
+  "appeal": {
+    "name": "Against the Future",
+    "type": "main",
+    "summary": "Bring the original grant, counterseal and testimony to the tribunal.",
+    "stages": [
+      {
+        "id": "gather",
+        "text": "Find the counterseal, original grant and a free witness\u2019s testimony."
+      },
+      {
+        "id": "court",
+        "text": "Enter the tribunal and challenge both claims together."
+      }
+    ],
+    "rewards": {
+      "xp": 0
+    }
+  },
+  "bell": {
+    "name": "The Ferryman\u2019s Bell",
+    "type": "side",
+    "summary": "Return a stolen memorial bell without collecting another debt.",
+    "stages": [
+      {
+        "id": "find",
+        "text": "Find the bell among the ferry ruins."
+      },
+      {
+        "id": "return",
+        "text": "Return it to Mara\u2019s sister."
+      }
+    ],
+    "rewards": {
+      "xp": 250
+    }
+  },
+  "names": {
+    "name": "The Other Names",
+    "type": "side",
+    "summary": "Copy the vault\u2019s register so the rescue does not end with two people.",
+    "stages": [
+      {
+        "id": "copy",
+        "text": "Preserve the register in the Counting House."
+      },
+      {
+        "id": "deliver",
+        "text": "Entrust the names to the sanctuary keeper."
+      }
+    ],
+    "rewards": {
+      "xp": 300
+    }
+  }
+}

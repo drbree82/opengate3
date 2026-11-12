@@ -1,0 +1,146 @@
+{
+  "start": [
+    {
+      "if": {
+        "flag": "both_free"
+      },
+      "node": "after"
+    },
+    {
+      "node": "hello"
+    }
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "envoy",
+      "text": "The archlord offers an easier ending. Seris may transfer the service to her surviving bloodline. Or Rowan may be released in exchange for a new soul. There are precedents for both. Why trouble yourselves with the foundations of a law when you could purchase an exception?",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Reject both substitutions and challenge the claims.",
+          "goto": "challenge"
+        },
+        {
+          "text": "Ask why he calls an unsigned soul a debt.",
+          "goto": "law"
+        },
+        {
+          "text": "Confront the envoy\u2019s enforcers.",
+          "goto": "fight",
+          "if": {
+            "not": {
+              "flag": "court_guard_done"
+            }
+          }
+        },
+        {
+          "text": "We need more evidence.",
+          "goto": "end"
+        }
+      ]
+    },
+    "law": {
+      "speaker": "envoy",
+      "text": "\u201cContinuity,\u201d he says. \u201cCivilisation depends on obligations surviving the people who make them.\u201d Seris answers: \u201cA bridge can be inherited. So can its upkeep. A person is not a bridge.\u201d The envoy does not answer her. He asks whether you brought the original grant.",
+      "goto": "end"
+    },
+    "challenge": {
+      "speaker": "envoy",
+      "text": "Place the original grant, the counterseal, and a freely offered account before the court.",
+      "if": {
+        "all": [
+          {
+            "hasItem": "counterseal"
+          },
+          {
+            "hasItem": "original_grant"
+          },
+          {
+            "flag": "free_testimony"
+          }
+        ]
+      },
+      "else": "missing",
+      "goto": "verdict"
+    },
+    "missing": {
+      "speaker": "envoy",
+      "text": "Your case is incomplete. The counterseal is in the Counting House, the original grant in the family manor, and a free witness must speak from sanctuary. Charm cannot create valid testimony. The court will hear you when the record is complete.",
+      "goto": "end"
+    },
+    "fight": {
+      "speaker": "envoy",
+      "text": "\u201cMy servants will show you the cost of impatience.\u201d These are mortal retainers, not the archlord himself. Defeating them will not cancel a contract.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "combat.start",
+          "group": "court_guard"
+        }
+      ]
+    },
+    "verdict": {
+      "speaker": "",
+      "text": "The counterseal exposes the forged rider. Mara\u2019s free testimony connects the collections to the unlawful claim. The tribunal annuls the archlord\u2019s lien and Seris\u2019s delegated bond together, with no substitution and no gap in protection. Seris\u2019s inherited service is void. Rowan\u2019s soul remains his own. At sanctuary, use the fire to speak with Rowan about what comes next.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Return to Rowan at the sanctuary.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "sanctuary",
+              "marker": "start"
+            }
+          ],
+          "goto": "end"
+        }
+      ],
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "both_free",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "seris_free",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "rowan_free",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "superior_claim",
+          "value": false
+        },
+        {
+          "op": "flag.set",
+          "flag": "patron_claim",
+          "value": false
+        },
+        {
+          "op": "quest.complete",
+          "id": "appeal"
+        },
+        {
+          "op": "group.remove",
+          "group": "court_guard"
+        },
+        {
+          "op": "quest.stage",
+          "id": "hearing",
+          "stage": "choice"
+        }
+      ]
+    },
+    "after": {
+      "speaker": "envoy",
+      "text": "The envoy has gone. The court\u2019s decision covers these claims; it does not free every soul in the vault. The register remains a promise of work, not a declaration that the work is finished.",
+      "goto": "end"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "The Archive of Unclaimed Names",
+  "subtitle": "A neutral room. No one speaks for another.",
+  "ambient": 0.7,
+  "ambientColor": "#ead6c0",
+  "defaults": {
+    "wall": "stone",
+    "floor": "flagstone",
+    "ceiling": "plank"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {},
+    "s": {
+      "marker": "start"
+    },
+    "c": {
+      "camera": true
+    },
+    "S": {
+      "entity": "seris"
+    },
+    "R": {
+      "entity": "rowan"
+    },
+    "I": {
+      "entity": "registrar"
+    },
+    "L": {
+      "entity": "ledger"
+    },
+    "T": {
+      "entity": "torch"
+    },
+    "E": {
+      "entity": "archive_exit"
+    }
+  },
+  "rows": [
+    "#############",
+    "#T....I....T#",
+    "#...........#",
+    "#..S.....R..#",
+    "#...........#",
+    "#.....c.....#",
+    "#..L.....E..#",
+    "#.....s.....#",
+    "#############"
+  ]
+}

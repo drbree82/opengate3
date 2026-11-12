@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The market receipt records a fee already paid for access to the Counting House. Tavin\u2019s own signature is on it.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "evidence_clerk",
+          "value": true
+        }
+      ]
+    }
+  }
+}

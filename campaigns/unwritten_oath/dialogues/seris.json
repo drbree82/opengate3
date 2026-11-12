@@ -1,0 +1,55 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "seris",
+      "text": "My ancestor promised service for our bloodline. The archlord calls it inheritance. I call it a wrong that has lasted too long. I collect souls under that bond. Rowan\u2019s power comes through me, but the archlord holds the claim beneath mine.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Tell me why you cannot release him.",
+          "goto": "truth"
+        },
+        {
+          "text": "What do you owe the people you harmed?",
+          "goto": "past"
+        },
+        {
+          "text": "I will listen again later.",
+          "goto": "end"
+        }
+      ]
+    },
+    "truth": {
+      "speaker": "seris",
+      "text": "If I cancel his pact alone, the superior claim takes effect. Protecting him does not make keeping him right. I love him. That gives me no right to decide his life. Let him see every clause.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "seris_heard",
+          "value": true
+        },
+        {
+          "op": "quest.start",
+          "id": "restitution"
+        },
+        {
+          "op": "party.add",
+          "id": "seris"
+        }
+      ]
+    },
+    "past": {
+      "speaker": "seris",
+      "text": "I remember Mara, a ferryman whose name I entered in that ledger. Fear explains why I obeyed; it does not repair what I did. Preserve her testimony, even if it is evidence against me.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "quest.start",
+          "id": "restitution"
+        }
+      ]
+    }
+  }
+}

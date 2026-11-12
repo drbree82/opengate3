@@ -1,0 +1,169 @@
+{
+  "name": "The Tribunal of the Counterseal",
+  "subtitle": "The Unwritten Oath",
+  "allowCamp": true,
+  "outdoor": false,
+  "sky": "",
+  "ambient": 0.65,
+  "defaults": {
+    "wall": "stone",
+    "floor": "flagstone",
+    "ceiling": "plank"
+  },
+  "legend": {
+    "#": {
+      "wall": "stone"
+    },
+    ".": {
+      "trigger": "cloud_step"
+    },
+    "D": {
+      "door": "door_wood",
+      "trigger": "cloud_step"
+    },
+    "s": {
+      "marker": "start",
+      "trigger": "cloud_step"
+    },
+    "c": {
+      "camera": true,
+      "trigger": "cloud_step"
+    },
+    "T": {
+      "entity": "torch",
+      "trigger": "cloud_step"
+    },
+    "A": {
+      "entity": "bailiff",
+      "trigger": "cloud_step"
+    },
+    "B": {
+      "entity": "proof_bailiff",
+      "trigger": "cloud_step"
+    },
+    "C": {
+      "entity": "envoy",
+      "trigger": "cloud_step"
+    },
+    "E": {
+      "entity": "court_to_manor",
+      "trigger": "cloud_step"
+    },
+    "F": {
+      "entity": "approach_court",
+      "trigger": "cloud_step"
+    },
+    "G": {
+      "entity": "court_human_guard",
+      "group": "court_guard",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "H": {
+      "entity": "court_dwarf_guard",
+      "group": "court_guard",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    },
+    "I": {
+      "entity": "court_elf_guard",
+      "group": "court_guard",
+      "aggro": 2.0,
+      "trigger": "cloud_step"
+    }
+  },
+  "rows": [
+    "#########################",
+    "#...........#...........#",
+    "#.T.........#.........T.#",
+    "#...........#...........#",
+    "#...........D......c.C..#",
+    "#...B.......#...........#",
+    "#...........#...........#",
+    "#...........#...........#",
+    "#...........#...........#",
+    "#...........#...........#",
+    "#...........#...........#",
+    "#...........#......H....#",
+    "#....cA.....D..F..G..I..#",
+    "#...........#...........#",
+    "#.Es........#...........#",
+    "#...........#...........#",
+    "#########################"
+  ],
+  "onEnter": [
+    {
+      "op": "flag.set",
+      "flag": "cloud_active",
+      "value": false
+    },
+    {
+      "op": "flag.set",
+      "flag": "cloud_steps",
+      "value": 0
+    }
+  ],
+  "triggers": {
+    "cloud_step": {
+      "once": false,
+      "do": [
+        {
+          "op": "flag.inc",
+          "flag": "cloud_steps",
+          "by": -1,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "court_guard",
+          "hostile": false,
+          "if": {
+            "flag": "cloud_active"
+          }
+        },
+        {
+          "op": "group.hostile",
+          "group": "court_guard",
+          "hostile": true,
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "narrate",
+          "text": "The invisible cloud fades. The guards are alert again.",
+          "if": {
+            "all": [
+              {
+                "flag": "cloud_active"
+              },
+              {
+                "flag": "cloud_steps",
+                "equals": 0
+              }
+            ]
+          }
+        },
+        {
+          "op": "flag.set",
+          "flag": "cloud_active",
+          "value": false,
+          "if": {
+            "flag": "cloud_steps",
+            "equals": 0
+          }
+        }
+      ]
+    }
+  }
+}

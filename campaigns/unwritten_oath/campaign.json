@@ -1,0 +1,37 @@
+{
+  "name": "The Unwritten Oath",
+  "author": "OpenGate",
+  "description": "A complete original campaign targeting roughly three hours: a hearing, a market investigation, haunted ferry, soul vault, ancestral manor and final tribunal. Play the Witness with Seris and Oren as controllable companions. Duration is an unverified playtest target.",
+  "maxPartySize": 4,
+  "start": {
+    "map": "archive",
+    "marker": "start",
+    "gold": 35,
+    "do": [
+      {
+        "op": "narrate",
+        "text": "You enter a neutral archive as an independent witness. Seris, a lawful-good woman descended from a succubus, is bound to harvest souls for an archlord. Rowan, the warlock she loves, wants to leave her service. Speak to them both, examine the ledger, then petition the registrar."
+      },
+      {
+        "op": "quest.start",
+        "id": "hearing"
+      },
+      {
+        "op": "party.add",
+        "id": "oren"
+      },
+      {
+        "op": "item.give",
+        "id": "potion_clw",
+        "qty": 5
+      }
+    ]
+  },
+  "rules": {
+    "reviveAfterCombat": true
+  },
+  "camp": {
+    "map": "sanctuary",
+    "marker": "start"
+  }
+}

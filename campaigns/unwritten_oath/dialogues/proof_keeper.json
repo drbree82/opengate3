@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "The vault receipt grants the bearer an explanation of the lantern mechanism. Its fee was paid by Mara, before her name became a number.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "evidence_keeper",
+          "value": true
+        }
+      ]
+    }
+  }
+}

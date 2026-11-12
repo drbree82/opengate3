@@ -1,0 +1,17 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "\u201cA promise begins where a free will speaks. Threats can compel a voice, never create agreement.\u201d The ancestor struck this line out on the copy carried to the archlord, but the original stone remains. Principle: WILL.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "clue_will",
+          "value": true
+        }
+      ]
+    }
+  }
+}

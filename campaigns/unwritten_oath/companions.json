@@ -1,0 +1,155 @@
+{
+  "witness": {
+    "name": "The Witness",
+    "race": "human",
+    "cls": "fighter",
+    "racialChoice": "str",
+    "abilities": {
+      "str": 15,
+      "dex": 13,
+      "con": 14,
+      "int": 10,
+      "wis": 12,
+      "cha": 8
+    },
+    "feats": [
+      "weapon_focus:longsword",
+      "toughness",
+      "dodge"
+    ],
+    "skillRanks": {
+      "intimidate": 1,
+      "climb": 1,
+      "perception": 1
+    },
+    "look": {
+      "body": "masculine",
+      "build": "heroic",
+      "skin": "#c98f66",
+      "hair": "#2a1c12",
+      "hairStyle": "short",
+      "top": "#7d8590"
+    },
+    "bio": "An independent adventurer asked to witness a dispute over two souls.",
+    "greeting": "Let each person speak for themselves."
+  },
+  "seris": {
+    "name": "Seris",
+    "playable": false,
+    "race": "oath_tiefling",
+    "cls": "rogue",
+    "abilities": {
+      "str": 9,
+      "dex": 14,
+      "con": 12,
+      "int": 12,
+      "wis": 10,
+      "cha": 15
+    },
+    "feats": [
+      "weapon_finesse"
+    ],
+    "skillRanks": {
+      "diplomacy": 1,
+      "bluff": 1,
+      "sense_motive": 1,
+      "disable_device": 1,
+      "perception": 1,
+      "stealth": 1,
+      "knowledge_local": 1,
+      "linguistics": 1,
+      "use_magic_device": 1
+    },
+    "look": {
+      "body": "feminine",
+      "build": "slender",
+      "skin": "#d29898",
+      "hair": "#271520",
+      "hairStyle": "wavy",
+      "horns": "#39202b",
+      "tail": true,
+      "outfit": "robe",
+      "top": "#682d43",
+      "trim": "#c1b9b0",
+      "weapon": "none"
+    },
+    "bio": "Lawful good in conviction, bound by an inherited soul-harvesting pact. She seeks restitution and freedom for Rowan without claiming his affection. Original campaign ancestry and innate powers; not a full published tiefling implementation."
+  },
+  "oren": {
+    "name": "Oren Vale",
+    "playable": false,
+    "race": "human",
+    "cls": "cleric",
+    "racialChoice": "wis",
+    "abilities": {
+      "str": 12,
+      "dex": 10,
+      "con": 13,
+      "int": 10,
+      "wis": 15,
+      "cha": 13
+    },
+    "feats": [
+      "toughness",
+      "iron_will"
+    ],
+    "skillRanks": {
+      "heal": 1,
+      "sense_motive": 1,
+      "knowledge_religion": 1
+    },
+    "look": {
+      "body": "masculine",
+      "hair": "#b4b0a0",
+      "beard": true,
+      "outfit": "armor",
+      "top": "#bcb39d"
+    },
+    "bio": "A sanctuary keeper who believes rescue must never become ownership. A willing travelling healer."
+  },
+  "rowan": {
+    "name": "Rowan",
+    "playable": false,
+    "race": "human",
+    "cls": "oath_warlock",
+    "racialChoice": "cha",
+    "abilities": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 13,
+      "wis": 10,
+      "cha": 15
+    },
+    "feats": [
+      "toughness",
+      "improved_initiative"
+    ],
+    "skillRanks": {
+      "spellcraft": 1,
+      "knowledge_arcana": 1,
+      "knowledge_planes": 1,
+      "perception": 1
+    },
+    "spells": [
+      "acid_splash",
+      "ray_of_frost",
+      "daze",
+      "magic_missile",
+      "mage_armor",
+      "sleep",
+      "burning_hands"
+    ],
+    "look": {
+      "body": "masculine",
+      "build": "slim",
+      "skin": "#bb946d",
+      "hair": "#38281e",
+      "hairStyle": "short",
+      "beard": "stubble",
+      "outfit": "robe",
+      "top": "#28575c"
+    },
+    "bio": "Seris\u2019s warlock and a full controllable party member. He agrees to pursue the challenge to both pacts; neither the patron bond nor her gifts control his affection or player actions."
+  }
+}

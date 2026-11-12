@@ -1,0 +1,30 @@
+{
+  "start": "travel",
+  "nodes": {
+    "travel": {
+      "speaker": "",
+      "text": "Road to the old ferry",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Continue.",
+          "do": [
+            {
+              "op": "map.goto",
+              "map": "ferry",
+              "marker": "start"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "flag": "info_clerk"
+          }
+        },
+        {
+          "text": "Stay here.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "start": [
+    {
+      "if": {
+        "flag": "both_free"
+      },
+      "node": "epilogue"
+    },
+    {
+      "if": {
+        "flag": "prologue_complete"
+      },
+      "node": "travelling"
+    },
+    {
+      "if": {
+        "flag": "stay_granted"
+      },
+      "node": "free_choice"
+    },
+    {
+      "node": "hello"
+    }
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "rowan",
+      "text": "She calls the bond protection. I call it a door that only she can open. I want freedom, including the freedom to leave her. Before anyone bargains with my soul, I want to read the bargain myself.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "You will see the ledger and speak for yourself.",
+          "goto": "heard"
+        },
+        {
+          "text": "She loves you. Does that change anything?",
+          "goto": "love"
+        },
+        {
+          "text": "We will speak later.",
+          "goto": "end"
+        }
+      ]
+    },
+    "heard": {
+      "speaker": "rowan",
+      "text": "Then record this: I consent to a hearing. I do not consent to a new master, a replacement soul, or a promise to return her love.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "rowan_heard",
+          "value": true
+        }
+      ]
+    },
+    "love": {
+      "speaker": "rowan",
+      "text": "It changes how painful this is. It does not make me hers.",
+      "goto": "end"
+    },
+    "free_choice": {
+      "speaker": "rowan",
+      "text": "The stay stops collection while we challenge the claims. I want to join the expedition as a party member, not as her servant. I can refuse her requests and leave the relationship. I choose to help break both pacts because neither should own a person.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Welcome him as an equal; invite his testimony.",
+          "goto": "cooperate"
+        },
+        {
+          "text": "Welcome him as an equal; respect his personal distance.",
+          "goto": "distance"
+        }
+      ]
+    },
+    "cooperate": {
+      "speaker": "rowan",
+      "text": "I will travel with you. I know how the signing room was arranged, and what the envoy omitted. I will share that freely. The missing counterseal is our next lead. Speak to the market clerk.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "rowan_choice",
+          "value": "voluntary_testimony"
+        },
+        {
+          "op": "flag.set",
+          "flag": "prologue_complete",
+          "value": true
+        },
+        {
+          "op": "quest.complete",
+          "id": "hearing"
+        },
+        {
+          "op": "quest.start",
+          "id": "docket"
+        },
+        {
+          "op": "quest.start",
+          "id": "mara"
+        },
+        {
+          "op": "quest.start",
+          "id": "bloodline"
+        },
+        {
+          "op": "quest.start",
+          "id": "appeal"
+        },
+        {
+          "op": "party.add",
+          "id": "rowan"
+        }
+      ]
+    },
+    "distance": {
+      "speaker": "rowan",
+      "text": "I will travel with you, but I am not ready to discuss us. Please respect that. The missing counterseal is our next lead. Speak to the market clerk.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "rowan_choice",
+          "value": "distance"
+        },
+        {
+          "op": "flag.set",
+          "flag": "prologue_complete",
+          "value": true
+        },
+        {
+          "op": "quest.complete",
+          "id": "hearing"
+        },
+        {
+          "op": "quest.start",
+          "id": "docket"
+        },
+        {
+          "op": "quest.start",
+          "id": "mara"
+        },
+        {
+          "op": "quest.start",
+          "id": "bloodline"
+        },
+        {
+          "op": "quest.start",
+          "id": "appeal"
+        },
+        {
+          "op": "party.add",
+          "id": "rowan"
+        }
+      ]
+    },
+    "epilogue": {
+      "speaker": "rowan",
+      "text": "The bond is gone. For the first time, even silence belongs to me. I need a life that is not built around escaping her. That does not erase what she did to free us. It means I get to decide what comes next.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Give him space, without asking for a promise.",
+          "goto": "ending_distance"
+        },
+        {
+          "text": "Ask whether he wants to help find the other souls.",
+          "goto": "ending_work"
+        }
+      ]
+    },
+    "ending_distance": {
+      "speaker": "rowan",
+      "text": "I am leaving tomorrow. Tell Seris I heard her apology. I am not ready to answer it.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "ending",
+          "value": "freedom_and_distance"
+        },
+        {
+          "op": "campaign.end",
+          "victory": true,
+          "text": "Both pacts are broken. Rowan leaves freely. Seris begins the long work of restitution; she neither follows nor calls him back. Freedom is the victory. Forgiveness remains his choice."
+        }
+      ]
+    },
+    "ending_work": {
+      "speaker": "rowan",
+      "text": "I will help with the records for a while. Because I choose that work. When I need to leave, I will tell you; I will not ask permission.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "ending",
+          "value": "freedom_and_shared_work"
+        },
+        {
+          "op": "campaign.end",
+          "victory": true,
+          "text": "Both pacts are broken. Rowan voluntarily joins the search for other captive souls, with no promise of romance. Seris accepts that their future cannot be written as an obligation. The rescued names become the first pages of a different history."
+        }
+      ]
+    },
+    "travelling": {
+      "speaker": "rowan",
+      "text": "I am here because I chose the work. That does not settle what happened between us.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Ask about the night he signed.",
+          "goto": "signing"
+        },
+        {
+          "text": "Ask how being her warlock feels.",
+          "goto": "patron"
+        },
+        {
+          "text": "Ask what he hopes freedom will change.",
+          "goto": "future"
+        },
+        {
+          "text": "Give him some quiet.",
+          "goto": "end"
+        }
+      ]
+    },
+    "signing": {
+      "speaker": "rowan",
+      "text": "There was a fire in the lower quarter. I wanted power to open a way through it. Seris gave it to me. I knew I was agreeing to serve her; I did not know someone else held a claim behind hers. She says she learned about the rider later. I believe that she was deceived too. I do not know whether believing her makes the years between us easier. The envoy called the extra page an administrative record. I never signed it. He folded it under the page I did sign and pressed the seal through both.",
+      "goto": "end"
+    },
+    "patron": {
+      "speaker": "rowan",
+      "text": "The spells are mine to cast. I still have to learn their shapes, choose their targets, bear the consequences. The bond is what turns the source of that power into a claim on my future. She could ask me to stay and I might say yes. The cruelty is that for years I could not be sure my yes meant anything. Breaking the claim will not erase what I learned. I want to discover what I can do when every choice belongs to me.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "rowan_signing_known",
+          "value": true
+        }
+      ]
+    },
+    "future": {
+      "speaker": "rowan",
+      "text": "A room with a door I can close. Friends who do not know me as somebody\u2019s warlock. A morning when I choose where to go before wondering what she needs. Perhaps I will miss her. Perhaps that will hurt more than this. I still want the right to find out.",
+      "goto": "end"
+    }
+  }
+}

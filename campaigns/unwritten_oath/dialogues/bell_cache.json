@@ -1,0 +1,41 @@
+{
+  "start": "read",
+  "nodes": {
+    "read": {
+      "speaker": "",
+      "text": "A bell lies wrapped in sailcloth. Someone polished it even after the boat had rotted away. Its clapper carries the names of the people Mara ferried through the flood.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Take it and preserve the record.",
+          "do": [
+            {
+              "op": "item.give",
+              "id": "mara_bell"
+            },
+            {
+              "op": "flag.set",
+              "flag": "taken_bell_cache",
+              "value": true
+            },
+            {
+              "op": "quest.stage",
+              "id": "bell",
+              "stage": "return"
+            }
+          ],
+          "goto": "end",
+          "if": {
+            "not": {
+              "flag": "taken_bell_cache"
+            }
+          }
+        },
+        {
+          "text": "Leave it for now.",
+          "goto": "end"
+        }
+      ]
+    }
+  }
+}

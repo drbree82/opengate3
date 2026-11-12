@@ -1,0 +1,107 @@
+{
+  "start": [
+    {
+      "if": {
+        "flag": "stay_granted"
+      },
+      "node": "granted"
+    },
+    {
+      "node": "hello"
+    }
+  ],
+  "nodes": {
+    "hello": {
+      "speaker": "registrar",
+      "text": "A patron cannot erase a superior claim by tearing up her own bond. I can record a dispute and suspend collection under this archive\u2019s covenant, but I need both accounts and the ledger. No soul is accepted here as substitute payment.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Petition for a stay of collection.",
+          "goto": "petition",
+          "if": {
+            "all": [
+              {
+                "flag": "seris_heard"
+              },
+              {
+                "flag": "rowan_heard"
+              },
+              {
+                "flag": "ledger_read"
+              },
+              {
+                "flag": "rowan_informed"
+              }
+            ]
+          }
+        },
+        {
+          "text": "What evidence do you need?",
+          "goto": "instructions"
+        },
+        {
+          "text": "Would cancelling her bond free him?",
+          "goto": "warning"
+        },
+        {
+          "text": "I will return.",
+          "goto": "end"
+        }
+      ]
+    },
+    "instructions": {
+      "speaker": "registrar",
+      "text": "Hear why Seris cannot release him. Hear what Rowan wants. Read the ledger and preserve the victim\u2019s testimony. This process suspends enforcement; it does not declare either pact void.",
+      "goto": "end"
+    },
+    "warning": {
+      "speaker": "registrar",
+      "text": "No. That would activate the archlord\u2019s claim. There is no safe release until that claim is suspended or defeated. Nothing has been signed or cancelled.",
+      "goto": "end"
+    },
+    "petition": {
+      "speaker": "registrar",
+      "text": "Both accounts are entered. Now the evidence.",
+      "do": [
+        {
+          "op": "quest.stage",
+          "id": "hearing",
+          "stage": "petition"
+        }
+      ],
+      "if": {
+        "flag": "testimony_preserved"
+      },
+      "else": "missing",
+      "goto": "grant"
+    },
+    "missing": {
+      "speaker": "registrar",
+      "text": "The claim is disputed, but the evidence of abuse is missing. Preserve Mara\u2019s testimony from the ledger, then return. You have lost no right to petition again.",
+      "goto": "end"
+    },
+    "grant": {
+      "speaker": "registrar",
+      "text": "The stay is entered. Neither claim may collect Rowan while this dispute remains before the archive. He may live apart from Seris and refuse her service. This protection comes from the archive\u2019s covenant, not her permission. Ask him what he wants next.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "stay_granted",
+          "value": true
+        },
+        {
+          "op": "quest.stage",
+          "id": "hearing",
+          "stage": "choice"
+        }
+      ]
+    },
+    "granted": {
+      "speaker": "registrar",
+      "text": "The stay remains in force for this prologue. Speak to Rowan. Permanent freedom requires defeating both claims; the recorded names are the beginning of the restitution work.",
+      "goto": "end"
+    }
+  }
+}

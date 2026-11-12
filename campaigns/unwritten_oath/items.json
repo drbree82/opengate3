@@ -1,0 +1,33 @@
+{
+  "_doc": "Original story objects; no imported rule mechanics.",
+  "mara_bell": {
+    "name": "Mara\u2019s Bell",
+    "type": "quest",
+    "cost": 0,
+    "desc": "A ferryman\u2019s bell; a memory anchor, never a substitute soul."
+  },
+  "counterseal": {
+    "name": "The Counterseal",
+    "type": "quest",
+    "cost": 0,
+    "desc": "Evidence limiting the archlord\u2019s delegated authority."
+  },
+  "soul_lantern": {
+    "name": "Mara\u2019s Soul Lantern",
+    "type": "quest",
+    "cost": 0,
+    "desc": "A captive soul awaiting voluntary release."
+  },
+  "original_grant": {
+    "name": "The Original Grant",
+    "type": "quest",
+    "cost": 0,
+    "desc": "The ancestor promised their own service, not the souls of descendants."
+  },
+  "names_register": {
+    "name": "Register of Names",
+    "type": "quest",
+    "cost": 0,
+    "desc": "A copied list of captive souls and their locations."
+  }
+}

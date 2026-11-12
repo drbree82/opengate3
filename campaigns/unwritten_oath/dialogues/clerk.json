@@ -1,0 +1,149 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "clerk",
+      "text": "A missing counterseal? There is no missing seal. There is a seal the owners would rather you did not find.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Ask directly, without magic.",
+          "goto": "plain"
+        },
+        {
+          "text": "[Succubus Spittle] Offer a brief kiss; use the contact to charm him.",
+          "if": {
+            "all": [
+              {
+                "inParty": "seris"
+              },
+              {
+                "not": {
+                  "flag": "spittle_clerk"
+                }
+              }
+            ]
+          },
+          "do": [
+            {
+              "op": "flag.set",
+              "flag": "spittle_clerk",
+              "value": true
+            },
+            {
+              "op": "flag.set",
+              "flag": "charm_used_ever",
+              "value": true
+            }
+          ],
+          "check": {
+            "ability": "cha",
+            "dc": 13,
+            "who": "seris",
+            "label": "Succubus Spittle: Clerk Tavin"
+          },
+          "success": "charmed",
+          "failure": "resisted"
+        },
+        {
+          "text": "Ask about the history of this place.",
+          "goto": "lore"
+        },
+        {
+          "text": "Leave for now.",
+          "goto": "end"
+        }
+      ]
+    },
+    "plain": {
+      "speaker": "clerk",
+      "text": "A copied ferryman\u2019s receipt from the market notice board would establish your right to inspect.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Make the case patiently.",
+          "check": {
+            "skill": "diplomacy",
+            "dc": 13,
+            "who": "best"
+          },
+          "success": "information",
+          "failure": "alternative"
+        },
+        {
+          "text": "Use the documentary evidence instead.",
+          "goto": "document",
+          "if": {
+            "flag": "evidence_clerk"
+          }
+        },
+        {
+          "text": "Leave.",
+          "goto": "end"
+        }
+      ]
+    },
+    "alternative": {
+      "speaker": "clerk",
+      "text": "I will not risk my livelihood on a stranger\u2019s word. Bring evidence. You can still learn what you need without changing my mind.",
+      "goto": "end"
+    },
+    "document": {
+      "speaker": "clerk",
+      "text": "That record settles it. No favour owed.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Hear the details.",
+          "goto": "information"
+        }
+      ],
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_clerk",
+          "value": true
+        }
+      ]
+    },
+    "information": {
+      "speaker": "clerk",
+      "text": "The counterseal is in the Counting House beyond the ferry. It records delegated powers, including the limit on binding people who never signed. The vault keeper keeps its key beside the register.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_clerk",
+          "value": true
+        }
+      ]
+    },
+    "charmed": {
+      "speaker": "clerk",
+      "text": "His reserve softens for this conversation. The counterseal is in the Counting House beyond the ferry. It records delegated powers, including the limit on binding people who never signed. The vault keeper keeps its key beside the register. The warmth fades as you part. Nothing here binds him to silence or loyalty.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "flag.set",
+          "flag": "info_clerk",
+          "value": true
+        },
+        {
+          "op": "flag.set",
+          "flag": "charmed_clerk",
+          "value": true
+        }
+      ]
+    },
+    "resisted": {
+      "speaker": "clerk",
+      "text": "He draws away. \u201cThat felt like more than a greeting. Speak plainly if you want something.\u201d The attempt fails; ordinary conversation and the evidence route remain open.",
+      "goto": "end"
+    },
+    "lore": {
+      "speaker": "clerk",
+      "text": "The archlord\u2019s collectors turned help into debt. A meal became a favour, a favour became an oath, and every oath acquired a clause its signer had never seen. Some of us learned not to ask questions. That habit has lasted longer than the fear that taught it.",
+      "goto": "end"
+    }
+  }
+}

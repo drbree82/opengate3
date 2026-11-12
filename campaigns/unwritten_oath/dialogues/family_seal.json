@@ -1,0 +1,67 @@
+{
+  "start": "hello",
+  "nodes": {
+    "hello": {
+      "speaker": "",
+      "text": "Three words form the old household oath. The inscriptions explain their order: identity, free choice, then an end to service.",
+      "goto": "end",
+      "choices": [
+        {
+          "text": "Name, Will, Release.",
+          "goto": "open",
+          "if": {
+            "all": [
+              {
+                "flag": "clue_name"
+              },
+              {
+                "flag": "clue_will"
+              },
+              {
+                "flag": "clue_release"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Blood, Obedience, Forever.",
+          "goto": "wrong"
+        },
+        {
+          "text": "Read the inscriptions first.",
+          "goto": "end"
+        }
+      ]
+    },
+    "wrong": {
+      "speaker": "",
+      "text": "The seal remains shut. The archlord\u2019s motto is not the family\u2019s original oath. No trap fires; the inscriptions are still there to read.",
+      "goto": "end"
+    },
+    "open": {
+      "speaker": "",
+      "text": "The archive opens. The ancestor promised their own years of service in return for protection during a war. A later rider claims the souls of descendants, but carries neither the original counterseal nor a descendant\u2019s signature.",
+      "goto": "end",
+      "do": [
+        {
+          "op": "item.give",
+          "id": "original_grant",
+          "if": {
+            "not": {
+              "hasItem": "original_grant"
+            }
+          }
+        },
+        {
+          "op": "quest.complete",
+          "id": "bloodline"
+        },
+        {
+          "op": "flag.set",
+          "flag": "grant_read",
+          "value": true
+        }
+      ]
+    }
+  }
+}
